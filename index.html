@@ -69,20 +69,20 @@ header::before { content: ''; position: absolute; top: 0; left: 0; right: 0; hei
   display: flex;
   z-index: 500;
   padding-bottom: env(safe-area-inset-bottom);
-  box-shadow: 0 -4px 20px rgba(60,45,20,0.12);
+  box-shadow: 0 -4px 24px rgba(60,45,20,0.15);
 }
 .bnav-btn {
   flex: 1;
   background: none;
   border: none;
-  color: var(--muted);
+  color: #a09080;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 4px;
+  gap: 3px;
   cursor: pointer;
-  padding: 0.5rem 0.2rem;
+  padding: 0.5rem 0.15rem;
   font-family: 'DM Mono', monospace;
   -webkit-tap-highlight-color: transparent;
   transition: color 0.2s, transform 0.15s;
@@ -93,16 +93,24 @@ header::before { content: ''; position: absolute; top: 0; left: 0; right: 0; hei
   position: absolute;
   top: 0; left: 50%;
   transform: translateX(-50%) scaleX(0);
-  width: 32px; height: 3px;
+  width: 36px; height: 3px;
   border-radius: 0 0 4px 4px;
   background: var(--geo);
-  transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1);
+  transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1);
 }
 .bnav-btn.active::before { transform: translateX(-50%) scaleX(1); }
-.bnav-btn:active { transform: scale(0.92); }
-.bnav-btn .bnav-icon { font-size: 1.25rem; line-height: 1; transition: transform 0.2s; }
-.bnav-btn.active .bnav-icon { transform: scale(1.1); }
-.bnav-btn .bnav-label { font-size: 0.52rem; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 700; }
+.bnav-btn:active { transform: scale(0.90); }
+.bnav-btn .bnav-icon { font-size: 1.35rem; line-height: 1; transition: transform 0.2s; }
+.bnav-btn.active .bnav-icon { transform: scale(1.15); }
+.bnav-btn .bnav-label {
+  font-size: 0.55rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #a09080;
+  transition: color 0.2s;
+}
+.bnav-btn.active .bnav-label { color: inherit; }
 .bnav-btn.active { color: var(--geo); }
 #bnav-planning.active { color: var(--gold); }
 #bnav-planning.active::before { background: var(--gold); }
@@ -480,7 +488,7 @@ hr.divider { border: none; border-top: 1.5px solid var(--border); margin: 1.5rem
 <nav id="bottom-nav">
   <button class="bnav-btn active" onclick="showTab('planning',this)" id="bnav-planning"><span class="bnav-icon">📅</span><span class="bnav-label">Planning</span></button>
   <button class="bnav-btn" onclick="showTab('qcm',this)" id="bnav-qcm"><span class="bnav-icon">📝</span><span class="bnav-label">Révisions</span></button>
-  <button class="bnav-btn" onclick="showTab('methode',this)" id="bnav-methode"><span class="bnav-icon">📐</span><span class="bnav-label">Entraîn.</span></button>
+  <button class="bnav-btn" onclick="showTab('methode',this)" id="bnav-methode"><span class="bnav-icon">📐</span><span class="bnav-label">Exercices</span></button>
   <button class="bnav-btn" onclick="showTab('jourj',this)" id="bnav-jourj"><span class="bnav-icon">🎓</span><span class="bnav-label">Jour-J</span></button>
   <button class="bnav-btn" onclick="openSaveModal()"><span class="bnav-icon">💾</span><span class="bnav-label">Sauver</span></button>
 </nav>
@@ -499,13 +507,7 @@ hr.divider { border: none; border-top: 1.5px solid var(--border); margin: 1.5rem
     <strong>⚠ Format de l'épreuve — 2h au total</strong>
     <strong>Hist-Géo (40 pts) :</strong> Exo 1 — Analyse de docs (15 pts) + Exo 2 — Développement construit (18 pts) 30 lignes min. + Repères (7 pts). · <strong>EMC (20 pts) :</strong> Situation pratique + questions + réponse développée.
   </div>
-  <div class="legend">
-    <div class="legend-item"><div class="legend-dot" style="background:var(--hist)"></div> Histoire</div>
-    <div class="legend-item"><div class="legend-dot" style="background:var(--geo)"></div> Géographie</div>
-    <div class="legend-item"><div class="legend-dot" style="background:var(--emc)"></div> EMC</div>
-    <div class="legend-item"><div class="legend-dot" style="background:var(--emc)"></div> ✓ Réussi</div>
-    <div class="legend-item"><div class="legend-dot" style="background:var(--hist)"></div> ✗ À refaire</div>
-  </div>
+
 
   <!-- ══ SEMAINE 1 ══ -->
   <div class="week-block open" id="week1">
@@ -570,14 +572,14 @@ hr.divider { border: none; border-top: 1.5px solid var(--border); margin: 1.5rem
       <div class="progress-wrap"><div class="progress-label"><span>Progression</span><span class="week-progress-text">0 / 8</span></div><div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div></div>
       <div class="tip-box"><strong>💡 Conseils</strong>Après avoir relu ton cours, relis aussi les fiches méthode (NADI et développement construit) dans l'onglet Méthode. En fin de semaine, repasse les QCM marqués "À refaire" en semaine 1.</div>
       <ul class="task-list">
-        <li class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Réviser H3 — La Seconde Guerre mondiale (1939–1945) : génocides, Résistance, Libération, bilan humain</span><span class="task-tag tag-hist">Hist.</span></li>
-        <li class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Réviser G3 — Espaces à faibles densités : espaces ruraux, montagnards, littoraux ; atouts et difficultés</span><span class="task-tag tag-geo">Géo.</span></li>
-        <li class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Réviser EMC2 — La République française : 5e République, séparation des pouvoirs, institutions, droits et devoirs</span><span class="task-tag tag-emc">EMC</span></li>
-        <li class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Réviser G4 — Aménagement du territoire : politiques d'aménagement, réduction des inégalités, rôle de l'État et de l'UE</span><span class="task-tag tag-geo">Géo.</span></li>
-        <li class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Réviser H4 — Guerre froide, décolonisation, construction européenne : bipolarisation, indépendances, CEE puis UE</span><span class="task-tag tag-hist">Hist.</span></li>
-        <li class="task-item pri-moyenne" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Relire la méthode du développement construit (onglet Méthode) et s'entraîner à rédiger une introduction</span><span class="task-tag tag-methode">Méthode</span></li>
-        <li class="task-item pri-moyenne" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Relire la méthode NADI (onglet Méthode) et s'exercer sur un document inconnu</span><span class="task-tag tag-methode">Méthode</span></li>
-        <li class="task-item pri-moyenne" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Refaire les QCM marqués "À refaire" en semaine 1 (H1 à H4, G1 à G4, EMC1 et EMC2)</span><span class="task-tag tag-hist">QCM</span></li>
+        <li class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Réviser H3 — La Seconde Guerre mondiale (1939–1945)</span><span class="task-tag tag-hist">Hist.</span></li>
+        <li class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Réviser G3 — Espaces à faibles densités</span><span class="task-tag tag-geo">Géo.</span></li>
+        <li class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Réviser EMC2 — La République française</span><span class="task-tag tag-emc">EMC</span></li>
+        <li class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Réviser G4 — Aménagement du territoire</span><span class="task-tag tag-geo">Géo.</span></li>
+        <li class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Réviser H4 — Guerre froide, décolonisation, construction européenne</span><span class="task-tag tag-hist">Hist.</span></li>
+        <li class="task-item pri-moyenne" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Relire la méthode du développement construit</span><span class="task-tag tag-methode">Méthode</span></li>
+        <li class="task-item pri-moyenne" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Relire la méthode NADI</span><span class="task-tag tag-methode">Méthode</span></li>
+        <li class="task-item pri-moyenne" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Refaire des QCM</span><span class="task-tag tag-geo">QCM</span></li>
       </ul>
     </div>
   </div>
@@ -592,13 +594,13 @@ hr.divider { border: none; border-top: 1.5px solid var(--border); margin: 1.5rem
       <div class="progress-wrap"><div class="progress-label"><span>Progression</span><span class="week-progress-text">0 / 7</span></div><div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div></div>
       <div class="alert-box"><strong>⚠ Dernière semaine avant le DNB !</strong>Consolide les derniers chapitres, fais un sujet complet en 2h chrono, et repasse tous les QCM encore fragiles.</div>
       <ul class="task-list">
-        <li class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Réviser H5 — Le monde après 1989 : fin de la Guerre froide, nouveaux conflits, mondialisation, terrorisme</span><span class="task-tag tag-hist">Hist.</span></li>
-        <li class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Réviser H6 — La France depuis 1945 : reconstruction, 5e République, société française, défis contemporains</span><span class="task-tag tag-hist">Hist.</span></li>
-        <li class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Réviser G5 — La France et l'Union européenne : place dans l'UE, territoire, enjeux économiques et politiques</span><span class="task-tag tag-geo">Géo.</span></li>
-        <li class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Réviser EMC3 — Défense nationale et citoyenneté : armée, JDC, réserve, engagement citoyen</span><span class="task-tag tag-emc">EMC</span></li>
-        <li class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Faire un sujet d'entraînement complet en 2h chrono (onglet Méthode → Annales Strabon)</span><span class="task-tag tag-methode">Méthode</span></li>
-        <li class="task-item pri-moyenne" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Refaire tous les QCM encore marqués "À refaire" — viser 70%+ sur chaque chapitre</span><span class="task-tag tag-hist">QCM</span></li>
-        <li class="task-item pri-basse" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Les 2 nuits avant le 29 juin : dormir au moins 8h — le cerveau mémorise pendant le sommeil 🌙</span><span class="task-tag tag-methode">Bien-être</span></li>
+        <li class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Réviser H5 — Le monde après 1989</span><span class="task-tag tag-hist">Hist.</span></li>
+        <li class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Réviser H6 — La France depuis 1945</span><span class="task-tag tag-hist">Hist.</span></li>
+        <li class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Réviser G5 — La France et l'Union européenne</span><span class="task-tag tag-geo">Géo.</span></li>
+        <li class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Réviser EMC3 — Défense nationale et citoyenneté</span><span class="task-tag tag-emc">EMC</span></li>
+        <li class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Faire un sujet d'entraînement complet en 2h chrono</span><span class="task-tag tag-methode">Méthode</span></li>
+        <li class="task-item pri-moyenne" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Refaire des QCM</span><span class="task-tag tag-geo">QCM</span></li>
+        <li class="task-item pri-basse" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Les 2 nuits avant le 29 juin : dormir au moins 8h 🌙</span><span class="task-tag tag-methode">Bien-être</span></li>
       </ul>
     </div>
   </div>
