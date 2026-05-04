@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Révisions DNB 2026 — HGE · Collège Plan Menu · Coublevie</title>
+<!-- Atkinson Hyperlegible : police open-source conçue pour la lisibilité et les profils dys -->
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f4f1eb;
+  --surface: #ffffff;
+  --surface2: #ede9e0;
+  --border: rgba(60,45,20,0.13);
+  --text: #1e1a14;
+  --muted: #6b6151;
+  --faint: rgba(60,45,20,0.04);
+  --hist: #c0390f;
+  --hist-soft: rgba(192,57,15,0.09);
+  --hist-border: rgba(192,57,15,0.28);
+  --geo: #1565a8;
+  --geo-soft: rgba(21,101,168,0.09);
+  --geo-border: rgba(21,101,168,0.28);
+  --emc: #1e7c45;
+  --emc-soft: rgba(30,124,69,0.09);
+  --emc-border: rgba(30,124,69,0.28);
+  --methode: #7a30b5;
+  --methode-soft: rgba(122,48,181,0.09);
+  --methode-border: rgba(122,48,181,0.28);
+  --gold: #b5760a;
+  --gold-bg: rgba(181,118,10,0.1);
+  --nav-h: 68px;
+  --radius: 10px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Atkinson Hyperlegible', Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.75;
+  letter-spacing: 0.01em;
+  min-height: 100vh;
+  padding-bottom: var(--nav-h);
+  overflow-x: hidden;
+}
+body::before { display: none; }
+
+/* HEADER */
+header { background: var(--surface); border-bottom: 2px solid var(--border); padding: 1.2rem 1rem 1rem; position: relative; z-index: 1; overflow: hidden; box-shadow: 0 2px 12px rgba(60,45,20,0.07); }
+header::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--hist), var(--geo), var(--emc), var(--methode)); }
+.header-inner { display: flex; flex-direction: column; gap: 0.6rem; }
+.header-badge { display: inline-flex; align-items: center; gap: 0.35rem; background: var(--bg); border: 1.5px solid var(--border); border-radius: 20px; padding: 0.2rem 0.7rem; font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); width: fit-content; }
+.header-title { font-family: 'Nunito', sans-serif; font-size: 1.85rem; font-weight: 900; line-height: 1.1; letter-spacing: -0.01em; margin-top: 0.4rem; color: var(--text); }
+.accent-hist { color: var(--hist); }
+.accent-geo { color: var(--geo); }
+.accent-emc { color: var(--emc); }
+.header-sub { font-size: 0.78rem; color: var(--muted); font-family: 'DM Mono', monospace; letter-spacing: 0.04em; }
+.countdown-chip { display: inline-flex; align-items: center; gap: 0.4rem; background: var(--bg); border: 1.5px solid var(--border); border-radius: 6px; padding: 0.3rem 0.7rem; font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--muted); margin-top: 0.4rem; }
+.countdown-chip .chip-num { font-weight: 700; font-size: 0.95rem; color: var(--gold); }
+
+/* NAV */
+.nav-tabs { display: none; }
+#bottom-nav {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  height: var(--nav-h);
+  background: var(--surface);
+  border-top: 2px solid var(--border);
+  display: flex;
+  z-index: 500;
+  padding-bottom: env(safe-area-inset-bottom);
+  box-shadow: 0 -4px 20px rgba(60,45,20,0.12);
+}
+.bnav-btn {
+  flex: 1;
+  background: none;
+  border: none;
+  color: var(--muted);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  cursor: pointer;
+  padding: 0.5rem 0.2rem;
+  font-family: 'DM Mono', monospace;
+  -webkit-tap-highlight-color: transparent;
+  transition: color 0.2s, transform 0.15s;
+  position: relative;
+}
+.bnav-btn::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  width: 32px; height: 3px;
+  border-radius: 0 0 4px 4px;
+  background: var(--geo);
+  transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1);
+}
+.bnav-btn.active::before { transform: translateX(-50%) scaleX(1); }
+.bnav-btn:active { transform: scale(0.92); }
+.bnav-btn .bnav-icon { font-size: 1.25rem; line-height: 1; transition: transform 0.2s; }
+.bnav-btn.active .bnav-icon { transform: scale(1.1); }
+.bnav-btn .bnav-label { font-size: 0.52rem; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 700; }
+.bnav-btn.active { color: var(--geo); }
+#bnav-planning.active { color: var(--gold); }
+#bnav-planning.active::before { background: var(--gold); }
+#bnav-qcm.active { color: var(--hist); }
+#bnav-qcm.active::before { background: var(--hist); }
+#bnav-methode.active { color: var(--methode); }
+#bnav-methode.active::before { background: var(--methode); }
+#bnav-jourj.active { color: var(--emc); }
+#bnav-jourj.active::before { background: var(--emc); }
+
+/* MAIN */
+main { padding: 1rem; position: relative; z-index: 1; }
+.tab-section { display: none; }
+.tab-section.active { display: block; }
+
+/* HEADINGS */
+.section-heading { font-family: 'Nunito', sans-serif; font-size: 1.55rem; font-weight: 900; letter-spacing: -0.01em; margin-bottom: 0.15rem; color: var(--text); }
+.section-sub { font-family: 'DM Mono', monospace; font-size: 0.62rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1.2rem; }
+hr.divider { border: none; border-top: 1.5px solid var(--border); margin: 1.5rem 0; }
+
+/* WEEK BLOCKS */
+.week-block { margin-bottom: 1rem; border: 1.5px solid var(--border); border-radius: var(--radius); overflow: hidden; background: var(--surface); box-shadow: 0 2px 8px rgba(60,45,20,0.06); }
+.week-header { padding: 0.9rem 1rem; display: flex; justify-content: space-between; align-items: center; cursor: pointer; user-select: none; -webkit-tap-highlight-color: transparent; gap: 0.5rem; background: var(--surface); }
+.week-header:active { background: var(--surface2); }
+.week-label { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.15rem; font-weight: 700; }
+.week-title { font-family: 'Nunito', sans-serif; font-size: 1.05rem; font-weight: 800; color: var(--text); }
+.week-toggle { font-size: 1rem; opacity: 0.4; transition: transform 0.3s; flex-shrink: 0; }
+.week-block.open .week-toggle { transform: rotate(180deg); }
+.week-body { padding: 1rem; display: none; background: var(--bg); }
+.week-block.open .week-body { display: block; }
+
+/* PROGRESS */
+.progress-wrap { margin-bottom: 1rem; }
+.progress-label { display: flex; justify-content: space-between; font-family: 'DM Mono', monospace; font-size: 0.62rem; color: var(--muted); margin-bottom: 0.3rem; font-weight: 700; }
+.progress-bar { height: 6px; background: var(--surface2); border-radius: 3px; overflow: hidden; border: 1px solid var(--border); }
+.progress-fill { height: 100%; background: linear-gradient(90deg, var(--hist), var(--geo)); border-radius: 3px; transition: width 0.4s ease; }
+
+/* TASKS */
+.task-list { list-style: none; display: flex; flex-direction: column; gap: 0.35rem; }
+.task-item { display: flex; align-items: flex-start; gap: 0.75rem; padding: 0.65rem 0.75rem; border-radius: 8px; border-left: 4px solid transparent; cursor: pointer; min-height: 48px; -webkit-tap-highlight-color: transparent; transition: background 0.15s; background: var(--surface); border: 1px solid var(--border); border-left-width: 4px; }
+.task-item:active, .task-item:hover { background: var(--surface2); }
+.task-item input[type="checkbox"] { appearance: none; width: 20px; height: 20px; border: 2px solid var(--muted); border-radius: 5px; cursor: pointer; flex-shrink: 0; margin-top: 1px; position: relative; transition: all 0.2s; }
+.task-item input[type="checkbox"]:checked { background: var(--emc); border-color: var(--emc); }
+.task-item input[type="checkbox"]:checked::after { content: '✓'; position: absolute; top: -2px; left: 2px; color: white; font-size: 13px; font-weight: 700; }
+.task-item.done .task-text { color: var(--muted); }
+.task-text { flex: 1; font-size: 0.93rem; line-height: 1.6; }
+.task-tag { font-family: 'DM Mono', monospace; font-size: 0.56rem; padding: 0.15rem 0.45rem; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.05em; flex-shrink: 0; align-self: flex-start; margin-top: 3px; font-weight: 700; }
+.tag-hist { background: var(--hist-soft); color: var(--hist); border: 1.5px solid var(--hist-border); }
+.tag-geo { background: var(--geo-soft); color: var(--geo); border: 1.5px solid var(--geo-border); }
+.tag-emc { background: var(--emc-soft); color: var(--emc); border: 1.5px solid var(--emc-border); }
+.tag-methode { background: var(--methode-soft); color: var(--methode); border: 1.5px solid var(--methode-border); }
+.tag-urgent { background: var(--gold-bg); color: var(--gold); border: 1.5px solid rgba(181,118,10,0.4); font-weight: 700; }
+.task-item.pri-haute { border-left-color: var(--hist); }
+.task-item.pri-moyenne { border-left-color: var(--geo); }
+.task-item.pri-basse { border-left-color: var(--border); }
+
+/* QCM LINKS */
+.qcm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; margin: 0.8rem 0; }
+.qcm-link { display: flex; flex-direction: column; gap: 0.25rem; padding: 0.75rem 0.85rem; border-radius: 8px; text-decoration: none; border: 1.5px solid var(--border); background: var(--surface); transition: box-shadow 0.2s, border-color 0.2s; min-height: 48px; }
+.qcm-link:hover, .qcm-link:active { box-shadow: 0 3px 10px rgba(60,45,20,0.1); }
+.qcm-label { font-family: 'DM Mono', monospace; font-size: 0.58rem; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; }
+.qcm-name { font-size: 0.82rem; font-weight: 700; color: var(--text); }
+.qcm-link.hist { border-left: 4px solid var(--hist); }
+.qcm-link.hist .qcm-label { color: var(--hist); }
+.qcm-link.geo { border-left: 4px solid var(--geo); }
+.qcm-link.geo .qcm-label { color: var(--geo); }
+.qcm-link.emc { border-left: 4px solid var(--emc); }
+.qcm-link.emc .qcm-label { color: var(--emc); }
+
+/* BOXES */
+.alert-box { background: rgba(192,57,15,0.06); border: 1.5px solid var(--hist-border); border-left: 5px solid var(--hist); border-radius: var(--radius); padding: 0.9rem 1rem; margin-bottom: 1rem; font-size: 0.88rem; line-height: 1.65; }
+.alert-box strong { color: var(--hist); font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.07em; text-transform: uppercase; display: block; margin-bottom: 0.3rem; }
+.info-box { background: rgba(21,101,168,0.06); border: 1.5px solid var(--geo-border); border-left: 5px solid var(--geo); border-radius: var(--radius); padding: 0.9rem 1rem; margin-bottom: 1rem; font-size: 0.88rem; line-height: 1.65; }
+.info-box strong { color: var(--geo); font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.07em; text-transform: uppercase; display: block; margin-bottom: 0.3rem; }
+.tip-box { background: rgba(122,48,181,0.06); border: 1.5px solid var(--methode-border); border-left: 5px solid var(--methode); border-radius: var(--radius); padding: 0.9rem 1rem; margin-bottom: 1rem; font-size: 0.88rem; line-height: 1.65; }
+.tip-box strong { color: var(--methode); font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.07em; text-transform: uppercase; display: block; margin-bottom: 0.3rem; }
+
+/* FLIPCARDS */
+.flipcard-filter { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 1rem; }
+.filter-btn { background: var(--surface); border: 1.5px solid var(--border); color: var(--muted); font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.38rem 0.75rem; border-radius: 20px; cursor: pointer; transition: all 0.2s; -webkit-tap-highlight-color: transparent; font-weight: 700; }
+.filter-btn.all.active { border-color: var(--gold); color: var(--gold); background: var(--gold-bg); }
+.filter-btn.hist.active { border-color: var(--hist); color: var(--hist); background: var(--hist-soft); }
+.filter-btn.geo.active { border-color: var(--geo); color: var(--geo); background: var(--geo-soft); }
+.filter-btn.emc.active { border-color: var(--emc); color: var(--emc); background: var(--emc-soft); }
+.filter-btn.methode.active { border-color: var(--methode); color: var(--methode); background: var(--methode-soft); }
+.filter-btn.facile.active { border-color: var(--emc); color: var(--emc); background: var(--emc-soft); }
+.filter-btn.expert.active { border-color: var(--hist); color: var(--hist); background: var(--hist-soft); }
+.score-bar { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.8rem; font-family: 'DM Mono', monospace; font-size: 0.68rem; color: var(--muted); flex-wrap: wrap; font-weight: 700; }
+.score-val { color: var(--emc); font-weight: 700; font-size: 0.9rem; }
+.cards-grid { display: grid; grid-template-columns: 1fr; gap: 0.85rem; }
+.flipcard { perspective: 1000px; height: 250px; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.flipcard.tall { height: 300px; }
+.flipcard-inner { width: 100%; height: 100%; position: relative; transform-style: preserve-3d; transition: transform 0.5s cubic-bezier(0.4,0,0.2,1); }
+.flipcard.flipped .flipcard-inner { transform: rotateY(180deg); }
+.flipcard-front, .flipcard-back { position: absolute; inset: 0; backface-visibility: hidden; border-radius: var(--radius); padding: 1.1rem; display: flex; flex-direction: column; justify-content: space-between; }
+.flipcard-front { background: var(--surface); border: 1.5px solid var(--border); box-shadow: 0 2px 8px rgba(60,45,20,0.07); }
+.flipcard-back { background: var(--text); transform: rotateY(180deg); box-shadow: 0 2px 8px rgba(60,45,20,0.15); }
+.flipcard[data-mat="hist"] .flipcard-front { border-top: 4px solid var(--hist); }
+.flipcard[data-mat="hist"] .flipcard-back { border-top: 4px solid var(--hist); }
+.flipcard[data-mat="geo"] .flipcard-front { border-top: 4px solid var(--geo); }
+.flipcard[data-mat="geo"] .flipcard-back { border-top: 4px solid var(--geo); }
+.flipcard[data-mat="emc"] .flipcard-front { border-top: 4px solid var(--emc); }
+.flipcard[data-mat="emc"] .flipcard-back { border-top: 4px solid var(--emc); }
+.flipcard[data-mat="methode"] .flipcard-front { border-top: 4px solid var(--methode); }
+.flipcard[data-mat="methode"] .flipcard-back { border-top: 4px solid var(--methode); }
+.card-mat { font-family: 'DM Mono', monospace; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.3rem; display: flex; align-items: center; gap: 0.4rem; font-weight: 700; }
+.flipcard-front .card-mat { color: var(--muted); }
+.flipcard[data-mat="hist"] .flipcard-front .card-mat { color: var(--hist); }
+.flipcard[data-mat="geo"] .flipcard-front .card-mat { color: var(--geo); }
+.flipcard[data-mat="emc"] .flipcard-front .card-mat { color: var(--emc); }
+.flipcard[data-mat="methode"] .flipcard-front .card-mat { color: var(--methode); }
+.flipcard-back .card-mat { color: rgba(255,255,255,0.5); }
+.card-level { margin-left: auto; font-size: 0.54rem; padding: 0.12rem 0.38rem; border-radius: 4px; font-weight: 700; }
+.level-facile { background: var(--emc-soft); color: var(--emc); }
+.level-expert { background: var(--hist-soft); color: var(--hist); }
+.card-question { font-family: 'Nunito', sans-serif; font-size: 1rem; font-weight: 800; line-height: 1.3; flex: 1; display: flex; align-items: center; color: var(--text); }
+.card-hint { font-size: 0.62rem; color: var(--muted); font-family: 'DM Mono', monospace; text-align: right; }
+.flipcard-back .card-hint { color: rgba(255,255,255,0.35); }
+.card-answer { font-size: 0.86rem; line-height: 1.6; flex: 1; display: flex; align-items: flex-start; padding-top: 0.2rem; color: #f0ece2; }
+
+/* METHODE CARDS */
+.methode-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 1rem; overflow: hidden; }
+.methode-card-header { padding: 0.7rem 1rem; font-family: 'DM Mono', monospace; font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.08em; border-bottom: 1px solid var(--border); }
+.methode-card-header.geo { color: var(--geo); }
+.methode-card-header.methode { color: var(--methode); }
+.methode-card-header.gold { color: var(--gold); }
+.methode-card-body { padding: 1rem; }
+.method-step { display: flex; gap: 0.75rem; align-items: flex-start; padding: 0.5rem 0; border-bottom: 1px solid var(--border); }
+.method-step:last-child { border-bottom: none; }
+.step-num { width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'DM Mono', monospace; font-size: 0.72rem; font-weight: 500; flex-shrink: 0; margin-top: 1px; }
+.step-num.geo { background: var(--geo-soft); color: var(--geo); border: 1px solid var(--geo-border); }
+.step-num.methode { background: var(--methode-soft); color: var(--methode); border: 1px solid var(--methode-border); }
+.step-title { font-weight: 600; font-size: 0.88rem; margin-bottom: 0.15rem; }
+.step-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.45; }
+
+/* MÉTHODE CARDS */
+.methode-card { background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--radius); margin-bottom: 1rem; overflow: hidden; box-shadow: 0 2px 8px rgba(60,45,20,0.06); }
+.methode-card-header { padding: 0.75rem 1rem; font-family: 'DM Mono', monospace; font-size: 0.64rem; text-transform: uppercase; letter-spacing: 0.08em; border-bottom: 1.5px solid var(--border); font-weight: 700; background: var(--surface2); }
+.methode-card-header.geo { color: var(--geo); }
+.methode-card-header.methode { color: var(--methode); }
+.methode-card-header.gold { color: var(--gold); }
+.methode-card-body { padding: 1rem; }
+.method-step { display: flex; gap: 0.75rem; align-items: flex-start; padding: 0.6rem 0; border-bottom: 1px solid var(--border); }
+.method-step:last-child { border-bottom: none; }
+.step-num { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'DM Mono', monospace; font-size: 0.72rem; font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+.step-num.geo { background: var(--geo-soft); color: var(--geo); border: 2px solid var(--geo-border); }
+.step-num.methode { background: var(--methode-soft); color: var(--methode); border: 2px solid var(--methode-border); }
+.step-title { font-weight: 700; font-size: 0.9rem; margin-bottom: 0.2rem; color: var(--text); }
+.step-desc { font-size: 0.83rem; color: var(--muted); line-height: 1.6; }
+
+/* CHECK LIST */
+.check-list { list-style: none; }
+.check-list li { display: flex; align-items: flex-start; gap: 0.65rem; padding: 0.5rem 0; min-height: 44px; border-bottom: 1px solid var(--border); font-size: 0.88rem; line-height: 1.6; }
+.check-list li:last-child { border-bottom: none; }
+.check-list input[type="checkbox"] { appearance: none; width: 20px; height: 20px; border: 2px solid var(--muted); border-radius: 5px; cursor: pointer; flex-shrink: 0; margin-top: 2px; position: relative; transition: all 0.2s; }
+.check-list input[type="checkbox"]:checked { background: var(--emc); border-color: var(--emc); }
+.check-list input[type="checkbox"]:checked::after { content: '✓'; position: absolute; top: -2px; left: 2px; color: white; font-size: 12px; font-weight: 700; }
+
+/* SAVE / TOAST */
+#save-toast { position: fixed; bottom: calc(var(--nav-h) + 1rem); left: 1rem; right: 1rem; text-align: center; background: var(--text); border-left: 4px solid var(--emc); color: #f4f1eb; font-family: 'DM Mono', monospace; font-size: 0.72rem; letter-spacing: 0.07em; padding: 0.8rem 1rem; border-radius: 8px; opacity: 0; transform: translateY(8px); transition: opacity 0.25s, transform 0.25s; pointer-events: none; z-index: 9999; font-weight: 700; }
+#save-toast.visible { opacity: 1; transform: translateY(0); }
+#fab-save { display: none; }
+
+/* BILAN */
+.bilan-card { background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--radius); margin-bottom: 1rem; overflow: hidden; box-shadow: 0 2px 8px rgba(60,45,20,0.06); }
+.bilan-card-header { background: var(--surface2); padding: 0.6rem 1rem; font-family: 'DM Mono', monospace; font-size: 0.63rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); border-bottom: 1.5px solid var(--border); font-weight: 700; }
+.bilan-card-body { padding: 1rem; }
+.bilan-field { margin-bottom: 0.9rem; }
+.bilan-field label { display: block; margin-bottom: 0.3rem; font-family: 'DM Mono', monospace; font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); font-weight: 700; }
+.bilan-field input, .bilan-field textarea { width: 100%; background: var(--bg); border: 1.5px solid var(--border); border-radius: 6px; padding: 0.65rem 0.8rem; font-family: 'Atkinson Hyperlegible', Arial, sans-serif; font-size: 1rem; color: var(--text); outline: none; transition: border-color 0.2s, box-shadow 0.2s; resize: vertical; line-height: 1.6; }
+.bilan-field input:focus, .bilan-field textarea:focus { border-color: var(--geo); box-shadow: 0 0 0 3px rgba(21,101,168,0.12); }
+.bilan-field textarea { min-height: 75px; }
+
+/* SAVE MODAL */
+#save-modal { display: none; position: fixed; inset: 0; background: rgba(30,26,20,0.55); z-index: 2000; align-items: center; justify-content: center; padding: 1rem; backdrop-filter: blur(4px); }
+#save-modal.open { display: flex; }
+.save-modal-box { background: var(--surface); border: 1.5px solid var(--border); border-top: 5px solid var(--geo); border-radius: 12px; padding: 1.5rem; max-width: 400px; width: 100%; text-align: center; box-shadow: 0 12px 40px rgba(30,26,20,0.18); }
+.save-modal-title { font-family: 'Nunito', sans-serif; font-size: 1.3rem; font-weight: 900; margin-bottom: 0.75rem; color: var(--text); }
+.save-modal-body { font-size: 0.88rem; color: var(--muted); line-height: 1.7; margin-bottom: 1rem; }
+.save-modal-actions { display: flex; gap: 0.6rem; justify-content: center; flex-wrap: wrap; }
+.smbtn { font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.7rem 1.3rem; border-radius: 8px; cursor: pointer; border: none; min-height: 46px; font-weight: 700; }
+.smbtn.primary { background: var(--geo); color: white; }
+.smbtn.primary:hover { background: var(--text); }
+.smbtn.secondary { background: var(--surface2); color: var(--muted); border: 1.5px solid var(--border); }
+
+/* LEGEND */
+.legend { display: flex; flex-wrap: wrap; gap: 0.4rem 1.1rem; margin-bottom: 1.2rem; }
+.legend-item { display: flex; align-items: center; gap: 0.35rem; font-size: 0.75rem; font-family: 'DM Mono', monospace; color: var(--muted); font-weight: 700; }
+.legend-dot { width: 9px; height: 9px; border-radius: 50%; }
+
+/* RESSOURCES */
+.ressource-grid { display: grid; grid-template-columns: 1fr; gap: 0.75rem; margin-bottom: 1.5rem; }
+.ressource-link { display: flex; flex-direction: column; gap: 0.3rem; padding: 1rem; border-radius: var(--radius); text-decoration: none; border: 1.5px solid var(--border); background: var(--surface); color: var(--text); box-shadow: 0 2px 6px rgba(60,45,20,0.05); transition: box-shadow 0.2s; }
+.ressource-link:hover { box-shadow: 0 4px 14px rgba(60,45,20,0.1); }
+.ressource-link .r-label { font-family: 'DM Mono', monospace; font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--methode); font-weight: 700; }
+.ressource-link .r-title { font-family: 'Nunito', sans-serif; font-size: 0.98rem; font-weight: 800; }
+.ressource-link .r-desc { font-size: 0.8rem; color: var(--muted); }
+
+/* DESKTOP */
+@media (min-width: 700px) {
+  body { padding-bottom: 0; font-size: 16px; }
+  header { padding: 2rem 2rem 1.5rem; }
+  .header-inner { flex-direction: row; align-items: flex-start; justify-content: space-between; max-width: 960px; margin: 0 auto; }
+  .header-title { font-size: 2.3rem; }
+  #bottom-nav { display: none; }
+  .nav-tabs {
+    display: flex;
+    background: var(--surface);
+    border-bottom: 2px solid var(--border);
+    padding: 0 2rem;
+    gap: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(60,45,20,0.06);
+  }
+  .nav-tab {
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 0.9rem 1.3rem;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s;
+    white-space: nowrap;
+    position: relative;
+    bottom: -2px;
+  }
+  .nav-tab:hover { color: var(--text); }
+  .nav-tab.active { color: var(--geo); border-bottom-color: var(--geo); }
+  main { max-width: 960px; margin: 0 auto; padding: 2rem; }
+  #fab-save {
+    display: flex;
+    position: fixed;
+    bottom: 1.5rem; right: 1.5rem;
+    z-index: 1000;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--geo);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 0.7rem 1.2rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 18px rgba(21,101,168,0.3);
+    transition: all 0.2s;
+  }
+  #fab-save:hover { background: var(--text); box-shadow: 0 4px 18px rgba(30,26,20,0.2); }
+  #save-toast { left: auto; right: 1.5rem; bottom: 1.5rem; text-align: left; }
+  .cards-grid { grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); }
+  .ressource-grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+  .qcm-grid { grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); }
+  .task-item:hover { background: var(--surface2); }
+  .filter-btn:hover { border-color: var(--text); color: var(--text); }
+}
+
+/* QCM DUAL-STATUS ROWS */
+.qcm-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 0.85rem;
+  border-radius: 8px;
+  border: 1.5px solid var(--border);
+  background: var(--surface);
+  margin-bottom: 0.4rem;
+  min-height: 48px;
+}
+.qcm-row-label {
+  flex: 1;
+  font-size: 0.93rem;
+  line-height: 1.4;
+  font-weight: 700;
+}
+.qcm-row-label span.chapitre {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.68rem;
+  font-weight: 700;
+  margin-right: 0.4rem;
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+}
+.qcm-row-label span.chapitre.hist { background: var(--hist-soft); color: var(--hist); }
+.qcm-row-label span.chapitre.geo  { background: var(--geo-soft);  color: var(--geo);  }
+.qcm-row-label span.chapitre.emc  { background: var(--emc-soft);  color: var(--emc);  }
+.qcm-row-actions { display: flex; gap: 0.5rem; flex-shrink: 0; }
+.qcm-cb-wrap { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.qcm-cb-wrap input[type="checkbox"] {
+  appearance: none;
+  width: 22px; height: 22px;
+  border: 2px solid var(--muted);
+  border-radius: 5px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+.qcm-cb-wrap.ok input[type="checkbox"]:checked  { background: var(--emc); border-color: var(--emc); }
+.qcm-cb-wrap.nok input[type="checkbox"]:checked { background: var(--hist); border-color: var(--hist); }
+.qcm-cb-wrap input[type="checkbox"]:checked::after {
+  content: '✓'; position: absolute; top: -2px; left: 2px;
+  color: white; font-size: 13px; font-weight: 700;
+}
+.qcm-cb-wrap label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.48rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 700;
+  cursor: pointer;
+}
+.qcm-cb-wrap.ok  label { color: var(--emc); }
+.qcm-cb-wrap.nok label { color: var(--hist); }
+/* mutual exclusion visual: dim the other when one is checked */
+.qcm-row.checked-ok  .qcm-cb-wrap.nok { opacity: 0.35; }
+.qcm-row.checked-nok .qcm-cb-wrap.ok  { opacity: 0.35; }
+
+@media print {
+  .nav-tabs, #bottom-nav, #fab-save, #save-modal { display: none !important; }
+  .tab-section { display: block !important; page-break-before: always; }
+  .week-body { display: block !important; }
+  body { background: white; color: black; padding: 0; }
+}
+</style>
+</head>
+<body>
+
+<div id="save-toast">✓ Progression sauvegardée</div>
+
+<div id="save-modal" onclick="closeSaveModal(event)">
+  <div class="save-modal-box">
+    <div style="font-size:2rem;margin-bottom:0.5rem;">💾</div>
+    <div class="save-modal-title">Sauvegarder</div>
+    <div class="save-modal-body">Tes coches et tes notes sont enregistrées <strong>dans ce navigateur</strong>, sur cet appareil uniquement. Utilise toujours le même navigateur sur le même téléphone ou ordinateur.</div>
+    <div class="save-modal-actions">
+      <button class="smbtn primary" onclick="saveAll(); closeSaveModal()">Sauvegarder maintenant</button>
+      <button class="smbtn secondary" onclick="closeSaveModal()">Fermer</button>
+    </div>
+  </div>
+</div>
+
+<button id="fab-save" onclick="openSaveModal()">💾 Sauvegarder</button>
+
+<header>
+  <div class="header-inner">
+    <div>
+      <div class="header-badge">📍 Collège Plan Menu · Coublevie · 3e</div>
+      <div class="header-title"><span class="accent-hist">Hist.</span> <span class="accent-geo">Géo.</span> <span class="accent-emc">EMC</span><br>Révisions Brevet</div>
+      <div class="header-sub" style="margin-top:0.35rem;">DNB 2026 · Du 1er juin au 29 juin</div>
+    </div>
+    <div>
+      <div class="countdown-chip">🎓 DNB dans <span class="chip-num" id="cnt-dnb">—</span> jours</div>
+      <div class="countdown-chip" style="margin-top:0.3rem;font-size:0.6rem;">📅 Épreuve le <strong style="color:var(--text);">29 juin 2026</strong></div>
+    </div>
+  </div>
+</header>
+
+<nav class="nav-tabs">
+  <button class="nav-tab active" onclick="showTab('planning',this)">📅 Planning</button>
+  <button class="nav-tab" onclick="showTab('qcm',this)">📝 Révisions</button>
+  <button class="nav-tab" onclick="showTab('methode',this)">📐 Entraînements</button>
+  <button class="nav-tab" onclick="showTab('jourj',this)">🎓 Jour-J</button>
+</nav>
+
+<nav id="bottom-nav">
+  <button class="bnav-btn active" onclick="showTab('planning',this)" id="bnav-planning"><span class="bnav-icon">📅</span><span class="bnav-label">Planning</span></button>
+  <button class="bnav-btn" onclick="showTab('qcm',this)" id="bnav-qcm"><span class="bnav-icon">📝</span><span class="bnav-label">Révisions</span></button>
+  <button class="bnav-btn" onclick="showTab('methode',this)" id="bnav-methode"><span class="bnav-icon">📐</span><span class="bnav-label">Entraîn.</span></button>
+  <button class="bnav-btn" onclick="showTab('jourj',this)" id="bnav-jourj"><span class="bnav-icon">🎓</span><span class="bnav-label">Jour-J</span></button>
+  <button class="bnav-btn" onclick="openSaveModal()"><span class="bnav-icon">💾</span><span class="bnav-label">Sauver</span></button>
+</nav>
+
+<main>
+
+<!-- ══ TAB PLANNING ══ -->
+<section class="tab-section active" id="tab-planning">
+  <div class="section-heading">Ton planning semaine par semaine</div>
+  <div class="section-sub">Du 1er juin au 29 juin 2026 · Coche les tâches au fur et à mesure</div>
+  <div class="info-box" style="font-size:0.88rem;">
+    <strong>💾 Sauvegarde locale</strong>
+    Tes coches sont mémorisées <strong>dans ce navigateur, sur cet appareil uniquement</strong>. Utilise toujours le même navigateur sur le même téléphone ou ordinateur.
+  </div>
+  <div class="alert-box">
+    <strong>⚠ Format de l'épreuve — 2h au total</strong>
+    <strong>Hist-Géo (40 pts) :</strong> Exo 1 — Analyse de docs (15 pts) + Exo 2 — Développement construit (18 pts) 30 lignes min. + Repères (7 pts). · <strong>EMC (20 pts) :</strong> Situation pratique + questions + réponse développée.
+  </div>
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:var(--hist)"></div> Histoire</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--geo)"></div> Géographie</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--emc)"></div> EMC</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--emc)"></div> ✓ Réussi</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--hist)"></div> ✗ À refaire</div>
+  </div>
+
+  <!-- ══ SEMAINE 1 ══ -->
+  <div class="week-block open" id="week1">
+    <div class="week-header" onclick="toggleWeek('week1')">
+      <div><div class="week-label" style="color:var(--gold);">Semaine 1 · 1–7 juin</div><div class="week-title">Diagnostic — tous les QCM</div></div>
+      <div class="week-toggle">▾</div>
+    </div>
+    <div class="week-body">
+      <div class="progress-wrap"><div class="progress-label"><span>Progression</span><span class="week-progress-text">0 / 15</span></div><div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div></div>
+      <div class="tip-box"><strong>💡 Conseils</strong>Fais tous les QCM (Onglet "Révisions") avant de relire tes cours. C'est un diagnostic : chaque erreur te montre quel chapitre il faut travailler. Coche <span style="color:var(--emc);font-weight:700;">Réussi</span> si tu es satisfait·e de ton score, <span style="color:var(--hist);font-weight:700;">À refaire</span> si tu as fait trop d'erreurs. Tu pourras refaire ces QCM les autres semaines.</div>
+
+      <div style="font-family:'DM Mono',monospace;font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--hist);font-weight:700;margin:0.8rem 0 0.4rem;">🔴 Histoire</div>
+      <div class="qcm-row" id="qr-s1-h1"><div class="qcm-row-label"><span class="chapitre hist">H1</span>Première Guerre mondiale</div><div class="qcm-row-actions"><div class="qcm-cb-wrap ok"><input type="checkbox" id="s1h1ok" onchange="handleQcmCheck(this,'s1h1')"><label for="s1h1ok">Réussi</label></div><div class="qcm-cb-wrap nok"><input type="checkbox" id="s1h1nok" onchange="handleQcmCheck(this,'s1h1')"><label for="s1h1nok">À refaire</label></div></div></div>
+      <div class="qcm-row" id="qr-s1-h2"><div class="qcm-row-label"><span class="chapitre hist">H2</span>Régimes totalitaires</div><div class="qcm-row-actions"><div class="qcm-cb-wrap ok"><input type="checkbox" id="s1h2ok" onchange="handleQcmCheck(this,'s1h2')"><label for="s1h2ok">Réussi</label></div><div class="qcm-cb-wrap nok"><input type="checkbox" id="s1h2nok" onchange="handleQcmCheck(this,'s1h2')"><label for="s1h2nok">À refaire</label></div></div></div>
+      <div class="qcm-row" id="qr-s1-h3"><div class="qcm-row-label"><span class="chapitre hist">H3</span>Seconde Guerre mondiale</div><div class="qcm-row-actions"><div class="qcm-cb-wrap ok"><input type="checkbox" id="s1h3ok" onchange="handleQcmCheck(this,'s1h3')"><label for="s1h3ok">Réussi</label></div><div class="qcm-cb-wrap nok"><input type="checkbox" id="s1h3nok" onchange="handleQcmCheck(this,'s1h3')"><label for="s1h3nok">À refaire</label></div></div></div>
+      <div class="qcm-row" id="qr-s1-h4"><div class="qcm-row-label"><span class="chapitre hist">H4</span>Guerre froide, décolonisation, UE</div><div class="qcm-row-actions"><div class="qcm-cb-wrap ok"><input type="checkbox" id="s1h4ok" onchange="handleQcmCheck(this,'s1h4')"><label for="s1h4ok">Réussi</label></div><div class="qcm-cb-wrap nok"><input type="checkbox" id="s1h4nok" onchange="handleQcmCheck(this,'s1h4')"><label for="s1h4nok">À refaire</label></div></div></div>
+      <div class="qcm-row" id="qr-s1-h5"><div class="qcm-row-label"><span class="chapitre hist">H5</span>Le monde après 1989</div><div class="qcm-row-actions"><div class="qcm-cb-wrap ok"><input type="checkbox" id="s1h5ok" onchange="handleQcmCheck(this,'s1h5')"><label for="s1h5ok">Réussi</label></div><div class="qcm-cb-wrap nok"><input type="checkbox" id="s1h5nok" onchange="handleQcmCheck(this,'s1h5')"><label for="s1h5nok">À refaire</label></div></div></div>
+      <div class="qcm-row" id="qr-s1-h6"><div class="qcm-row-label"><span class="chapitre hist">H6</span>La France depuis 1945</div><div class="qcm-row-actions"><div class="qcm-cb-wrap ok"><input type="checkbox" id="s1h6ok" onchange="handleQcmCheck(this,'s1h6')"><label for="s1h6ok">Réussi</label></div><div class="qcm-cb-wrap nok"><input type="checkbox" id="s1h6nok" onchange="handleQcmCheck(this,'s1h6')"><label for="s1h6nok">À refaire</label></div></div></div>
+
+      <div style="font-family:'DM Mono',monospace;font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--geo);font-weight:700;margin:0.8rem 0 0.4rem;">🔵 Géographie</div>
+      <div class="qcm-row" id="qr-s1-g1"><div class="qcm-row-label"><span class="chapitre geo">G1</span>Aires urbaines et métropolisation</div><div class="qcm-row-actions"><div class="qcm-cb-wrap ok"><input type="checkbox" id="s1g1ok" onchange="handleQcmCheck(this,'s1g1')"><label for="s1g1ok">Réussi</label></div><div class="qcm-cb-wrap nok"><input type="checkbox" id="s1g1nok" onchange="handleQcmCheck(this,'s1g1')"><label for="s1g1nok">À refaire</label></div></div></div>
+      <div class="qcm-row" id="qr-s1-g2"><div class="qcm-row-label"><span class="chapitre geo">G2</span>Espaces productifs</div><div class="qcm-row-actions"><div class="qcm-cb-wrap ok"><input type="checkbox" id="s1g2ok" onchange="handleQcmCheck(this,'s1g2')"><label for="s1g2ok">Réussi</label></div><div class="qcm-cb-wrap nok"><input type="checkbox" id="s1g2nok" onchange="handleQcmCheck(this,'s1g2')"><label for="s1g2nok">À refaire</label></div></div></div>
+      <div class="qcm-row" id="qr-s1-g3"><div class="qcm-row-label"><span class="chapitre geo">G3</span>Espaces à faibles densités</div><div class="qcm-row-actions"><div class="qcm-cb-wrap ok"><input type="checkbox" id="s1g3ok" onchange="handleQcmCheck(this,'s1g3')"><label for="s1g3ok">Réussi</label></div><div class="qcm-cb-wrap nok"><input type="checkbox" id="s1g3nok" onchange="handleQcmCheck(this,'s1g3')"><label for="s1g3nok">À refaire</label></div></div></div>
+      <div class="qcm-row" id="qr-s1-g4"><div class="qcm-row-label"><span class="chapitre geo">G4</span>Aménagement du territoire</div><div class="qcm-row-actions"><div class="qcm-cb-wrap ok"><input type="checkbox" id="s1g4ok" onchange="handleQcmCheck(this,'s1g4')"><label for="s1g4ok">Réussi</label></div><div class="qcm-cb-wrap nok"><input type="checkbox" id="s1g4nok" onchange="handleQcmCheck(this,'s1g4')"><label for="s1g4nok">À refaire</label></div></div></div>
+      <div class="qcm-row" id="qr-s1-g5"><div class="qcm-row-label"><span class="chapitre geo">G5</span>La France et l'Union européenne</div><div class="qcm-row-actions"><div class="qcm-cb-wrap ok"><input type="checkbox" id="s1g5ok" onchange="handleQcmCheck(this,'s1g5')"><label for="s1g5ok">Réussi</label></div><div class="qcm-cb-wrap nok"><input type="checkbox" id="s1g5nok" onchange="handleQcmCheck(this,'s1g5')"><label for="s1g5nok">À refaire</label></div></div></div>
+      <div class="qcm-row" id="qr-s1-greperes"><div class="qcm-row-label"><span class="chapitre geo">Repères</span>Repères géographiques</div><div class="qcm-row-actions"><div class="qcm-cb-wrap ok"><input type="checkbox" id="s1greperesok" onchange="handleQcmCheck(this,'s1greperes')"><label for="s1greperesok">Réussi</label></div><div class="qcm-cb-wrap nok"><input type="checkbox" id="s1greperesnok" onchange="handleQcmCheck(this,'s1greperes')"><label for="s1greperesnok">À refaire</label></div></div></div>
+
+      <div style="font-family:'DM Mono',monospace;font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--emc);font-weight:700;margin:0.8rem 0 0.4rem;">🟢 EMC</div>
+      <div class="qcm-row" id="qr-s1-emc1"><div class="qcm-row-label"><span class="chapitre emc">EMC 1</span>Valeurs et principes républicains</div><div class="qcm-row-actions"><div class="qcm-cb-wrap ok"><input type="checkbox" id="s1emc1ok" onchange="handleQcmCheck(this,'s1emc1')"><label for="s1emc1ok">Réussi</label></div><div class="qcm-cb-wrap nok"><input type="checkbox" id="s1emc1nok" onchange="handleQcmCheck(this,'s1emc1')"><label for="s1emc1nok">À refaire</label></div></div></div>
+      <div class="qcm-row" id="qr-s1-emc2"><div class="qcm-row-label"><span class="chapitre emc">EMC 2</span>La République française</div><div class="qcm-row-actions"><div class="qcm-cb-wrap ok"><input type="checkbox" id="s1emc2ok" onchange="handleQcmCheck(this,'s1emc2')"><label for="s1emc2ok">Réussi</label></div><div class="qcm-cb-wrap nok"><input type="checkbox" id="s1emc2nok" onchange="handleQcmCheck(this,'s1emc2')"><label for="s1emc2nok">À refaire</label></div></div></div>
+      <div class="qcm-row" id="qr-s1-emc3"><div class="qcm-row-label"><span class="chapitre emc">EMC 3</span>Défense nationale et citoyenneté</div><div class="qcm-row-actions"><div class="qcm-cb-wrap ok"><input type="checkbox" id="s1emc3ok" onchange="handleQcmCheck(this,'s1emc3')"><label for="s1emc3ok">Réussi</label></div><div class="qcm-cb-wrap nok"><input type="checkbox" id="s1emc3nok" onchange="handleQcmCheck(this,'s1emc3')"><label for="s1emc3nok">À refaire</label></div></div></div>
+    </div>
+  </div>
+
+  <!-- ══ SEMAINE 2 ══ -->
+  <div class="week-block" id="week2">
+    <div class="week-header" onclick="toggleWeek('week2')">
+      <div><div class="week-label" style="color:var(--hist);">Semaine 2 · 8–14 juin</div><div class="week-title">Réviser les chapitres du Brevet Blanc</div></div>
+      <div class="week-toggle">▾</div>
+    </div>
+    <div class="week-body">
+      <div class="progress-wrap"><div class="progress-label"><span>Progression</span><span class="week-progress-text">0 / 6</span></div><div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div></div>
+      <div class="tip-box"><strong>💡 Conseils</strong>Ce sont les mêmes révisions que le Brevet Blanc. Tu peux relire le cours ou juste tes fiches. Alterne les chapitres entre histoire et géographie. Refais des QCM.</div>
+      <ul class="task-list">
+        <li class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Réviser H1 — La Première Guerre mondiale (1914–1918)</span><span class="task-tag tag-hist">Hist.</span></li>
+        <li class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Réviser G1 — Aires urbaines</span><span class="task-tag tag-geo">Géo.</span></li>
+        <li class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Réviser EMC1 — Valeurs et principes républicains</span><span class="task-tag tag-emc">EMC</span></li>
+        <li class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Réviser H2 — Les régimes totalitaires (nazisme, stalinisme)</span><span class="task-tag tag-hist">Hist.</span></li>
+        <li class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Réviser G2 — Espaces productifs</span><span class="task-tag tag-geo">Géo.</span></li>
+        <li class="task-item pri-moyenne" onclick="toggleTask(this,event)" style="border-left-color:var(--geo);"><input type="checkbox"><span class="task-text">Refaire des QCM</span><span class="task-tag tag-geo">QCM</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ══ SEMAINE 3 ══ -->
+  <div class="week-block" id="week3">
+    <div class="week-header" onclick="toggleWeek('week3')">
+      <div><div class="week-label" style="color:var(--geo);">Semaine 3 · 15–21 juin</div><div class="week-title">Réviser H3, G3, EMC2, G4, H4 + méthode</div></div>
+      <div class="week-toggle">▾</div>
+    </div>
+    <div class="week-body">
+      <div class="progress-wrap"><div class="progress-label"><span>Progression</span><span class="week-progress-text">0 / 8</span></div><div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div></div>
+      <div class="tip-box"><strong>💡 Conseils</strong>Après avoir relu ton cours, relis aussi les fiches méthode (NADI et développement construit) dans l'onglet Méthode. En fin de semaine, repasse les QCM marqués "À refaire" en semaine 1.</div>
+      <ul class="task-list">
+        <li class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Réviser H3 — La Seconde Guerre mondiale (1939–1945) : génocides, Résistance, Libération, bilan humain</span><span class="task-tag tag-hist">Hist.</span></li>
+        <li class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Réviser G3 — Espaces à faibles densités : espaces ruraux, montagnards, littoraux ; atouts et difficultés</span><span class="task-tag tag-geo">Géo.</span></li>
+        <li class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Réviser EMC2 — La République française : 5e République, séparation des pouvoirs, institutions, droits et devoirs</span><span class="task-tag tag-emc">EMC</span></li>
+        <li class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Réviser G4 — Aménagement du territoire : politiques d'aménagement, réduction des inégalités, rôle de l'État et de l'UE</span><span class="task-tag tag-geo">Géo.</span></li>
+        <li class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Réviser H4 — Guerre froide, décolonisation, construction européenne : bipolarisation, indépendances, CEE puis UE</span><span class="task-tag tag-hist">Hist.</span></li>
+        <li class="task-item pri-moyenne" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Relire la méthode du développement construit (onglet Méthode) et s'entraîner à rédiger une introduction</span><span class="task-tag tag-methode">Méthode</span></li>
+        <li class="task-item pri-moyenne" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Relire la méthode NADI (onglet Méthode) et s'exercer sur un document inconnu</span><span class="task-tag tag-methode">Méthode</span></li>
+        <li class="task-item pri-moyenne" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Refaire les QCM marqués "À refaire" en semaine 1 (H1 à H4, G1 à G4, EMC1 et EMC2)</span><span class="task-tag tag-hist">QCM</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ══ SEMAINE 4 ══ -->
+  <div class="week-block" id="week4">
+    <div class="week-header" onclick="toggleWeek('week4')">
+      <div><div class="week-label" style="color:var(--emc);">Semaine 4 · 22–29 juin</div><div class="week-title">Réviser H5, H6, G5, EMC3 + entraînements</div></div>
+      <div class="week-toggle">▾</div>
+    </div>
+    <div class="week-body">
+      <div class="progress-wrap"><div class="progress-label"><span>Progression</span><span class="week-progress-text">0 / 7</span></div><div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div></div>
+      <div class="alert-box"><strong>⚠ Dernière semaine avant le DNB !</strong>Consolide les derniers chapitres, fais un sujet complet en 2h chrono, et repasse tous les QCM encore fragiles.</div>
+      <ul class="task-list">
+        <li class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Réviser H5 — Le monde après 1989 : fin de la Guerre froide, nouveaux conflits, mondialisation, terrorisme</span><span class="task-tag tag-hist">Hist.</span></li>
+        <li class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Réviser H6 — La France depuis 1945 : reconstruction, 5e République, société française, défis contemporains</span><span class="task-tag tag-hist">Hist.</span></li>
+        <li class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Réviser G5 — La France et l'Union européenne : place dans l'UE, territoire, enjeux économiques et politiques</span><span class="task-tag tag-geo">Géo.</span></li>
+        <li class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Réviser EMC3 — Défense nationale et citoyenneté : armée, JDC, réserve, engagement citoyen</span><span class="task-tag tag-emc">EMC</span></li>
+        <li class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Faire un sujet d'entraînement complet en 2h chrono (onglet Méthode → Annales Strabon)</span><span class="task-tag tag-methode">Méthode</span></li>
+        <li class="task-item pri-moyenne" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Refaire tous les QCM encore marqués "À refaire" — viser 70%+ sur chaque chapitre</span><span class="task-tag tag-hist">QCM</span></li>
+        <li class="task-item pri-basse" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Les 2 nuits avant le 29 juin : dormir au moins 8h — le cerveau mémorise pendant le sommeil 🌙</span><span class="task-tag tag-methode">Bien-être</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TAB QCM ══ -->
+<section class="tab-section" id="tab-qcm">
+  <div class="section-heading">Révisions</div>
+  <div class="section-sub">Clique sur un lien pour ouvrir le QCM dans Google Forms</div>
+  <div class="info-box">
+    <strong>💡 Comment utiliser les QCM ?</strong>
+    Fais-les <strong>sans réviser d'abord</strong> la 1re fois (semaine 1 = diagnostic). Note le résultat dans le planning. Ensuite, révise le chapitre puis <strong>refais le QCM</strong> — objectif : <strong>70%+ au 2e passage</strong>.
+  </div>
+  <div class="section-heading" style="font-size:1.1rem;margin-bottom:0.5rem;"><span style="color:var(--hist)">●</span> Histoire</div>
+  <div class="qcm-grid">
+    <a class="qcm-link hist" href="https://forms.gle/6irkApp6p4vGheT5A" target="_blank" rel="noopener"><span class="qcm-label">H1</span><span class="qcm-name">1ère Guerre mondiale</span></a>
+    <a class="qcm-link hist" href="https://forms.gle/Lr83tirRQ8V77jkf8" target="_blank" rel="noopener"><span class="qcm-label">H2</span><span class="qcm-name">Régimes totalitaires</span></a>
+    <a class="qcm-link hist" href="https://forms.gle/7E98pP3SeCBerHGS8" target="_blank" rel="noopener"><span class="qcm-label">H3</span><span class="qcm-name">2nde Guerre mondiale</span></a>
+    <a class="qcm-link hist" href="https://forms.gle/yusD5vFzDjNaiq9V9" target="_blank" rel="noopener"><span class="qcm-label">H4</span><span class="qcm-name">Guerre froide / Déco / UE</span></a>
+    <a class="qcm-link hist" href="https://forms.gle/nM23ndzDNMoitiCz8" target="_blank" rel="noopener"><span class="qcm-label">H5</span><span class="qcm-name">Monde après 1989</span></a>
+    <a class="qcm-link hist" href="https://forms.gle/6rTP48KfQnGvpqo68" target="_blank" rel="noopener"><span class="qcm-label">H6</span><span class="qcm-name">France après 1945</span></a>
+  </div>
+  <hr class="divider">
+  <div class="section-heading" style="font-size:1.1rem;margin-bottom:0.5rem;"><span style="color:var(--geo)">●</span> Géographie</div>
+  <div class="qcm-grid">
+    <a class="qcm-link geo" href="https://forms.gle/poZcPYPjRytSvWCt8" target="_blank" rel="noopener"><span class="qcm-label">G1</span><span class="qcm-name">Aires urbaines</span></a>
+    <a class="qcm-link geo" href="https://forms.gle/5r69roFZYjbFEuB4A" target="_blank" rel="noopener"><span class="qcm-label">G2</span><span class="qcm-name">Espaces productifs</span></a>
+    <a class="qcm-link geo" href="https://forms.gle/iyWpbJPXp1HgeYDP7" target="_blank" rel="noopener"><span class="qcm-label">G3</span><span class="qcm-name">Faibles densités</span></a>
+    <a class="qcm-link geo" href="https://forms.gle/1yfHSc9qCHpqeRXL6" target="_blank" rel="noopener"><span class="qcm-label">G4</span><span class="qcm-name">Aménagement</span></a>
+    <a class="qcm-link geo" href="https://forms.gle/bLdYXkJpqpDYZudc7" target="_blank" rel="noopener"><span class="qcm-label">G5</span><span class="qcm-name">France et UE</span></a>
+    <a class="qcm-link geo" href="https://forms.gle/5FhT3usXjjAZ1PdA8" target="_blank" rel="noopener"><span class="qcm-label">Repères</span><span class="qcm-name">Repères géographiques</span></a>
+  </div>
+  <hr class="divider">
+  <div class="section-heading" style="font-size:1.1rem;margin-bottom:0.5rem;"><span style="color:var(--emc)">●</span> EMC</div>
+  <div class="qcm-grid">
+    <a class="qcm-link emc" href="https://forms.gle/QrUUGX2m7Ro48oX88" target="_blank" rel="noopener"><span class="qcm-label">EMC 1</span><span class="qcm-name">Valeurs et Principes</span></a>
+    <a class="qcm-link emc" href="https://forms.gle/Ym4Lh5BHni3efoqBA" target="_blank" rel="noopener"><span class="qcm-label">EMC 2</span><span class="qcm-name">La République</span></a>
+    <a class="qcm-link emc" href="https://forms.gle/6zFKYTN3xEykEaxE7" target="_blank" rel="noopener"><span class="qcm-label">EMC 3</span><span class="qcm-name">Défense nationale</span></a>
+  </div>
+</section>
+
+<!-- ══ TAB MÉTHODE ══ -->
+<section class="tab-section" id="tab-methode">
+  <div class="section-heading">Entraînements</div>
+  <div class="section-sub">Les deux exercices clés du Brevet · Lis, comprends, entraîne-toi</div>
+  <div class="alert-box">
+    <strong>⚠ L'exercice 2 vaut 25 points sur 40 en Hist-Géo !</strong>
+    Le développement construit est là où tu peux gagner le plus de points. Apprends bien la méthode et entraîne-toi à écrire 30 lignes.
+  </div>
+
+  <div class="methode-card">
+    <div class="methode-card-header geo">📋 Exercice 1 · Analyse de documents — méthode NADI (15 pts)</div>
+    <div class="methode-card-body">
+      <div class="tip-box" style="margin-bottom:1rem;"><strong>🧠 NADI = 4 étapes obligatoires</strong>Chaque fois que tu analyses un document (texte, image, carte, affiche…), applique NADI dans l'ordre. Ne saute aucune étape.</div>
+      <div class="method-step"><div class="step-num geo">N</div><div><div class="step-title">Nature du document</div><div class="step-desc">C'est quoi ? Une photographie, un texte, une affiche, une caricature, une carte, un extrait de film… Ne dis jamais juste "un document" — sois précis·e.</div></div></div>
+      <div class="method-step"><div class="step-num geo">A</div><div><div class="step-title">Auteur / Source</div><div class="step-desc">Qui a produit ce document ? Pourquoi ? Un journal gouvernemental n'a pas le même point de vue qu'un témoignage de victime.</div></div></div>
+      <div class="method-step"><div class="step-num geo">D</div><div><div class="step-title">Date et contexte</div><div class="step-desc">Quand a-t-il été produit ? Que se passait-il à ce moment-là ? La date change tout — un discours de 1942 sous l'Occupation n'est pas anodin.</div></div></div>
+      <div class="method-step"><div class="step-num geo">I</div><div><div class="step-title">Idée principale + réponse à la question</div><div class="step-desc">Qu'est-ce que ce document dit/montre ? Comment répond-il à la question posée ? C'est ici que tu mobilises tes connaissances pour aller plus loin que le document.</div></div></div>
+    </div>
+  </div>
+
+  <div class="methode-card">
+    <div class="methode-card-header methode">✍️ Exercice 2 · Développement construit — 25 pts · Au moins 30 lignes</div>
+    <div class="methode-card-body">
+      <div class="tip-box" style="margin-bottom:1rem;"><strong>🧠 Avant de rédiger : 10 minutes de brouillon !</strong>Note les idées, les exemples, les dates. Fais un plan en 2 ou 3 parties. C'est ce qui te permettra d'écrire sans te bloquer.</div>
+      <div class="method-step"><div class="step-num methode">1</div><div><div class="step-title">Introduction</div><div class="step-desc">Phrase d'accroche → Définir les termes clés → Problématique (la question à laquelle tu réponds) → Annonce du plan.<br><span style="color:var(--muted);font-size:0.78rem;">Ex : "La Première Guerre mondiale (1914-1918) est un conflit d'une violence inédite..."</span></div></div></div>
+      <div class="method-step"><div class="step-num methode">2</div><div><div class="step-title">Développement — 2 ou 3 parties</div><div class="step-desc">Chaque partie = une idée principale + des exemples précis (dates, lieux, chiffres) + un mot de liaison.<br><span style="color:var(--muted);font-size:0.78rem;">Mots utiles : Tout d'abord… · De plus… · Ensuite… · Cependant… · Enfin…</span></div></div></div>
+      <div class="method-step"><div class="step-num methode">3</div><div><div class="step-title">Conclusion</div><div class="step-desc">Résumer les idées → Répondre clairement à la problématique → Ouverture facultative.<br><span style="color:var(--muted);font-size:0.78rem;">Ex : "En conclusion, la 1GM a profondément transformé les sociétés européennes..."</span></div></div></div>
+      <div class="tip-box" style="margin-top:1rem;margin-bottom:0;"><strong>💡 Sujets les plus probables à l'Exercice 2</strong>La 1ère ou 2nde Guerre mondiale · La Guerre froide · La construction européenne · La métropolisation · L'aménagement du territoire · La République et la citoyenneté.</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+  <div class="section-heading" style="font-size:1.1rem;margin-bottom:0.5rem;"><span style="color:var(--methode)">●</span> Annales</div>
+  <div class="ressource-grid">
+    <a class="ressource-link" style="border-left:4px solid var(--methode);" href="https://histoire.ac-versailles.fr/spip.php?rubrique128" target="_blank" rel="noopener">
+      <span class="r-label">Annales Strabon</span><span class="r-title">Sujets classés par thème</span><span class="r-desc">histoire.ac-versailles.fr — sujets du Brevet réels ↗</span>
+    </a>
+  </div>
+
+</section>
+
+<!-- ══ TAB JOUR-J ══ -->
+<section class="tab-section" id="tab-jourj">
+  <div class="section-heading">Le Jour-J</div>
+  <div class="section-sub">29 juin 2026 · Tout ce qu'il faut savoir avant d'entrer dans la salle</div>
+
+  <div class="alert-box">
+    <strong>📅 Rappel — épreuve HGE · 29 juin 2026 · 2h</strong>
+    Hist-Géo : 40 pts · EMC : 20 pts. Cette épreuve représente 300 pts sur 800 au DNB (avec contrôle continu + épreuves anticipées). Chaque point compte.
+  </div>
+
+  <div class="methode-card">
+    <div class="methode-card-header gold">⏱ Déroulé conseillé — 2h chrono</div>
+    <div class="methode-card-body">
+      <div class="tip-box" style="margin-bottom:1rem;"><strong>🧠 Stratégie</strong>Ne pas commencer à rédiger immédiatement. Lire l'intégralité du sujet en premier — ça évite les mauvaises surprises et permet de calibrer le temps.</div>
+      <div style="display:flex;flex-direction:column;gap:0;">
+
+        <div style="display:flex;gap:0.75rem;">
+          <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;width:52px;">
+            <div style="background:var(--gold);color:white;border-radius:6px;padding:0.2rem 0.4rem;font-family:'DM Mono',monospace;font-size:0.62rem;font-weight:600;">0:00</div>
+            <div style="flex:1;width:2px;background:var(--border);margin:3px 0;min-height:30px;"></div>
+          </div>
+          <div style="padding:0.4rem 0 0.7rem;"><div style="font-weight:600;font-size:0.88rem;margin-bottom:0.1rem;">Lecture complète du sujet</div><div style="font-size:0.78rem;color:var(--muted);">Lire le sujet, les consignes et tous les documents avant d'écrire. ~10 min.</div></div>
+        </div>
+
+        <div style="display:flex;gap:0.75rem;">
+          <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;width:52px;">
+            <div style="background:var(--geo);color:white;border-radius:6px;padding:0.2rem 0.4rem;font-family:'DM Mono',monospace;font-size:0.62rem;font-weight:600;">0:10</div>
+            <div style="flex:1;width:2px;background:var(--border);margin:3px 0;min-height:30px;"></div>
+          </div>
+          <div style="padding:0.4rem 0 0.7rem;"><div style="font-weight:600;font-size:0.88rem;margin-bottom:0.1rem;">Brouillon Ex. 1 — NADI</div><div style="font-size:0.78rem;color:var(--muted);">Appliquer NADI pour chaque document. Dégager l'idée principale + ce que tu sais au-delà du doc. ~15 min.</div></div>
+        </div>
+
+        <div style="display:flex;gap:0.75rem;">
+          <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;width:52px;">
+            <div style="background:var(--geo);color:white;border-radius:6px;padding:0.2rem 0.4rem;font-family:'DM Mono',monospace;font-size:0.62rem;font-weight:600;">0:25</div>
+            <div style="flex:1;width:2px;background:var(--border);margin:3px 0;min-height:30px;"></div>
+          </div>
+          <div style="padding:0.4rem 0 0.7rem;"><div style="font-weight:600;font-size:0.88rem;margin-bottom:0.1rem;">Rédaction Ex. 1 (15 pts)</div><div style="font-size:0.78rem;color:var(--muted);">Réponse structurée, appuyée sur les docs + tes connaissances personnelles. ~30 min.</div></div>
+        </div>
+
+        <div style="display:flex;gap:0.75rem;">
+          <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;width:52px;">
+            <div style="background:var(--methode);color:white;border-radius:6px;padding:0.2rem 0.4rem;font-family:'DM Mono',monospace;font-size:0.62rem;font-weight:600;">0:55</div>
+            <div style="flex:1;width:2px;background:var(--border);margin:3px 0;min-height:30px;"></div>
+          </div>
+          <div style="padding:0.4rem 0 0.7rem;"><div style="font-weight:600;font-size:0.88rem;margin-bottom:0.1rem;">Brouillon Ex. 2 — plan</div><div style="font-size:0.78rem;color:var(--muted);"><strong>10 min obligatoires</strong> : plan en 2-3 parties, exemples, dates. Ce temps n'est pas perdu — il te sauve de la feuille blanche.</div></div>
+        </div>
+
+        <div style="display:flex;gap:0.75rem;">
+          <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;width:52px;">
+            <div style="background:var(--methode);color:white;border-radius:6px;padding:0.2rem 0.4rem;font-family:'DM Mono',monospace;font-size:0.62rem;font-weight:600;">1:05</div>
+            <div style="flex:1;width:2px;background:var(--border);margin:3px 0;min-height:30px;"></div>
+          </div>
+          <div style="padding:0.4rem 0 0.7rem;"><div style="font-weight:600;font-size:0.88rem;margin-bottom:0.1rem;">Rédaction Ex. 2 (25 pts)</div><div style="font-size:0.78rem;color:var(--muted);">Intro → Développement (2-3 parties, transitions, exemples) → Conclusion. <strong>Minimum 30 lignes.</strong> ~40 min.</div></div>
+        </div>
+
+        <div style="display:flex;gap:0.75rem;">
+          <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;width:52px;">
+            <div style="background:var(--emc);color:white;border-radius:6px;padding:0.2rem 0.4rem;font-family:'DM Mono',monospace;font-size:0.62rem;font-weight:600;">1:45</div>
+            <div style="flex:1;width:2px;background:var(--border);margin:3px 0;min-height:30px;"></div>
+          </div>
+          <div style="padding:0.4rem 0 0.7rem;"><div style="font-weight:600;font-size:0.88rem;margin-bottom:0.1rem;">EMC — situation pratique (20 pts)</div><div style="font-size:0.78rem;color:var(--muted);">Analyser la situation, répondre aux questions courtes, rédiger la réponse développée. ~10 min.</div></div>
+        </div>
+
+        <div style="display:flex;gap:0.75rem;">
+          <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;width:52px;">
+            <div style="background:var(--emc);color:white;border-radius:6px;padding:0.2rem 0.4rem;font-family:'DM Mono',monospace;font-size:0.62rem;font-weight:600;">1:55</div>
+          </div>
+          <div style="padding:0.4rem 0 0;"><div style="font-weight:600;font-size:0.88rem;margin-bottom:0.1rem;">Relecture finale</div><div style="font-size:0.78rem;color:var(--muted);">Dates, orthographe, cohérence. Vérifier les 30 lignes. ~5 min.</div></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="methode-card">
+    <div class="methode-card-header" style="color:var(--emc);">🎒 Checklist cartable — à préparer la <strong>veille au soir</strong></div>
+    <div class="methode-card-body">
+      <div class="tip-box" style="margin-bottom:1rem;"><strong>💡 Règle d'or</strong>Préparer le sac la veille. Le matin du DNB, le cerveau n'a pas à chercher un stylo — tout est là.</div>
+      <ul class="check-list" id="cartable-list">
+        <li><input type="checkbox"><span>🪪 <strong>Convocation</strong> au Brevet — imprimée (pas sur téléphone)</span></li>
+        <li><input type="checkbox"><span>🪪 <strong>Carte nationale d'identité</strong> ou passeport en cours de validité</span></li>
+        <li><input type="checkbox"><span>✒️ <strong>Plusieurs stylos</strong> à bille ou plume (bleu ou noir — pas de stylo effaçable)</span></li>
+        <li><input type="checkbox"><span>✏️ <strong>Crayons à papier</strong> pour les schémas, cartes et brouillon</span></li>
+        <li><input type="checkbox"><span>📏 <strong>Règle</strong> pour les cartes et schémas de géographie</span></li>
+        <li><input type="checkbox"><span>🟡 <strong>Surligneurs</strong> pour annoter les documents à l'Exercice 1</span></li>
+        <li><input type="checkbox"><span>📋 <strong>Brouillon</strong> souvent fourni en salle — mais prévoir quelques feuilles</span></li>
+        <li><input type="checkbox"><span>🧴 <strong>Bouteille d'eau</strong> sans étiquette</span></li>
+        <li><input type="checkbox"><span>⌚ <strong>Montre analogique</strong> recommandée — les téléphones sont interdits même retournés</span></li>
+        <li><input type="checkbox"><span>📵 <strong>Téléphone éteint</strong> et rangé dans le sac dès l'entrée — pas en mode silencieux : éteint</span></li>
+        <li><input type="checkbox"><span>😴 <strong>Dormi au moins 8h</strong> — le sommeil profond consolide les apprentissages de la veille</span></li>
+        <li><input type="checkbox"><span>🍳 <strong>Petit-déjeuner complet</strong> — glucides lents (pain, céréales), pas de sucre rapide qui crée une hypoglycémie</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="methode-card">
+    <div class="methode-card-header" style="color:var(--hist);">🧠 Conseils le matin du 29 juin</div>
+    <div class="methode-card-body" style="display:flex;flex-direction:column;gap:0.8rem;font-size:0.85rem;line-height:1.6;">
+      <div style="display:flex;gap:0.65rem;align-items:flex-start;"><span style="font-size:1.1rem;flex-shrink:0;">⏰</span><div><strong>Arriver 15 min avant.</strong> Pas pour réviser — pour s'installer, poser le matériel, respirer. Réviser dans les dernières minutes augmente le stress sans améliorer les performances.</div></div>
+      <div style="display:flex;gap:0.65rem;align-items:flex-start;"><span style="font-size:1.1rem;flex-shrink:0;">📖</span><div><strong>Lire tout le sujet avant d'écrire.</strong> Règle numéro 1 — et la plus souvent violée. 10 minutes de lecture évitent 40 minutes d'erreur de direction.</div></div>
+      <div style="display:flex;gap:0.65rem;align-items:flex-start;"><span style="font-size:1.1rem;flex-shrink:0;">🎯</span><div><strong>Exercice 2 = priorité absolue.</strong> 25 pts sur 40. Si le temps manque, mieux vaut une intro + deux parties solides qu'une copie incomplète sur les deux exercices.</div></div>
+      <div style="display:flex;gap:0.65rem;align-items:flex-start;"><span style="font-size:1.1rem;flex-shrink:0;">💬</span><div><strong>En cas de trou de mémoire.</strong> Ne pas rester bloqué·e. Passer à la suite, noter [?] au crayon, revenir à la relecture. Un trou ponctuel n'annule pas trois semaines de travail sérieux.</div></div>
+      <div style="display:flex;gap:0.65rem;align-items:flex-start;"><span style="font-size:1.1rem;flex-shrink:0;">✍️</span><div><strong>Présentation.</strong> Sauter des lignes entre les parties, souligner les titres, aérer. Un correcteur qui lit confortablement est un correcteur bienveillant.</div></div>
+    </div>
+  </div>
+
+
+</section>
+
+</main>
+
+<script>
+/* COUNTDOWN */
+function updateCountdown() {
+  const el = document.getElementById('cnt-dnb');
+  if (!el) return;
+  const diff = new Date('2026-06-29T08:00:00') - new Date();
+  if (diff <= 0) { el.textContent = '0'; el.style.color = 'var(--hist)'; return; }
+  const days = Math.floor(diff / 86400000);
+  el.textContent = days;
+  if (days <= 7) el.style.color = 'var(--hist)';
+  else if (days <= 14) el.style.color = 'var(--geo)';
+}
+updateCountdown();
+setInterval(updateCountdown, 60000);
+
+/* TABS */
+function showTab(id, btn) {
+  document.querySelectorAll('.tab-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-tab, .bnav-btn').forEach(t => t.classList.remove('active'));
+  const section = document.getElementById('tab-' + id);
+  if (section) section.classList.add('active');
+  document.querySelectorAll('.nav-tab').forEach(t => {
+    if (t.getAttribute('onclick') && t.getAttribute('onclick').includes("'"+id+"'")) t.classList.add('active');
+  });
+  const b = document.getElementById('bnav-' + id);
+  if (b) b.classList.add('active'); else if (btn) btn.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+/* WEEKS */
+function toggleWeek(id) { document.getElementById(id).classList.toggle('open'); }
+
+/* TASKS (semaines 2-4) */
+function toggleTask(item, event) {
+  const cb = item.querySelector('input[type="checkbox"]');
+  if (event && event.target === cb) { item.classList.toggle('done', cb.checked); }
+  else { cb.checked = !cb.checked; item.classList.toggle('done', cb.checked); }
+  updateWeekProgress(item.closest('.week-block'));
+  saveState();
+}
+
+/* QCM DUAL CHECKBOX (semaine 1) */
+function handleQcmCheck(cb, key) {
+  const row = cb.closest('.qcm-row');
+  const isOk = cb.closest('.qcm-cb-wrap').classList.contains('ok');
+  const otherClass = isOk ? '.nok' : '.ok';
+  const other = row.querySelector(otherClass + ' input[type="checkbox"]');
+  if (cb.checked && other.checked) { other.checked = false; }
+  row.classList.remove('checked-ok', 'checked-nok');
+  const okCb  = row.querySelector('.ok  input[type="checkbox"]');
+  const nokCb = row.querySelector('.nok input[type="checkbox"]');
+  if (okCb.checked)  row.classList.add('checked-ok');
+  if (nokCb.checked) row.classList.add('checked-nok');
+  updateWeekProgress(row.closest('.week-block'));
+  saveQcmState();
+}
+
+/* PROGRESS */
+function updateWeekProgress(block) {
+  if (!block) return;
+  const tasks   = block.querySelectorAll('.task-item');
+  const qcmRows = block.querySelectorAll('.qcm-row');
+  const total   = tasks.length + qcmRows.length;
+  const doneTasks = block.querySelectorAll('.task-item.done').length;
+  const doneQcm   = [...qcmRows].filter(r =>
+    r.querySelector('.ok input:checked') || r.querySelector('.nok input:checked')
+  ).length;
+  const done = doneTasks + doneQcm;
+  const pct = total ? done/total*100 : 0;
+  const fill = block.querySelector('.progress-fill');
+  const text = block.querySelector('.week-progress-text');
+  if (fill) fill.style.width = pct + '%';
+  if (text) text.textContent = done + ' / ' + total;
+}
+
+/* SAVE / LOAD */
+function saveState() {
+  try {
+    const t = {};
+    document.querySelectorAll('.task-item').forEach((item,i) => { t['t'+i] = item.classList.contains('done'); });
+    localStorage.setItem('dnb2026_tasks', JSON.stringify(t));
+  } catch(e) {}
+}
+
+function saveQcmState() {
+  try {
+    const q = {};
+    document.querySelectorAll('.qcm-row').forEach(row => {
+      const ok  = row.querySelector('.ok  input:checked') ? 'ok'  : '';
+      const nok = row.querySelector('.nok input:checked') ? 'nok' : '';
+      q[row.id] = ok || nok || '';
+    });
+    localStorage.setItem('dnb2026_qcm', JSON.stringify(q));
+  } catch(e) {}
+}
+
+function saveAll() {
+  try { saveState(); saveQcmState(); showToast(); }
+  catch(e) { alert('Sauvegarde impossible.'); }
+}
+
+function loadAll() {
+  try {
+    const raw = localStorage.getItem('dnb2026_tasks');
+    if (raw) {
+      const t = JSON.parse(raw);
+      document.querySelectorAll('.task-item').forEach((item,i) => {
+        if (t['t'+i]) { item.classList.add('done'); item.querySelector('input[type="checkbox"]').checked=true; }
+      });
+    }
+  } catch(e) {}
+  try {
+    const rawQ = localStorage.getItem('dnb2026_qcm');
+    if (rawQ) {
+      const q = JSON.parse(rawQ);
+      document.querySelectorAll('.qcm-row').forEach(row => {
+        const val = q[row.id];
+        if (val==='ok')  { row.querySelector('.ok  input').checked=true; row.classList.add('checked-ok');  }
+        if (val==='nok') { row.querySelector('.nok input').checked=true; row.classList.add('checked-nok'); }
+      });
+    }
+  } catch(e) {}
+  document.querySelectorAll('#cartable-list input[type="checkbox"]').forEach((cb,i) => {
+    try { if (localStorage.getItem('dnb2026_cart_'+i)==='1') cb.checked=true; } catch(e){}
+    cb.addEventListener('change', ()=>{ try { localStorage.setItem('dnb2026_cart_'+i, cb.checked?'1':'0'); } catch(e){} });
+  });
+  document.querySelectorAll('.week-block').forEach(b => updateWeekProgress(b));
+}
+
+function showToast() {
+  const t = document.getElementById('save-toast');
+  t.textContent = '✓ Progression sauvegardée';
+  t.classList.add('visible');
+  setTimeout(()=>t.classList.remove('visible'), 2200);
+}
+function openSaveModal()  { document.getElementById('save-modal').classList.add('open'); }
+function closeSaveModal(e) {
+  if (!e || e.target===document.getElementById('save-modal'))
+    document.getElementById('save-modal').classList.remove('open');
+}
+document.addEventListener('keydown', e => {
+  if ((e.ctrlKey||e.metaKey) && e.key==='s') { e.preventDefault(); saveAll(); closeSaveModal(); }
+  if (e.key==='Escape') closeSaveModal();
+});
+document.addEventListener('DOMContentLoaded', loadAll);
+</script>
+</body>
+</html>
