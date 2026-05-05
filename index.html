@@ -481,7 +481,7 @@ hr.divider { border: none; border-top: 1.5px solid var(--border); margin: 1.5rem
 <nav class="nav-tabs">
   <button class="nav-tab active" onclick="showTab('planning',this)">📅 Planning</button>
   <button class="nav-tab" onclick="showTab('qcm',this)">📝 Révisions</button>
-  <button class="nav-tab" onclick="showTab('methode',this)">📐 Entraînements</button>
+  <button class="nav-tab" onclick="showTab('methode',this)">📐 Exercices</button>
   <button class="nav-tab" onclick="showTab('jourj',this)">🎓 Jour-J</button>
 </nav>
 
@@ -501,11 +501,11 @@ hr.divider { border: none; border-top: 1.5px solid var(--border); margin: 1.5rem
   <div class="section-sub">Du 1er juin au 29 juin 2026 · Coche les tâches au fur et à mesure</div>
   <div class="info-box" style="font-size:0.88rem;">
     <strong>💾 Sauvegarde locale</strong>
-    Tes coches sont mémorisées <strong>dans ce navigateur, sur cet appareil uniquement</strong>. Utilise toujours le même navigateur sur le même téléphone ou ordinateur.
+    Tes coches sont mémorisées <strong>dans ce navigateur, sur cet appareil uniquement.</strong> Utilise toujours le même navigateur sur le même téléphone ou ordinateur.
   </div>
   <div class="alert-box">
     <strong>⚠ Format de l'épreuve — 2h au total</strong>
-    <strong>Hist-Géo (40 pts) :</strong> Exo 1 — Analyse de docs (15 pts) + Exo 2 — Développement construit (18 pts) 30 lignes min. + Repères (7 pts). · <strong>EMC (20 pts) :</strong> Situation pratique + questions + réponse développée.
+    <strong>Hist-Géo (40 pts) :</strong> Exo 1 — Analyse de docs (15 pts). Exo 2 — Développement construit (18 pts), 30 lignes min. + Repères (7 pts). <strong>EMC (20 pts) :</strong> Situation pratique + questions + réponse développée.
   </div>
 
 
@@ -565,12 +565,12 @@ hr.divider { border: none; border-top: 1.5px solid var(--border); margin: 1.5rem
   <!-- ══ SEMAINE 3 ══ -->
   <div class="week-block" id="week3">
     <div class="week-header" onclick="toggleWeek('week3')">
-      <div><div class="week-label" style="color:var(--geo);">Semaine 3 · 15–21 juin</div><div class="week-title">Réviser H3, G3, EMC2, G4, H4 + méthode</div></div>
+      <div><div class="week-label" style="color:var(--geo);">Semaine 3 · 15–21 juin</div><div class="week-title">Réviser les chapitres et les méthodes</div></div>
       <div class="week-toggle">▾</div>
     </div>
     <div class="week-body">
       <div class="progress-wrap"><div class="progress-label"><span>Progression</span><span class="week-progress-text">0 / 8</span></div><div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div></div>
-      <div class="tip-box"><strong>💡 Conseils</strong>Après avoir relu ton cours, relis aussi les fiches méthode (NADI et développement construit) dans l'onglet Méthode. En fin de semaine, repasse les QCM marqués "À refaire" en semaine 1.</div>
+      <div class="tip-box"><strong>💡 Conseils</strong>Après avoir relu les cours, relis les méthodes dans l'onglet "Exercices". Tu peux aussi faire les QCM marqués "À refaire".</div>
       <ul class="task-list">
         <li class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Réviser H3 — La Seconde Guerre mondiale (1939–1945)</span><span class="task-tag tag-hist">Hist.</span></li>
         <li class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Réviser G3 — Espaces à faibles densités</span><span class="task-tag tag-geo">Géo.</span></li>
@@ -587,32 +587,41 @@ hr.divider { border: none; border-top: 1.5px solid var(--border); margin: 1.5rem
   <!-- ══ SEMAINE 4 ══ -->
   <div class="week-block" id="week4">
     <div class="week-header" onclick="toggleWeek('week4')">
-      <div><div class="week-label" style="color:var(--emc);">Semaine 4 · 22–29 juin</div><div class="week-title">Réviser H5, H6, G5, EMC3 + entraînements</div></div>
+      <div><div class="week-label" style="color:var(--emc);">Semaine 4 · 22–29 juin</div><div class="week-title">Réviser les chapitres et s'exercer</div></div>
       <div class="week-toggle">▾</div>
     </div>
     <div class="week-body">
       <div class="progress-wrap"><div class="progress-label"><span>Progression</span><span class="week-progress-text">0 / 7</span></div><div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div></div>
-      <div class="alert-box"><strong>⚠ Dernière semaine avant le DNB !</strong>Consolide les derniers chapitres, fais un sujet complet en 2h chrono, et repasse tous les QCM encore fragiles.</div>
+      <div class="alert-box"><strong>⚠ Dernière semaine avant le DNB !</strong>Révise les derniers chapitres de l'année, refais les QCM encore fragiles et entraîne-toi sur les méthodes et des sujets des années précédentes.</div>
       <ul class="task-list">
         <li class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Réviser H5 — Le monde après 1989</span><span class="task-tag tag-hist">Hist.</span></li>
         <li class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Réviser H6 — La France depuis 1945</span><span class="task-tag tag-hist">Hist.</span></li>
         <li class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Réviser G5 — La France et l'Union européenne</span><span class="task-tag tag-geo">Géo.</span></li>
         <li class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Réviser EMC3 — Défense nationale et citoyenneté</span><span class="task-tag tag-emc">EMC</span></li>
-        <li class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Faire un sujet d'entraînement complet en 2h chrono</span><span class="task-tag tag-methode">Méthode</span></li>
+        <li class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Faire des sujets d'entraînement (onglet "Exercices")</span><span class="task-tag tag-methode">Méthode</span></li>
+        <li class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Lire des développements construits corrigés (onglet "Exercices")</span><span class="task-tag tag-methode">Méthode</span></li>
         <li class="task-item pri-moyenne" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Refaire des QCM</span><span class="task-tag tag-geo">QCM</span></li>
-        <li class="task-item pri-basse" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Les 2 nuits avant le 29 juin : dormir au moins 8h 🌙</span><span class="task-tag tag-methode">Bien-être</span></li>
       </ul>
     </div>
   </div>
+
+  <!-- DISCLAIMER -->
+  <div style="margin-top:2rem;padding:1rem 1.1rem;border-top:1.5px solid var(--border);display:flex;align-items:flex-start;gap:.75rem;">
+    <span style="font-size:1.1rem;flex-shrink:0;margin-top:1px;">ℹ️</span>
+    <p style="font-size:.78rem;color:var(--muted);line-height:1.7;font-family:'Atkinson Hyperlegible',Arial,sans-serif;">
+      Ce planning est une <strong style="color:var(--text)">proposition indicative</strong> conçue pour t'aider à organiser tes révisions du DNB 2026. Il a été généré avec l'aide de <strong style="color:var(--text)">Claude.ai</strong>, un assistant développé par Anthropic. Il ne remplace pas les conseils de tes enseignants ni le programme officiel de ton établissement. Les dates, les chapitres et les priorités peuvent être adaptés selon ton niveau et les indications de ta classe. La sauvegarde de ta progression est stockée localement dans ce navigateur — aucune donnée n'est transmise à un serveur. En cas de doute sur le contenu de l'épreuve, réfère-toi toujours aux ressources officielles du Ministère de l'Éducation nationale.
+    </p>
+  </div>
+
 </section>
 
 <!-- ══ TAB QCM ══ -->
 <section class="tab-section" id="tab-qcm">
   <div class="section-heading">Révisions</div>
-  <div class="section-sub">Clique sur un lien pour ouvrir le QCM dans Google Forms</div>
+  <div class="section-sub">Clique sur le nom du chapitre pour ouvrir le QCM dans Google Forms</div>
   <div class="info-box">
     <strong>💡 Comment utiliser les QCM ?</strong>
-    Fais-les <strong>sans réviser d'abord</strong> la 1re fois (semaine 1 = diagnostic). Note le résultat dans le planning. Ensuite, révise le chapitre puis <strong>refais le QCM</strong> — objectif : <strong>70%+ au 2e passage</strong>.
+    En semaine 1, fais chaque QCM sans réviser d'abord — c'est un diagnostic. Note le résultat dans le planning. Ensuite, révise le chapitre avec ton cours, puis refais le QCM. Objectif : 70 % ou plus au 2e passage.
   </div>
   <div class="section-heading" style="font-size:1.1rem;margin-bottom:0.5rem;"><span style="color:var(--hist)">●</span> Histoire</div>
   <div class="qcm-grid">
@@ -644,32 +653,106 @@ hr.divider { border: none; border-top: 1.5px solid var(--border); margin: 1.5rem
 
 <!-- ══ TAB MÉTHODE ══ -->
 <section class="tab-section" id="tab-methode">
-  <div class="section-heading">Entraînements</div>
-  <div class="section-sub">Les deux exercices clés du Brevet · Lis, comprends, entraîne-toi</div>
-  <div class="alert-box">
-    <strong>⚠ L'exercice 2 vaut 25 points sur 40 en Hist-Géo !</strong>
-    Le développement construit est là où tu peux gagner le plus de points. Apprends bien la méthode et entraîne-toi à écrire 30 lignes.
+  <div class="section-heading">Exercices</div>
+  <div class="info-box">
+    <strong>💡 Conseils</strong>
+    Relis les fiches Méthode ci-dessous. Entraîne-toi ensuite sur des sujets dans l'onglet "Annales". Tu peux aussi lire les développements construits corrigés.
   </div>
 
   <div class="methode-card">
-    <div class="methode-card-header geo">📋 Exercice 1 · Analyse de documents — méthode NADI (15 pts)</div>
+  <div class="section-heading" style="font-size:1.1rem;margin-bottom:0.5rem;"><span style="color:var(--methode)">●</span> Méthodes</div>
+    <div class="methode-card-header geo">📋 Exercice 1 · Analyse de documents (15 pts)</div>
     <div class="methode-card-body">
-      <div class="tip-box" style="margin-bottom:1rem;"><strong>🧠 NADI = 4 étapes obligatoires</strong>Chaque fois que tu analyses un document (texte, image, carte, affiche…), applique NADI dans l'ordre. Ne saute aucune étape.</div>
-      <div class="method-step"><div class="step-num geo">N</div><div><div class="step-title">Nature du document</div><div class="step-desc">C'est quoi ? Une photographie, un texte, une affiche, une caricature, une carte, un extrait de film… Ne dis jamais juste "un document" — sois précis·e.</div></div></div>
-      <div class="method-step"><div class="step-num geo">A</div><div><div class="step-title">Auteur / Source</div><div class="step-desc">Qui a produit ce document ? Pourquoi ? Un journal gouvernemental n'a pas le même point de vue qu'un témoignage de victime.</div></div></div>
-      <div class="method-step"><div class="step-num geo">D</div><div><div class="step-title">Date et contexte</div><div class="step-desc">Quand a-t-il été produit ? Que se passait-il à ce moment-là ? La date change tout — un discours de 1942 sous l'Occupation n'est pas anodin.</div></div></div>
-      <div class="method-step"><div class="step-num geo">I</div><div><div class="step-title">Idée principale + réponse à la question</div><div class="step-desc">Qu'est-ce que ce document dit/montre ? Comment répond-il à la question posée ? C'est ici que tu mobilises tes connaissances pour aller plus loin que le document.</div></div></div>
+      <div class="tip-box" style="margin-bottom:1rem;">
+        <strong>🧠 3 étapes à suivre dans l'ordre</strong>
+        <div style="display:flex;flex-direction:column;gap:0.4rem;margin-top:0.4rem;">
+          <div style="display:flex;gap:0.6rem;align-items:center;"><span style="background:var(--geo);color:white;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:700;flex-shrink:0;">1</span><span><strong>Lire attentivement et observer</strong> le document dans son ensemble.</span></div>
+          <div style="display:flex;gap:0.6rem;align-items:center;"><span style="background:var(--geo);color:white;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:700;flex-shrink:0;">2</span><span><strong>Trouver les éléments NADI</strong> : Nature, Auteur, Date, Idée principale.</span></div>
+          <div style="display:flex;gap:0.6rem;align-items:center;"><span style="background:var(--geo);color:white;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:700;flex-shrink:0;">3</span><span><strong>Rédiger</strong> ta présentation en un paragraphe avec des phrases courtes.</span></div>
+        </div>
+      </div>
+      <div class="method-step"><div class="step-num geo">N</div><div><div class="step-title">Nature du document</div><div class="step-desc">Qu'est-ce que c'est ? Sois le plus précis possible :<br>
+      · Un <strong>texte</strong> peut être politique (discours, programme de parti), juridique (loi, constitution), religieux, littéraire (roman, poème), de presse (article), ou un témoignage (lettre, mémoires).<br>
+      · Une <strong>carte</strong> peut être un planisphère ou un plan.<br>
+      · Une <strong>photographie</strong> peut être aérienne ou satellite.<br>
+      Ne dis jamais juste "un document" — sois précis·e.</div></div></div>
+      <div class="method-step"><div class="step-num geo">A</div><div><div class="step-title">Auteur / Source</div><div class="step-desc">Qui a écrit ou créé le document ? L'auteur peut être une personne ou un organisme (ONU…). Tu peux aussi préciser la <strong>source</strong> du document, c'est-à-dire d'où il est extrait. Un journal gouvernemental n'a pas le même point de vue qu'un témoignage de victime.</div></div></div>
+      <div class="method-step"><div class="step-num geo">D</div><div><div class="step-title">Date et contexte</div><div class="step-desc">Quand le document a-t-il été créé ? Une date ou une période. <strong>Bien distinguer</strong> la date de rédaction du document de celle de l'événement décrit. Développe aussi le <strong>contexte</strong> : événements politiques, économiques, sociaux qui expliquent la réalisation du document. Fais appel à tes connaissances de cours.</div></div></div>
+      <div class="method-step"><div class="step-num geo">I</div><div><div class="step-title">Idée principale</div><div class="step-desc">De quoi parle le document ? <strong>Évite de recopier</strong> le document. Dis dans tes propres mots ce qu'il montre ou défend. C'est ici que tu mobilises tes connaissances pour aller plus loin que le document seul.</div></div></div>
     </div>
   </div>
 
   <div class="methode-card">
-    <div class="methode-card-header methode">✍️ Exercice 2 · Développement construit — 25 pts · Au moins 30 lignes</div>
+    <div class="methode-card-header geo">🔍 Analyser un document — démarche à suivre</div>
     <div class="methode-card-body">
-      <div class="tip-box" style="margin-bottom:1rem;"><strong>🧠 Avant de rédiger : 10 minutes de brouillon !</strong>Note les idées, les exemples, les dates. Fais un plan en 2 ou 3 parties. C'est ce qui te permettra d'écrire sans te bloquer.</div>
-      <div class="method-step"><div class="step-num methode">1</div><div><div class="step-title">Introduction</div><div class="step-desc">Phrase d'accroche → Définir les termes clés → Problématique (la question à laquelle tu réponds) → Annonce du plan.<br><span style="color:var(--muted);font-size:0.78rem;">Ex : "La Première Guerre mondiale (1914-1918) est un conflit d'une violence inédite..."</span></div></div></div>
-      <div class="method-step"><div class="step-num methode">2</div><div><div class="step-title">Développement — 2 ou 3 parties</div><div class="step-desc">Chaque partie = une idée principale + des exemples précis (dates, lieux, chiffres) + un mot de liaison.<br><span style="color:var(--muted);font-size:0.78rem;">Mots utiles : Tout d'abord… · De plus… · Ensuite… · Cependant… · Enfin…</span></div></div></div>
-      <div class="method-step"><div class="step-num methode">3</div><div><div class="step-title">Conclusion</div><div class="step-desc">Résumer les idées → Répondre clairement à la problématique → Ouverture facultative.<br><span style="color:var(--muted);font-size:0.78rem;">Ex : "En conclusion, la 1GM a profondément transformé les sociétés européennes..."</span></div></div></div>
-      <div class="tip-box" style="margin-top:1rem;margin-bottom:0;"><strong>💡 Sujets les plus probables à l'Exercice 2</strong>La 1ère ou 2nde Guerre mondiale · La Guerre froide · La construction européenne · La métropolisation · L'aménagement du territoire · La République et la citoyenneté.</div>
+      <div class="tip-box" style="margin-bottom:1rem;">
+        <strong>🧠 3 étapes à suivre dans l'ordre</strong>
+        <div style="display:flex;flex-direction:column;gap:0.4rem;margin-top:0.4rem;">
+          <div style="display:flex;gap:0.6rem;align-items:flex-start;"><span style="background:var(--geo);color:white;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:700;flex-shrink:0;margin-top:1px;">1</span><span><strong>Lire attentivement</strong> le document ci-dessus.</span></div>
+          <div style="display:flex;gap:0.6rem;align-items:flex-start;"><span style="background:var(--geo);color:white;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:700;flex-shrink:0;margin-top:1px;">2</span><span><strong>Choisir une couleur</strong> pour chaque question et surligner dans le document les réponses de la bonne couleur.</span></div>
+          <div style="display:flex;gap:0.6rem;align-items:flex-start;"><span style="background:var(--geo);color:white;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:700;flex-shrink:0;margin-top:1px;">3</span><span><strong>Sur ton cahier, rédiger les réponses</strong> aux questions : reprendre les termes de la question, faire des phrases complètes, utiliser les connaissances du cours.</span></div>
+        </div>
+      </div>
+      <div class="method-step"><div class="step-num geo">1</div><div><div class="step-title">Lire et observer</div><div class="step-desc">Lis le document entièrement avant de répondre. Repère le titre, la source, la date et le type de document (texte, carte, graphique, image…).</div></div></div>
+      <div class="method-step"><div class="step-num geo">2</div><div><div class="step-title">Surligner les informations utiles</div><div class="step-desc">Utilise une couleur différente par question. Surligne directement dans le document les passages qui répondent à chaque question posée.</div></div></div>
+      <div class="method-step"><div class="step-num geo">3</div><div><div class="step-title">Rédiger les réponses</div><div class="step-desc">Pour chaque question :<br>
+      · <strong>Reprends les termes</strong> de la question dans ta réponse.<br>
+      · <strong>Rédige des phrases complètes</strong> — pas de liste, pas de tirets.<br>
+      · <strong>Utilise tes connaissances du cours</strong> pour aller au-delà du document.<br>
+      · Ne recopie pas le document mot pour mot — reformule.
+      </div></div></div>
+    </div>
+  </div>
+
+  <div class="methode-card">
+    <div class="methode-card-header methode">✍️ Exercice 2 · Développement construit — 18 pts · Au moins 30 lignes</div>
+    <div class="methode-card-body">
+
+      <!-- AVANT DE RÉDIGER -->
+      <div style="font-family:'DM Mono',monospace;font-size:0.64rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--methode);font-weight:700;margin-bottom:0.6rem;">Avant de rédiger — au brouillon</div>
+      <div class="method-step"><div class="step-num geo">1</div><div><div class="step-title">Bien lire le sujet</div><div class="step-desc">Lis le sujet attentivement. <strong>Repère et définis</strong> les mots importants du sujet.</div></div></div>
+      <div class="method-step"><div class="step-num geo">2</div><div><div class="step-title">Où, quand, quoi ?</div><div class="step-desc">Détermine le <strong>lieu</strong>, les <strong>dates</strong> et le <strong>thème</strong> du sujet.</div></div></div>
+      <div class="method-step"><div class="step-num geo">3</div><div><div class="step-title">Entourer et numéroter les parties</div><div class="step-desc">Dans le sujet, entoure et numérote les différentes parties à rédiger.</div></div></div>
+      <div class="method-step"><div class="step-num geo">4</div><div><div class="step-title">Remplir le brouillon</div><div class="step-desc">Pour chaque partie, note des idées et des exemples du cours : dates, vocabulaire, lieux, événements… Le brouillon doit être organisé.</div></div></div>
+
+      <!-- RÉDIGER -->
+      <div style="font-family:'DM Mono',monospace;font-size:0.64rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--methode);font-weight:700;margin:1rem 0 0.6rem;">Rédiger le développement construit</div>
+      <div class="method-step"><div class="step-num geo">1</div><div><div class="step-title">Introduction</div><div class="step-desc">Une phrase qui reprend les mots du sujet, les dates, les définitions.<br><span style="color:var(--muted);font-size:0.78rem;">Ex : "La Première Guerre mondiale (1914–1918) est un conflit d'une violence inédite…"</span></div></div></div>
+      <div class="method-step"><div class="step-num geo">2</div><div><div class="step-title">Un paragraphe par thème</div><div class="step-desc">
+        · Commencer par un <strong>mot de liaison</strong>.<br>
+        · Utiliser des <strong>mots du sujet</strong> pour annoncer le thème abordé.<br>
+        · Intégrer des <strong>connaissances du cours</strong> : arguments et exemples précis.<br>
+        · <strong>Revenir à la ligne</strong> pour chaque paragraphe.
+      </div></div></div>
+      <div class="method-step"><div class="step-num geo">3</div><div><div class="step-title">Conclusion</div><div class="step-desc">Une phrase qui résume les principales idées + une phrase qui ouvre vers un autre sujet possible.<br><span style="color:var(--muted);font-size:0.78rem;">Ex : "En conclusion, la 1GM a profondément transformé les sociétés européennes…"</span></div></div></div>
+      <div class="method-step"><div class="step-num geo">4</div><div><div class="step-title">Relire attentivement</div><div class="step-desc">Corrige toutes les fautes de <strong>connaissances</strong>, d'<strong>orthographe</strong> et de <strong>grammaire</strong>.</div></div></div>
+
+      <!-- MOTS DE LIAISON -->
+      <div style="font-family:'DM Mono',monospace;font-size:0.64rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--methode);font-weight:700;margin:1rem 0 0.6rem;">Mots de liaison utiles</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;font-size:0.82rem;">
+        <div style="background:var(--msoft);border:1px solid var(--mbord);border-radius:8px;padding:0.7rem 0.85rem;">
+          <div style="font-family:'DM Mono',monospace;font-size:0.58rem;font-weight:700;color:var(--methode);text-transform:uppercase;margin-bottom:0.35rem;">1ʳᵉ idée</div>
+          Premièrement · Tout d'abord · Dans un premier temps · Pour commencer · D'une part
+        </div>
+        <div style="background:var(--gsoft);border:1px solid var(--gbord);border-radius:8px;padding:0.7rem 0.85rem;">
+          <div style="font-family:'DM Mono',monospace;font-size:0.58rem;font-weight:700;color:var(--geo);text-transform:uppercase;margin-bottom:0.35rem;">Idées suivantes</div>
+          Deuxièmement · Ensuite · Dans un deuxième temps · Pour continuer · D'autre part · Puis · Par ailleurs · En outre
+        </div>
+        <div style="background:var(--hsoft);border:1px solid var(--hbord);border-radius:8px;padding:0.7rem 0.85rem;">
+          <div style="font-family:'DM Mono',monospace;font-size:0.58rem;font-weight:700;color:var(--hist);text-transform:uppercase;margin-bottom:0.35rem;">Idées opposées</div>
+          Cependant · Mais · Par contre · En revanche · Néanmoins · Alors que · Tandis que
+        </div>
+        <div style="background:var(--esoft);border:1px solid var(--ebord);border-radius:8px;padding:0.7rem 0.85rem;">
+          <div style="font-family:'DM Mono',monospace;font-size:0.58rem;font-weight:700;color:var(--emc);text-transform:uppercase;margin-bottom:0.35rem;">Conclusion / Exemples</div>
+          Ainsi · Enfin · Pour conclure · En conclusion · Donc · C'est pourquoi · Comme · En effet · Par exemple · Tel que · Selon
+        </div>
+      </div>
+
+      <!-- SUJETS PROBABLES -->
+      <div class="tip-box" style="margin-top:1rem;margin-bottom:0;">
+        <strong>💡 Sujets les plus probables à l'Exercice 2</strong>
+        La 1ère ou 2nde Guerre mondiale · La Guerre froide · La construction européenne · La métropolisation · L'aménagement du territoire · La République et la citoyenneté.
+      </div>
     </div>
   </div>
 
