@@ -269,6 +269,41 @@ hr.divider { border: none; border-top: 1.5px solid var(--border); margin: 1.5rem
 .check-list input[type="checkbox"]:checked { background: var(--emc); border-color: var(--emc); }
 .check-list input[type="checkbox"]:checked::after { content: '✓'; position: absolute; top: -2px; left: 2px; color: white; font-size: 12px; font-weight: 700; }
 
+/* CORRIGÉS */
+.corrige-filters { display:flex; gap:0.4rem; margin-bottom:0.75rem; flex-wrap:wrap; }
+.corrige-filter-btn {
+  background: var(--surface); border: 1.5px solid var(--border);
+  color: var(--muted); font-family: 'DM Mono', monospace; font-size:0.6rem;
+  letter-spacing:0.06em; text-transform:uppercase; padding:0.35rem 0.75rem;
+  border-radius:20px; cursor:pointer; font-weight:700;
+  transition: all 0.2s; -webkit-tap-highlight-color:transparent;
+}
+.corrige-filter-btn.active { border-color:var(--methode); color:var(--methode); background:var(--methode-soft); }
+.corrige-filter-btn.hist.active { border-color:var(--hist); color:var(--hist); background:var(--hist-soft); }
+.corrige-filter-btn.geo.active  { border-color:var(--geo);  color:var(--geo);  background:var(--geo-soft);  }
+.corrige-item { border:1.5px solid var(--border); border-radius:var(--radius); margin-bottom:0.45rem; overflow:hidden; background:var(--surface); }
+.corrige-item[data-mat="hist"] { border-left:4px solid var(--hist); }
+.corrige-item[data-mat="geo"]  { border-left:4px solid var(--geo);  }
+.corrige-btn {
+  width:100%; background:none; border:none; text-align:left;
+  padding:0.7rem 0.85rem; cursor:pointer; display:flex; align-items:center;
+  gap:0.6rem; min-height:48px; -webkit-tap-highlight-color:transparent;
+  transition: background 0.15s;
+}
+.corrige-btn:active, .corrige-btn:hover { background:var(--surface2); }
+.corrige-code { font-family:'DM Mono',monospace; font-size:0.58rem; font-weight:700;
+  text-transform:uppercase; padding:0.15rem 0.45rem; border-radius:4px; flex-shrink:0; }
+.corrige-item[data-mat="hist"] .corrige-code { background:var(--hist-soft); color:var(--hist); }
+.corrige-item[data-mat="geo"]  .corrige-code { background:var(--geo-soft);  color:var(--geo);  }
+.corrige-title { flex:1; font-size:0.88rem; font-weight:700; line-height:1.3; color:var(--text); }
+.corrige-chevron { font-size:0.75rem; opacity:0.35; transition:transform 0.25s; flex-shrink:0; }
+.corrige-item.open .corrige-chevron { transform:rotate(180deg); }
+.corrige-body { display:none; padding:0.85rem 1rem; border-top:1px solid var(--border); background:var(--bg); }
+.corrige-item.open .corrige-body { display:block; }
+.corrige-para { font-size:0.85rem; line-height:1.7; color:var(--text); margin-bottom:0.65rem; }
+.corrige-para:last-child { margin-bottom:0; }
+.corrige-para.intro { font-style:italic; color:var(--muted); }
+
 /* SAVE / TOAST */
 #save-toast { position: fixed; bottom: calc(var(--nav-h) + 1rem); left: 1rem; right: 1rem; text-align: center; background: var(--text); border-left: 4px solid var(--emc); color: #f4f1eb; font-family: 'DM Mono', monospace; font-size: 0.72rem; letter-spacing: 0.07em; padding: 0.8rem 1rem; border-radius: 8px; opacity: 0; transform: translateY(8px); transition: opacity 0.25s, transform 0.25s; pointer-events: none; z-index: 9999; font-weight: 700; }
 #save-toast.visible { opacity: 1; transform: translateY(0); }
@@ -764,6 +799,19 @@ hr.divider { border: none; border-top: 1.5px solid var(--border); margin: 1.5rem
     </a>
   </div>
 
+  <hr class="divider">
+  <div class="section-heading" style="font-size:1.1rem;margin-bottom:0.3rem;"><span style="color:var(--methode)">●</span> Sujets corrigés</div>
+  <div class="section-sub" style="margin-bottom:0.9rem;">Clique sur un sujet pour lire le corrigé</div>
+
+  <!-- FILTER CORRIGÉS -->
+  <div class="corrige-filters">
+    <button class="corrige-filter-btn active" data-filter="all" onclick="filterCorrige('all',this)">Tous</button>
+    <button class="corrige-filter-btn hist" data-filter="hist" onclick="filterCorrige('hist',this)">Histoire</button>
+    <button class="corrige-filter-btn geo" data-filter="geo" onclick="filterCorrige('geo',this)">Géographie</button>
+  </div>
+
+  <div id="corrige-list"></div>
+
 </section>
 
 <!-- ══ TAB JOUR-J ══ -->
@@ -1023,6 +1071,235 @@ document.addEventListener('keydown', e => {
   if (e.key==='Escape') closeSaveModal();
 });
 document.addEventListener('DOMContentLoaded', loadAll);
+
+/* ══ CORRIGÉS ══ */
+const CORRIGES = [
+  { code:"G1", mat:"geo", title:`Montrez l'organisation et les dynamiques des aires urbaines`, body:`Les aires urbaines sont des espaces qui se composent d'une ville-centre, de banlieues et de la couronne périurbaine. Elles concentrent une grande partie de la population et des activités économiques. Comment ces aires urbaines sont-elles organisées et quelles sont leurs dynamiques ?
+
+Tout d'abord, les aires urbaines sont des espaces organisés. Elles se composent d'un centre-ville, où se concentrent les lieux de pouvoir politique (hôtel de ville, Assemblée nationale à Paris), les activités économiques (quartier des affaires de La Part Dieu à Lyon) et les lieux culturels (Musée du Louvre). Autour de ce centre, on trouve la banlieue avec des grands ensembles (St Martin d'Hère à Grenoble), des zones commerciales ainsi que des usines. Enfin, la couronne périurbaine, où au moins 40 % de la population travaille dans l'agglomération centrale, regroupe des zones de pavillons et des lotissements comme Meyzieu dans l'aire urbaine de Lyon.
+
+Ensuite, les aires urbaines connaissent des dynamiques importantes, notamment l'étalement urbain et la métropolisation. L'étalement urbain correspond à l'expansion des constructions urbaines le long des axes de communication et sur les espaces ruraux, un phénomène également appelé périurbanisation. La métropolisation désigne la concentration des hommes et des activités dans les métropoles. Par exemple l'aire urbaine de Lyon attire des touristes (6 millions) et des étudiants. De nombreuses entreprises de hautes technologies s'installent dans les aires urbaines créant ainsi de nombreux emplois (nanotechnologie à Grenoble, aéronautique à Toulouse).
+
+Ainsi les aires urbaines sont des espaces organisés autour d'un centre-ville, de banlieues et d'une couronne périurbaine. Leurs dynamiques contribuent à leur attractivité et à leur influence sur le territoire français.`},
+  { code:"G1", mat:"geo", title:`Présentez les dynamiques de l'étalement urbain : formes, causes, conséquences`, body:`En France, en 2020, 93 % des habitants vivent dans une aire urbaine. Ce développement s'accompagne du phénomène de l'étalement urbain, c'est-à-dire l'expansion des villes sur les espaces ruraux. Quelles sont les formes, les causes et les conséquences de l'étalement urbain ?
+
+Tout d'abord, les formes de l'étalement urbain correspondent à l'extension des constructions au-delà de la ville-centre, vers la couronne périurbaine comme Échirolles ou Fontaine pour Grenoble. Il se développe le long des axes de communication avec des lotissements pavillonnaires, des zones commerciales et des zones industrielles. Ce phénomène transforme les paysages ruraux et fait reculer les terres agricoles.
+
+Ensuite, plusieurs raisons expliquent cette expansion. D'abord, la croissance démographique crée un besoin de logements. Les habitants cherchent à fuir le coût élevé et la densité des centres-villes. Les progrès des transports (tramway, bus, trains) et la généralisation de la voiture favorisent les migrations pendulaires. Enfin, l'attractivité des métropoles, comme Lyon pour les étudiants et les touristes, renforce ce mouvement.
+
+Enfin, l'étalement urbain a des conséquences multiples. Sur le plan social, il renforce la dépendance entre la ville-centre et sa périphérie. Sur le plan environnemental, il consomme beaucoup d'espace, augmente la pollution et détruit les espaces naturels. Pour y faire face, les pouvoirs publics encouragent un urbanisme durable, limitant la consommation d'espace et développant les transports collectifs.`},
+  { code:"G1", mat:"geo", title:`Décrivez les espaces des aires urbaines françaises et expliquez leurs évolutions`, body:`La France est un pays très urbanisé : la majorité de la population vit dans des aires urbaines. Ces espaces sont constitués d'une ville-centre, d'une banlieue et d'une couronne périurbaine. Comment sont les différents espaces des aires urbaines et quelles sont leurs évolutions ?
+
+Tout d'abord, les aires urbaines sont des espaces organisés. Le centre-ville concentre les lieux de pouvoir politique, les activités économiques (La Part Dieu à Lyon) et les lieux culturels (Musée du Louvre). Autour de ce centre, on trouve la banlieue avec des grands ensembles, des zones commerciales et des usines. Enfin, la couronne périurbaine regroupe des zones de pavillons et des lotissements.
+
+Ensuite, les aires urbaines connaissent d'importantes évolutions. D'une part, la métropolisation renforce la concentration des hommes et des activités dans les grandes villes, qui deviennent des pôles majeurs de décision et d'innovation (La Défense à Paris). D'autre part, la périurbanisation provoque un étalement urbain : les habitants s'installent toujours plus loin des centres pour bénéficier de logements plus grands et moins chers, ce qui augmente les déplacements et accentue la pollution.
+
+En conclusion, les aires urbaines françaises connaissent des évolutions importantes notamment avec l'étalement urbain. Leur attractivité doit composer avec d'autres activités sur le territoire français.`},
+  { code:"G2", mat:"geo", title:`Montrez que la mondialisation transforme les espaces productifs français en prenant un des 3 espaces productifs`, body:`Un espace productif est un espace aménagé et mis en valeur pour une activité économique. En France, les espaces industriels ont beaucoup évolué à cause de la mondialisation. Comment la mondialisation transforme-t-elle les espaces productifs industriels français ?
+
+Tout d'abord, certaines régions françaises profitent pleinement de la mondialisation. Par exemple, Toulouse est un pôle de compétitivité tourné vers l'aéronautique avec Airbus. D'autres villes comme Grenoble (nanotechnologies) ou la Cosmetic Valley (1er exportateur de parfum mondial) accueillent des entreprises de hautes technologies. Les littoraux, comme Marseille-Fos-sur-Mer, se développent grâce au commerce mondial avec leurs zones industrialo-portuaires (ZIP).
+
+Ensuite, la mondialisation transforme les territoires. Pour exporter les marchandises, les moyens de transports internationaux se développent. Les entreprises sont reliées aux axes de communication principaux (autoroutes, LGV) ou par des hubs reliés aux réseaux européens et mondiaux. Ces territoires doivent innover et former leur main-d'œuvre (universités et centres de recherches proches des industries).
+
+En conclusion, la mondialisation permet aux espaces productifs industriels français de se développer et de se transformer. Cela crée de nouvelles dynamiques mais accentue les inégalités entre les territoires.`},
+  { code:"G2", mat:"geo", title:`Décrivez et expliquez le fonctionnement et les dynamiques d'un espace productif français face à la mondialisation`, body:`Un espace productif est un espace aménagé pour une activité économique. Les espaces agricoles français doivent s'adapter à la mondialisation, c'est-à-dire à l'ouverture des marchés et à la concurrence internationale. Quel est le fonctionnement d'un espace productif agricole français face à la mondialisation ?
+
+Tout d'abord, certains espaces agricoles français ont adopté un modèle productiviste. Cette agriculture vise de hauts rendements grâce à l'utilisation d'engrais chimiques, de pesticides et à une forte mécanisation. Par exemple, le Bassin Parisien est spécialisé dans les cultures céréalières intensives, tandis que la Bretagne se concentre sur l'élevage intensif. Ces régions produisent surtout pour l'industrie agroalimentaire et pour l'exportation.
+
+Ensuite, ces espaces font face à des défis majeurs. La mondialisation a accru la concurrence internationale, mettant en difficulté certains agriculteurs français. Les pratiques productivistes ont des impacts environnementaux négatifs (pollution des sols et des eaux) ainsi que des crises sanitaires comme la crise de la vache folle. Ces défis ont conduit à l'émergence de nouveaux modèles : agriculture biologique, labels, circuits courts.
+
+Pour conclure, les espaces agricoles français s'intègrent à la mondialisation tout en connaissant de nouvelles dynamiques avec de nouveaux modèles agricoles.`},
+  { code:"G2", mat:"geo", title:`Montrez la diversité des espaces productifs et leurs évolutions`, body:`Un espace productif est un espace aménagé pour une activité économique. La France possède une grande diversité d'espaces productifs, qu'ils soient agricoles, industriels ou de services. Quels sont ces différents espaces productifs et comment évoluent-ils ?
+
+Tout d'abord, les espaces productifs français sont très variés. Dans le secteur agricole, des régions comme le Bassin Parisien et la Bretagne utilisent l'agriculture productiviste, tandis que les zones de montagne pratiquent une agriculture plus traditionnelle. Les espaces industriels se concentrent dans des régions comme l'Île-de-France et Rhône-Alpes, avec des pôles de compétitivité. Les espaces de services se concentrent principalement dans les métropoles.
+
+Ensuite, ces espaces connaissent des évolutions importantes. Dans l'agriculture, les crises ont conduit à l'émergence de l'agriculture biologique et des circuits courts. Dans l'industrie, les vieilles régions du Nord et de l'Est subissent une désindustrialisation et tentent de se reconvertir. Les industries de haute technologie se développent dans des régions dynamiques du Sud et de l'Ouest, attirées par une main-d'œuvre qualifiée.
+
+Pour conclure, les espaces productifs français sont diversifiés et évoluent. La mondialisation pousse ces espaces à s'adapter et à se moderniser.`},
+  { code:"G3", mat:"geo", title:`Présentez les atouts et les dynamiques des espaces de faible densité en France`, body:`Les espaces de faible densité en France sont des zones où la densité est inférieure à 30 habitants par km². On les trouve surtout dans les zones rurales et montagneuses comme le Massif central, les Alpes ou les Pyrénées. Quels sont leurs atouts et leurs dynamiques ?
+
+Tout d'abord, les espaces de faible densité offrent de nombreux atouts : des paysages naturels préservés (parc naturel du Morvan), un patrimoine culturel et historique, un cadre de vie agréable et moins cher qu'en métropole. Par ailleurs, ces espaces bénéficient d'une agriculture diversifiée. La Champagne est connue pour sa culture du vin, tandis que certaines régions de montagne développent une agriculture de qualité et labellisée (fromages des massifs montagneux).
+
+Ensuite, ces espaces connaissent de nombreuses dynamiques. Le tourisme vert se développe dans des régions comme les Cévennes ou le Sud-Ouest, tandis que les Alpes et les Pyrénées sont prisées pour les sports d'hiver. La création de parcs nationaux contribue à la protection de l'environnement tout en attirant des visiteurs. Par ailleurs, certaines régions connaissent une revitalisation grâce à l'installation de retraités, de propriétaires de résidences secondaires et de néo-ruraux.
+
+Ainsi, les espaces de faible densité possèdent des atouts et connaissent des dynamiques. Ils attirent de nouveaux habitants et développent des activités agricoles et touristiques.`},
+  { code:"G4", mat:"geo", title:`Montrez comment l'aménagement peut être une réponse aux inégalités entre les territoires français`, body:`L'aménagement du territoire désigne l'ensemble des actions mises en œuvre pour réduire les inégalités entre les territoires. Quelles sont ces inégalités et quelles politiques d'aménagement sont mises en place pour les réduire ?
+
+Tout d'abord, le territoire français est marqué par de fortes inégalités. Certaines régions sont très dynamiques comme Paris, le Bassin parisien, les métropoles régionales (Lyon, Marseille) ou les littoraux du Sud et de l'Ouest. À l'inverse, le Massif central est isolé, le Nord et l'Est souffrent du déclin industriel, les banlieues sont marquées par la pauvreté, et les DROM connaissent un fort chômage et une dépendance aux aides.
+
+Ensuite, pour réduire ces inégalités, des aménagements sont mis en place par l'État, l'Union européenne et les collectivités territoriales. On développe les transports (autoroutes comme l'A75, LGV Atlantique, route littorale à La Réunion). On crée des pôles de compétitivité pour attirer des entreprises. On rénove certains quartiers (Caserne de Bonne à Grenoble, JO 2024 à Paris).
+
+En conclusion, l'aménagement du territoire permet de mieux répartir les activités et d'offrir à tous les habitants des conditions de vie équitables.`},
+  { code:"G4", mat:"geo", title:`Présentez les spécificités des territoires ultramarins et expliquez comment les aménagements permettent de réduire les inégalités de ces territoires`, body:`Les territoires ultramarins français sont situés loin de la métropole sur l'ensemble des océans (Guadeloupe dans l'Atlantique, La Réunion dans l'Indien…). Quelles sont leurs spécificités et comment les aménagements contribuent-ils à améliorer leur situation ?
+
+Tout d'abord, les territoires ultramarins se caractérisent par leur éloignement de la métropole (des milliers de kilomètres pour la Polynésie française, la Nouvelle-Calédonie) et leur insularité. Ils sont exposés à des risques naturels importants (cyclones, volcanisme à La Réunion). Sur le plan économique, ils font face à un chômage élevé (44 % à Mayotte), une vie plus chère et une dépendance aux aides financières de la France et de l'Union européenne.
+
+Ensuite, pour réduire ces inégalités, divers aménagements sont réalisés. Le développement des transports est prioritaire : route du littoral à La Réunion, modernisation des ports et des aéroports. Ces infrastructures facilitent les échanges avec la métropole et favorisent le tourisme. La concentration des activités économiques sur les littoraux permet de dynamiser ces zones et de créer de nombreux emplois.
+
+Pour conclure, les territoires ultramarins présentent des spécificités qui engendrent des difficultés. Grâce aux aménagements, ils peuvent réduire les inégalités et favoriser leur développement.`},
+  { code:"G5", mat:"geo", title:`Montrez la place et l'influence culturelle, géopolitique et économique de la France et de l'Europe dans le monde`, body:`La France et l'Union européenne jouent un rôle majeur dans le monde dans les domaines culturel, géopolitique et économique. Comment affirment-elles leur place et leur influence ?
+
+Tout d'abord, la France et l'Europe exercent une influence culturelle importante. La France, première destination touristique mondiale avec 90 millions de visiteurs par an, rayonne grâce à sa gastronomie, sa mode (Chanel) et son cinéma (Cannes). La langue française, parlée par 275 millions de personnes, renforce cette influence, notamment en Afrique de l'Ouest.
+
+Ensuite, la France et l'Europe possèdent une influence géopolitique majeure. La France est active dans les organisations internationales comme l'ONU et l'OTAN. Grâce à ses territoires ultramarins, elle contrôle la deuxième plus grande ZEE au monde. L'Union européenne est le premier donateur mondial en aide au développement.
+
+Enfin, la France et l'Europe sont des puissances économiques de premier plan. La France, sixième puissance mondiale, membre du G7, compte 30 grandes entreprises parmi les 500 premières mondiales (Total, LVMH, Carrefour). L'UE représente 25 % de la richesse mondiale et dispose de la monnaie unique, l'euro.
+
+Ainsi, la France et l'Union européenne occupent une place prépondérante dans le monde, malgré des limites comme leur fort endettement ou la concurrence des BRICS.`},
+  { code:"H1", mat:"hist", title:`Décrivez les violences subies par les combattants et les civils pendant la 1ère guerre mondiale`, body:`La Première Guerre mondiale (1914–1918) a été un conflit d'une grande violence, mobilisant non seulement les soldats sur le Front, mais aussi les civils à l'Arrière. Quelles sont les violences subies par les combattants et les civils durant cette guerre ?
+
+Tout d'abord, les soldats ont vécu des conditions difficiles dans les tranchées. Ils étaient exposés en permanence aux bombardements, aux attaques au gaz, au froid, à la boue et aux rats. À Verdun, 60 millions d'obus sont largués. La violence des combats fait 10 millions de soldats tués et 21 millions de blessés ou mutilés, que l'on appelle « les gueules cassées ».
+
+Ensuite, les civils aussi ont été victimes de la guerre. Dans les zones de combat au Nord-Est de la France, les populations ont subi des bombardements et des déplacements forcés. À l'arrière, les civils ont souffert de la faim et de la peur. Certaines populations, comme les Arméniens dans l'Empire ottoman, ont été victimes de massacres en 1915 : on parle d'un génocide qui a fait plus d'un million de morts.
+
+Pour conclure, la Première Guerre mondiale a causé des violences tant pour les combattants que pour les civils, montrant l'ampleur des destructions que peut provoquer un conflit moderne.`},
+  { code:"H1", mat:"hist", title:`Décrivez le quotidien et les souffrances des soldats dans les tranchées pendant la Première guerre mondiale`, body:`La Première Guerre mondiale (1914-1918) est marquée par la guerre des tranchées, où les soldats, appelés « poilus », vivent dans des conditions très difficiles. Quelles sont le quotidien et les souffrances des soldats dans les tranchées ?
+
+Tout d'abord, dès fin 1914, les soldats s'installent dans des tranchées organisées en trois lignes. Ces fossés étroits et boueux deviennent leur habitat pendant des mois. Les conditions y sont insalubres : froid, humidité, rats, poux, manque de nourriture et d'eau potable. L'attente entre les combats est une épreuve morale : l'ennui et l'angoisse de l'attaque suivante pèsent sur les hommes.
+
+Ensuite, les tranchées sont le théâtre d'une violence extrême. Les soldats subissent les pilonnages d'artillerie, les tirs de mitrailleuses et les assauts au corps-à-corps. À Verdun, en 1916, plus de 60 millions d'obus sont tirés, faisant 300 000 victimes. Les survivants gardent des séquelles physiques et psychologiques, comme le « shell shock ». Face à l'absurdité de la guerre, certains refusent de combattre : les mutineries de 1917 révèlent leur désespoir.
+
+Pour conclure, le quotidien des soldats dans les tranchées est marqué par des conditions de vie très dures et par l'extrême violence des combats. Les sociétés européennes espèrent que c'est la « Der des Ders ».`},
+  { code:"H1", mat:"hist", title:`Décrivez et expliquez les souffrances subies par les populations civiles pendant la Première Guerre mondiale`, body:`La Première Guerre mondiale (1914–1918) est une guerre totale qui touche également les civils, qui deviennent des victimes. Quelles sont les souffrances qu'ils ont subies ?
+
+Tout d'abord, les populations civiles sont directement concernées par l'effort de guerre. Les femmes doivent remplacer les soldats partis au front dans les champs ou dans les usines d'armement : on les appelle les munitionnettes. Les civils connaissent des privations alimentaires et le rationnement. Les États cherchent à contrôler l'opinion publique grâce aux affiches, aux journaux et à la censure.
+
+Par ailleurs, les civils subissent directement la violence de la guerre. Dans les régions envahies du Nord et de l'Est de la France, les populations sont réquisitionnées ou déplacées. Les bombardements détruisent villes et villages. Le génocide arménien de 1915, organisé par l'Empire ottoman, entraîne la mort d'environ un million de personnes, victimes de déportations et de massacres systématiques.
+
+Enfin, la guerre laisse des conséquences durables : on compte environ 10 millions de morts et 21 millions de blessés. Cette guerre, qualifiée de « totale », a bouleversé les sociétés européennes et laissé des cicatrices profondes, tant matérielles que morales.`},
+  { code:"H2", mat:"hist", title:`Montrez les caractéristiques du régime mis en place en Allemagne entre 1933 et 1945`, body:`En 1933, Adolf Hitler arrive au pouvoir en Allemagne et met en place un régime totalitaire : le régime nazi. Quelles sont les caractéristiques de ce régime ?
+
+Tout d'abord, le régime nazi se caractérise par la concentration des pouvoirs entre les mains d'un seul homme. Nommé chancelier en janvier 1933, Hitler obtient rapidement les pleins pouvoirs et devient le Führer. Le parti nazi, le NSDAP, devient le seul parti autorisé. L'économie est dirigée par l'État, axée sur le réarmement et les grands travaux, ce qui permet de réduire le chômage.
+
+Ensuite, le régime utilise la propagande et la terreur pour contrôler la population. Un culte de la personnalité est créé autour de Hitler. La jeunesse est embrigadée dans les Jeunesses hitlériennes, tandis que la Gestapo et les SS répriment toute opposition. Les Juifs subissent des persécutions dès les lois de Nuremberg en 1935, puis lors de la Nuit de Cristal en 1938 et des déportations.
+
+Pour conclure, le régime nazi est un régime totalitaire qui cherche à contrôler la politique, la société et l'économie tout en utilisant la violence. Hitler a transformé l'Allemagne en un État où les libertés ont disparu.`},
+  { code:"H2", mat:"hist", title:`Montrez les caractéristiques du régime mis en place en URSS avec Staline`, body:`De 1928 à 1953, Staline met en place en URSS un régime totalitaire marqué par un contrôle strict de la vie politique, économique et sociale. Quelles sont ses caractéristiques ?
+
+Tout d'abord, le régime stalinien se caractérise par une concentration du pouvoir. Staline élimine ses opposants, comme Trotski, et devient le chef unique de l'URSS. Le Parti communiste devient le seul parti autorisé et l'idéologie communiste domine tous les aspects de la vie.
+
+Ensuite, le régime exerce un contrôle sur l'économie et la société. L'économie est planifiée sur cinq ans, avec priorité à l'industrie lourde et à l'armement. La collectivisation de l'agriculture (création des kolkhozes) cause une famine en 1932-1933. Un culte de la personnalité est créé autour de Staline, surnommé le « petit père des peuples ». La censure et la propagande dominent la presse et le cinéma.
+
+Enfin, le régime utilise la violence pour se maintenir. La police politique (le NKVD) surveille la population. Les goulags emprisonnent les opposants. La Grande Terreur de 1936-1938, marquée par les procès de Moscou, conduit à la déportation de millions de personnes.
+
+En conclusion, le régime stalinien se caractérise par une concentration des pouvoirs, un contrôle de l'économie et de la société, ainsi que l'utilisation de la violence.`},
+  { code:"H2", mat:"hist", title:`Expliquez dans quelles conditions le Front populaire est arrivé au pouvoir en France et quelle politique il a menée`, body:`Le Front populaire est une alliance de partis de gauche arrivée au pouvoir en France en 1936 dans un contexte de crise économique et sociale. Comment est-il arrivé au pouvoir et quelle politique a-t-il menée ?
+
+Tout d'abord, le Front populaire est arrivé au pouvoir dans un contexte difficile. Dans les années 1930, la France connaît une crise économique venue des États-Unis, avec un chômage élevé. L'instabilité gouvernementale pousse les ligues d'extrême droite à manifester le 6 février 1934, faisant craindre un coup d'État. Face à cette situation, les partis de gauche (SFIO, Parti radical, Parti communiste) s'unissent sous le nom de Front Populaire. Ils remportent les élections législatives de mai 1936 et Léon Blum forme un gouvernement.
+
+Ensuite, le Front populaire met en place des réformes sociales majeures. Les accords Matignon, signés en juin 1936, instaurent des augmentations de salaires, la semaine de 40 heures, les 2 semaines de congés payés et la nationalisation des chemins de fer.
+
+Cependant, le Front populaire rencontre des difficultés économiques et politiques (notamment la guerre civile d'Espagne) et disparaît en 1938.`},
+  { code:"H3", mat:"hist", title:`Décrivez le processus d'extermination des Juifs et des Tziganes pendant la Seconde Guerre mondiale`, body:`Pendant la Seconde Guerre mondiale, les nazis mettent en place une politique de génocide contre les Juifs et les Tziganes. Quel est le processus d'extermination entre 1939 et 1945 ?
+
+Tout d'abord, les nazis créent la « Shoah par balle » avec des groupes spéciaux appelés Einsatzgruppen. Ces unités mobiles exécutent les Juifs et les Tziganes sur place, comme lors du massacre de Babi Yar, en Ukraine, où plus de 30 000 personnes sont tuées en deux jours. Les nazis enferment également les populations juives dans des ghettos, comme celui de Varsovie.
+
+Ensuite, à partir de 1942, lors de la conférence de Wannsee, les nazis mettent en place la « solution finale » : l'extermination industrielle des Juifs. Des camps d'extermination sont construits, comme Auschwitz. Les victimes y sont déportées par train depuis toute l'Europe et souvent directement envoyées dans les chambres à gaz. Les Tziganes sont eux aussi déportés et tués dans ces camps.
+
+Ce génocide fait environ six millions de Juifs et 200 000 Tziganes assassinés. C'est un crime contre l'humanité, organisé par l'État nazi avec une méthode planifiée et industrielle. Les criminels nazis seront jugés lors des procès de Nuremberg.`},
+  { code:"H3", mat:"hist", title:`Montrez que le régime de Vichy (1940-1944) est un régime antirépublicain, antisémite et collaborateur`, body:`Entre 1940 et 1944, la France est dirigée par le maréchal Pétain sous le régime de Vichy. En quoi est-il antirépublicain, antisémite et collaborateur ?
+
+Tout d'abord, le régime de Vichy est antirépublicain. Pétain reçoit les pleins pouvoirs en juillet 1940 et met fin à la démocratie : plus d'élections, partis politiques et syndicats interdits, droit de grève supprimé. La devise républicaine est remplacée par « Travail, Famille, Patrie ». La censure et le culte de la personnalité autour de Pétain contrôlent la population.
+
+Ensuite, le régime mène une politique antisémite. Dès 1940-1941, des lois excluent les Juifs de certaines professions, leur retirent la nationalité française et les obligent à porter l'étoile jaune. Des rafles sont organisées, comme celle du Vél d'Hiv en juillet 1942.
+
+Enfin, le régime choisit de collaborer avec l'Allemagne nazie. En octobre 1940, Pétain rencontre Hitler à Montoire et accepte la collaboration. La France livre des matières premières, des produits agricoles et de la main-d'œuvre (STO — Service du Travail Obligatoire en 1943).
+
+Ainsi, en supprimant les libertés démocratiques, en persécutant les Juifs et en collaborant avec l'Allemagne nazie, le régime de Vichy s'éloigne des valeurs de la République française.`},
+  { code:"H3", mat:"hist", title:`Présentez les conséquences de la défaite de 1940 pour la France`, body:`En juin 1940, après seulement quelques semaines de combats, la France signe un armistice avec l'Allemagne nazie. Quelles sont les conséquences de cette défaite militaire ?
+
+Tout d'abord, la défaite entraîne l'occupation d'une partie du territoire français. L'Allemagne occupe le Nord et l'Est du pays, y compris Paris. Le reste du territoire, au Sud, est appelé la « zone libre », dirigée par un nouveau gouvernement installé à Vichy.
+
+Ensuite, la défaite provoque un changement de régime. Le 10 juillet 1940, Pétain reçoit les pleins pouvoirs et met fin à la République. Il instaure le régime de Vichy qui remplace les valeurs de liberté, d'égalité et de fraternité par celles de « Travail, Famille, Patrie ». Ce régime met en place la censure, supprime les partis politiques et collabore avec l'Allemagne nazie.
+
+Enfin, cette défaite a aussi des conséquences humaines importantes. Des millions de Français fuient devant l'armée allemande : c'est l'exode. Des familles sont séparées, beaucoup de soldats sont faits prisonniers et envoyés en Allemagne. La population vit dans la peur et subit des pénuries.
+
+Cette période marque une rupture avec les valeurs républicaines.`},
+  { code:"H4", mat:"hist", title:`Présentez les 2 blocs qui s'opposent pendant la Guerre froide et expliquez les différentes formes d'affrontement`, body:`La Guerre froide est une période de fortes tensions sans affrontement direct entre les États-Unis et l'URSS (1947–1991). Quels sont les deux blocs et comment s'affrontent-ils ?
+
+Tout d'abord, le Bloc de l'Ouest, dirigé par les États-Unis, prône la démocratie et le capitalisme. Le Plan Marshall (1947) aide à reconstruire l'Europe de l'Ouest. Militairement, les alliés forment l'OTAN en 1949. Le Bloc de l'Est, dirigé par l'URSS, regroupe les pays d'Europe de l'Est, la Chine et la Corée du Nord. Il est caractérisé par des régimes totalitaires, le communisme et le Pacte de Varsovie (1955). L'URSS développe sa bombe nucléaire en 1949, instaurant un « équilibre de la terreur ».
+
+Ensuite, les affrontements prennent des formes variées : crises majeures (Guerre de Corée 1950-1953, Mur de Berlin, Crise de Cuba 1962), propagande culturelle (cinéma, bandes dessinées, compétitions sportives), course à l'espace (1er homme sur la Lune en 1969 pour les USA, 1er homme dans l'espace en 1961 pour l'URSS).
+
+En conclusion, la Guerre froide a été une période de rivalités aux idéologies opposées. La chute de l'URSS en 1991 laisse la place à un monde unipolaire avec une superpuissance américaine.`},
+  { code:"H4", mat:"hist", title:`Expliquez comment une colonie est devenue indépendante`, body:`Après la Seconde Guerre mondiale, de nombreuses colonies veulent devenir indépendantes. Comment l'Inde est-elle devenue indépendante en 1947 ?
+
+Tout d'abord, l'Inde est une colonie du Royaume-Uni depuis le XIXe siècle. Après la guerre, le contexte international est favorable à la décolonisation : l'ONU soutient le droit des peuples à disposer d'eux-mêmes, et les deux superpuissances (États-Unis et URSS) sont anticolonialistes. Des leaders nationalistes comme Gandhi, Nehru ou Ali Jinnah réclament l'indépendance. Gandhi utilise la désobéissance civile et la non-violence pour résister à la colonisation.
+
+Ensuite, le Royaume-Uni accepte de négocier l'indépendance. En 1947, l'Inde devient indépendante, mais le pays est partagé en deux : l'Inde pour les hindous et le Pakistan pour les musulmans. Cette partition provoque des massacres et de grands déplacements de population.
+
+Pour conclure, l'Inde est devenue indépendante grâce à une lutte en grande partie pacifique. Son indépendance marque le début d'un vaste mouvement de décolonisation en Asie puis en Afrique.`},
+  { code:"H4", mat:"hist", title:`Développez et expliquez les objectifs et les étapes de la construction européenne`, body:`La construction européenne est un processus qui a transformé l'Europe après la Seconde Guerre mondiale. Dès le discours de Robert Schuman en 1950, l'idée est d'assurer la paix et la stabilité en Europe. Quels sont les objectifs et les étapes de la construction européenne ?
+
+Tout d'abord, les premières étapes sont principalement économiques. En 1951, la CECA (Communauté Économique du Charbon et de l'Acier) met en commun les productions de charbon et d'acier. En 1957, le Traité de Rome établit la CEE avec six pays fondateurs (Belgique, Pays-Bas, Luxembourg, Italie, France, RFA) pour créer un marché commun permettant la libre circulation des biens, des capitaux et des personnes.
+
+Ensuite, la construction européenne s'élargit et s'approfondit. Dans les années 1970-1980, plusieurs vagues d'élargissement intègrent de nouveaux pays (Royaume-Uni, Irlande, Grèce, Espagne, Portugal). En 1992, le Traité de Maastricht crée l'Union Européenne (UE) et établit la citoyenneté européenne. L'euro est mis en place en 2002. Les élargissements se poursuivent dans les années 2000, jusqu'à la Croatie en 2013.
+
+En conclusion, la construction européenne est à la fois économique et politique, même si elle est fragilisée en 2020 par le Brexit.`},
+  { code:"H5", mat:"hist", title:`Décrivez les principales régions de conflits et les nouvelles menaces pour la paix dans le monde depuis 1989`, body:`Depuis la fin de la Guerre froide en 1991, le monde connaît de nombreux bouleversements. Quelles sont les principales régions de conflits et les nouvelles menaces pour la paix ?
+
+Tout d'abord, les années 1990 voient émerger de nombreux conflits régionaux et guerres civiles. La guerre en Yougoslavie (1991-1999) est marquée par des violences ethniques et des crimes de guerre. Le génocide au Rwanda en 1994 entraîne la mort de 800 000 Tutsis. Les tensions entre Israéliens et Palestiniens persistent. La prolifération nucléaire devient une menace majeure avec neuf pays possédant l'arme nucléaire.
+
+Ensuite, à partir des années 2000, le monde devient multipolaire avec les BRICS (Brésil, Russie, Inde, Chine, Afrique du Sud). On voit une multiplication des conflits (2e Guerre du Golfe 2003-2011, Afghanistan 2001-2014, Syrie). L'expansion du terrorisme (Al-Qaida, Daesh) conduit à des attentats en Europe. Les enjeux climatiques et sanitaires, comme la pandémie de COVID-19, soulignent la nécessité d'une coopération internationale.
+
+En conclusion, depuis 1989, le monde est marqué par des conflits régionaux et des menaces nouvelles qui rendent la coopération internationale plus importante que jamais.`},
+  { code:"H5", mat:"hist", title:`Présentez un conflit dans le monde après 1989 en le caractérisant dans ses grandes lignes`, body:`La première guerre du Golfe (1990-1991) illustre le nouvel ordre mondial après la fin de la Guerre froide et le rôle des États-Unis en tant que superpuissance. Quelles sont les caractéristiques de ce conflit ?
+
+Tout d'abord, la guerre est déclenchée par l'invasion du Koweït par l'Irak en août 1990. Les États-Unis, sous George H. W. Bush, jouent un rôle central dans la réponse internationale. Une résolution de l'ONU condamne l'invasion et une coalition internationale se forme pour libérer le Koweït.
+
+Ensuite, l'opération militaire « Tempête du désert » est lancée en janvier 1991 après l'échec des négociations. Grâce à la supériorité technologique de la coalition, les forces irakiennes sont repoussées hors du Koweït en quelques semaines. Cependant, le régime de Saddam Hussein reste en place en Irak, et les sanctions économiques imposées ont des effets dévastateurs sur la population civile.
+
+En conclusion, la première guerre du Golfe a montré le rôle central des États-Unis comme « gendarmes du monde » et l'importance de la coopération internationale face aux agressions.`},
+  { code:"H6", mat:"hist", title:`Présentez les évolutions politiques de la Ve République`, body:`La Cinquième République est instaurée en 1958 par le général De Gaulle pour répondre à une crise politique liée à la guerre d'Algérie. Quelles évolutions a-t-elle connues ?
+
+Tout d'abord, la Ve République est fondée sur une nouvelle Constitution adoptée par référendum en 1958, qui met en place un régime présidentiel fort. Le président est élu au suffrage universel direct depuis 1962, ce qui lui confère une légitimité démocratique forte. Il dispose de pouvoirs étendus : dissoudre l'Assemblée nationale, recourir au référendum, utiliser l'article 16 en cas de crise. Ces changements ont stabilisé le régime et mis fin à l'instabilité gouvernementale de la IVe République.
+
+Ensuite, la Ve République a connu plusieurs évolutions politiques. Le quinquennat, adopté en 2000, a réduit le mandat présidentiel de sept à cinq ans. L'alternance politique apparaît en 1981 avec l'élection de François Mitterrand. La cohabitation se produit quand le président et le Premier ministre ne sont pas du même bord politique, comme en 1986 (Chirac) ou en 1997 (Jospin).
+
+En conclusion, la Ve République est un régime stable depuis 1958, qui a su s'adapter à travers l'alternance et la cohabitation.`},
+  { code:"H6", mat:"hist", title:`Décrivez les transformations de la société française des années 1950 aux années 1980`, body:`Entre les années 1950 et 1980, la France connaît des changements profonds. Quelles sont les transformations de la société française entre 1950 et 1980 ?
+
+Tout d'abord, la France entre dans une période de forte croissance économique, les Trente Glorieuses (1945-1975). L'industrie a besoin de main-d'œuvre pour la reconstruction du pays. La France connaît un fort exode rural et le développement de l'immigration venue d'Europe du Sud et du Maghreb. La consommation de masse se développe avec l'apparition de nouveaux biens (électroménagers, automobiles, téléviseurs). Cependant, la crise économique à partir de 1975 déclenche un chômage de masse (8,5 % en 1985), et des mesures sont prises comme la création du RMI ou des Restos du Cœur.
+
+Ensuite, ces années sont marquées par des changements sociaux. Le travail des femmes se développe et elles obtiennent plus de droits (droit à la contraception en 1967, droit à l'avortement en 1975) grâce au mouvement MLF. La jeunesse prend une place plus importante avec le « Baby Boom », notamment lors de Mai 1968, période de contestation étudiante qui réclame plus de libertés.
+
+Pour conclure, entre 1950 et 1980, la France se transforme et entre dans la modernité : elle devient plus urbaine, plus égalitaire et plus diversifiée.`},
+];
+
+function filterCorrige(filter, btn) {
+  document.querySelectorAll('.corrige-filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.corrige-item').forEach(item => {
+    if (filter === 'all') { item.style.display = ''; }
+    else if (filter === 'hist') { item.style.display = item.dataset.mat === 'hist' ? '' : 'none'; }
+    else if (filter === 'geo')  { item.style.display = item.dataset.mat === 'geo'  ? '' : 'none'; }
+  });
+}
+
+function toggleCorrige(id) {
+  const item = document.getElementById('corrige-' + id);
+  item.classList.toggle('open');
+}
+
+(function buildCorrigeList() {
+  const container = document.getElementById('corrige-list');
+  if (!container) return;
+  CORRIGES.forEach((c, i) => {
+    const paras = c.body.split('\n\n').filter(p => p.trim());
+    const parasHtml = paras.map((p, pi) =>
+      `<p class="corrige-para${pi === 0 ? ' intro' : ''}">${p.replace(/\n/g, '<br>')}</p>`
+    ).join('');
+    container.innerHTML += `
+      <div class="corrige-item" data-mat="${c.mat}" id="corrige-${i}">
+        <button class="corrige-btn" onclick="toggleCorrige(${i})" aria-expanded="false">
+          <span class="corrige-code">${c.code}</span>
+          <span class="corrige-title">${c.title}</span>
+          <span class="corrige-chevron">▼</span>
+        </button>
+        <div class="corrige-body">${parasHtml}</div>
+      </div>`;
+  });
+})();
 </script>
 </body>
 </html>
