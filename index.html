@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Révisions DNB 2026 — HGE · Collège Plan Menu · Coublevie</title>
 <!-- Atkinson Hyperlegible : police open-source conçue pour la lisibilité et les profils dys -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -116,6 +118,8 @@ header::before { content: ''; position: absolute; top: 0; left: 0; right: 0; hei
 #bnav-planning.active::before { background: var(--gold); }
 #bnav-qcm.active { color: var(--hist); }
 #bnav-qcm.active::before { background: var(--hist); }
+#bnav-methodes.active { color: var(--methode); }
+#bnav-methodes.active::before { background: var(--methode); }
 #bnav-methode.active { color: var(--methode); }
 #bnav-methode.active::before { background: var(--methode); }
 #bnav-jourj.active { color: var(--emc); }
@@ -162,10 +166,8 @@ hr.divider { border: none; border-top: 1.5px solid var(--border); margin: 1.5rem
 .tag-geo { background: var(--geo-soft); color: var(--geo); border: 1.5px solid var(--geo-border); }
 .tag-emc { background: var(--emc-soft); color: var(--emc); border: 1.5px solid var(--emc-border); }
 .tag-methode { background: var(--methode-soft); color: var(--methode); border: 1.5px solid var(--methode-border); }
-.tag-urgent { background: var(--gold-bg); color: var(--gold); border: 1.5px solid rgba(181,118,10,0.4); font-weight: 700; }
 .task-item.pri-haute { border-left-color: var(--hist); }
 .task-item.pri-moyenne { border-left-color: var(--geo); }
-.task-item.pri-basse { border-left-color: var(--border); }
 
 /* QCM LINKS */
 .qcm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; margin: 0.8rem 0; }
@@ -182,69 +184,11 @@ hr.divider { border: none; border-top: 1.5px solid var(--border); margin: 1.5rem
 
 /* BOXES */
 .alert-box { background: rgba(192,57,15,0.06); border: 1.5px solid var(--hist-border); border-left: 5px solid var(--hist); border-radius: var(--radius); padding: 0.9rem 1rem; margin-bottom: 1rem; font-size: 0.88rem; line-height: 1.65; }
-.alert-box strong { color: var(--hist); font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.07em; text-transform: uppercase; display: block; margin-bottom: 0.3rem; }
+.alert-box > strong:first-child { color: var(--hist); font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.07em; text-transform: uppercase; display: block; margin-bottom: 0.3rem; }
 .info-box { background: rgba(21,101,168,0.06); border: 1.5px solid var(--geo-border); border-left: 5px solid var(--geo); border-radius: var(--radius); padding: 0.9rem 1rem; margin-bottom: 1rem; font-size: 0.88rem; line-height: 1.65; }
-.info-box strong { color: var(--geo); font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.07em; text-transform: uppercase; display: block; margin-bottom: 0.3rem; }
+.info-box > strong:first-child { color: var(--geo); font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.07em; text-transform: uppercase; display: block; margin-bottom: 0.3rem; }
 .tip-box { background: rgba(122,48,181,0.06); border: 1.5px solid var(--methode-border); border-left: 5px solid var(--methode); border-radius: var(--radius); padding: 0.9rem 1rem; margin-bottom: 1rem; font-size: 0.88rem; line-height: 1.65; }
-.tip-box strong { color: var(--methode); font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.07em; text-transform: uppercase; display: block; margin-bottom: 0.3rem; }
-
-/* FLIPCARDS */
-.flipcard-filter { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 1rem; }
-.filter-btn { background: var(--surface); border: 1.5px solid var(--border); color: var(--muted); font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.38rem 0.75rem; border-radius: 20px; cursor: pointer; transition: all 0.2s; -webkit-tap-highlight-color: transparent; font-weight: 700; }
-.filter-btn.all.active { border-color: var(--gold); color: var(--gold); background: var(--gold-bg); }
-.filter-btn.hist.active { border-color: var(--hist); color: var(--hist); background: var(--hist-soft); }
-.filter-btn.geo.active { border-color: var(--geo); color: var(--geo); background: var(--geo-soft); }
-.filter-btn.emc.active { border-color: var(--emc); color: var(--emc); background: var(--emc-soft); }
-.filter-btn.methode.active { border-color: var(--methode); color: var(--methode); background: var(--methode-soft); }
-.filter-btn.facile.active { border-color: var(--emc); color: var(--emc); background: var(--emc-soft); }
-.filter-btn.expert.active { border-color: var(--hist); color: var(--hist); background: var(--hist-soft); }
-.score-bar { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.8rem; font-family: 'DM Mono', monospace; font-size: 0.68rem; color: var(--muted); flex-wrap: wrap; font-weight: 700; }
-.score-val { color: var(--emc); font-weight: 700; font-size: 0.9rem; }
-.cards-grid { display: grid; grid-template-columns: 1fr; gap: 0.85rem; }
-.flipcard { perspective: 1000px; height: 250px; cursor: pointer; -webkit-tap-highlight-color: transparent; }
-.flipcard.tall { height: 300px; }
-.flipcard-inner { width: 100%; height: 100%; position: relative; transform-style: preserve-3d; transition: transform 0.5s cubic-bezier(0.4,0,0.2,1); }
-.flipcard.flipped .flipcard-inner { transform: rotateY(180deg); }
-.flipcard-front, .flipcard-back { position: absolute; inset: 0; backface-visibility: hidden; border-radius: var(--radius); padding: 1.1rem; display: flex; flex-direction: column; justify-content: space-between; }
-.flipcard-front { background: var(--surface); border: 1.5px solid var(--border); box-shadow: 0 2px 8px rgba(60,45,20,0.07); }
-.flipcard-back { background: var(--text); transform: rotateY(180deg); box-shadow: 0 2px 8px rgba(60,45,20,0.15); }
-.flipcard[data-mat="hist"] .flipcard-front { border-top: 4px solid var(--hist); }
-.flipcard[data-mat="hist"] .flipcard-back { border-top: 4px solid var(--hist); }
-.flipcard[data-mat="geo"] .flipcard-front { border-top: 4px solid var(--geo); }
-.flipcard[data-mat="geo"] .flipcard-back { border-top: 4px solid var(--geo); }
-.flipcard[data-mat="emc"] .flipcard-front { border-top: 4px solid var(--emc); }
-.flipcard[data-mat="emc"] .flipcard-back { border-top: 4px solid var(--emc); }
-.flipcard[data-mat="methode"] .flipcard-front { border-top: 4px solid var(--methode); }
-.flipcard[data-mat="methode"] .flipcard-back { border-top: 4px solid var(--methode); }
-.card-mat { font-family: 'DM Mono', monospace; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.3rem; display: flex; align-items: center; gap: 0.4rem; font-weight: 700; }
-.flipcard-front .card-mat { color: var(--muted); }
-.flipcard[data-mat="hist"] .flipcard-front .card-mat { color: var(--hist); }
-.flipcard[data-mat="geo"] .flipcard-front .card-mat { color: var(--geo); }
-.flipcard[data-mat="emc"] .flipcard-front .card-mat { color: var(--emc); }
-.flipcard[data-mat="methode"] .flipcard-front .card-mat { color: var(--methode); }
-.flipcard-back .card-mat { color: rgba(255,255,255,0.5); }
-.card-level { margin-left: auto; font-size: 0.54rem; padding: 0.12rem 0.38rem; border-radius: 4px; font-weight: 700; }
-.level-facile { background: var(--emc-soft); color: var(--emc); }
-.level-expert { background: var(--hist-soft); color: var(--hist); }
-.card-question { font-family: 'Nunito', sans-serif; font-size: 1rem; font-weight: 800; line-height: 1.3; flex: 1; display: flex; align-items: center; color: var(--text); }
-.card-hint { font-size: 0.62rem; color: var(--muted); font-family: 'DM Mono', monospace; text-align: right; }
-.flipcard-back .card-hint { color: rgba(255,255,255,0.35); }
-.card-answer { font-size: 0.86rem; line-height: 1.6; flex: 1; display: flex; align-items: flex-start; padding-top: 0.2rem; color: #f0ece2; }
-
-/* METHODE CARDS */
-.methode-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 1rem; overflow: hidden; }
-.methode-card-header { padding: 0.7rem 1rem; font-family: 'DM Mono', monospace; font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.08em; border-bottom: 1px solid var(--border); }
-.methode-card-header.geo { color: var(--geo); }
-.methode-card-header.methode { color: var(--methode); }
-.methode-card-header.gold { color: var(--gold); }
-.methode-card-body { padding: 1rem; }
-.method-step { display: flex; gap: 0.75rem; align-items: flex-start; padding: 0.5rem 0; border-bottom: 1px solid var(--border); }
-.method-step:last-child { border-bottom: none; }
-.step-num { width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'DM Mono', monospace; font-size: 0.72rem; font-weight: 500; flex-shrink: 0; margin-top: 1px; }
-.step-num.geo { background: var(--geo-soft); color: var(--geo); border: 1px solid var(--geo-border); }
-.step-num.methode { background: var(--methode-soft); color: var(--methode); border: 1px solid var(--methode-border); }
-.step-title { font-weight: 600; font-size: 0.88rem; margin-bottom: 0.15rem; }
-.step-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.45; }
+.tip-box > strong:first-child { color: var(--methode); font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.07em; text-transform: uppercase; display: block; margin-bottom: 0.3rem; }
 
 /* MÉTHODE CARDS */
 .methode-card { background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--radius); margin-bottom: 1rem; overflow: hidden; box-shadow: 0 2px 8px rgba(60,45,20,0.06); }
@@ -258,8 +202,8 @@ hr.divider { border: none; border-top: 1.5px solid var(--border); margin: 1.5rem
 .step-num { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'DM Mono', monospace; font-size: 0.72rem; font-weight: 700; flex-shrink: 0; margin-top: 1px; }
 .step-num.geo { background: var(--geo-soft); color: var(--geo); border: 2px solid var(--geo-border); }
 .step-num.methode { background: var(--methode-soft); color: var(--methode); border: 2px solid var(--methode-border); }
-.step-title { font-weight: 700; font-size: 0.9rem; margin-bottom: 0.2rem; color: var(--text); }
-.step-desc { font-size: 0.83rem; color: var(--muted); line-height: 1.6; }
+.step-title { font-weight: 700; font-size: 0.9rem; color: var(--text); display: inline; }
+.step-desc { font-size: 0.83rem; color: var(--muted); line-height: 1.6; display: inline; }
 
 /* CHECK LIST */
 .check-list { list-style: none; }
@@ -281,9 +225,17 @@ hr.divider { border: none; border-top: 1.5px solid var(--border); margin: 1.5rem
 .corrige-filter-btn.active { border-color:var(--methode); color:var(--methode); background:var(--methode-soft); }
 .corrige-filter-btn.hist.active { border-color:var(--hist); color:var(--hist); background:var(--hist-soft); }
 .corrige-filter-btn.geo.active  { border-color:var(--geo);  color:var(--geo);  background:var(--geo-soft);  }
-.corrige-item { border:1.5px solid var(--border); border-radius:var(--radius); margin-bottom:0.45rem; overflow:hidden; background:var(--surface); }
+.corrige-item { border:1.5px solid var(--border); border-radius:var(--radius); margin-bottom:0.45rem; overflow:hidden; background:var(--surface); transition: box-shadow 0.25s, border-color 0.25s; }
 .corrige-item[data-mat="hist"] { border-left:4px solid var(--hist); }
 .corrige-item[data-mat="geo"]  { border-left:4px solid var(--geo);  }
+/* Cadre coloré quand le sujet est ouvert pour bien le distinguer */
+.corrige-item.open { box-shadow: 0 4px 16px rgba(60,45,20,0.12); margin-bottom: 1rem; }
+.corrige-item[data-mat="hist"].open { border-color: var(--hist-border); border-left-color: var(--hist); }
+.corrige-item[data-mat="hist"].open .corrige-btn { background: var(--hist-soft); }
+.corrige-item[data-mat="hist"].open .corrige-title { color: var(--hist); }
+.corrige-item[data-mat="geo"].open { border-color: var(--geo-border); border-left-color: var(--geo); }
+.corrige-item[data-mat="geo"].open .corrige-btn { background: var(--geo-soft); }
+.corrige-item[data-mat="geo"].open .corrige-title { color: var(--geo); }
 .corrige-btn {
   width:100%; background:none; border:none; text-align:left;
   padding:0.7rem 0.85rem; cursor:pointer; display:flex; align-items:center;
@@ -307,34 +259,6 @@ hr.divider { border: none; border-top: 1.5px solid var(--border); margin: 1.5rem
 /* SAVE / TOAST */
 #save-toast { position: fixed; bottom: calc(var(--nav-h) + 1rem); left: 1rem; right: 1rem; text-align: center; background: var(--text); border-left: 4px solid var(--emc); color: #f4f1eb; font-family: 'DM Mono', monospace; font-size: 0.72rem; letter-spacing: 0.07em; padding: 0.8rem 1rem; border-radius: 8px; opacity: 0; transform: translateY(8px); transition: opacity 0.25s, transform 0.25s; pointer-events: none; z-index: 9999; font-weight: 700; }
 #save-toast.visible { opacity: 1; transform: translateY(0); }
-#fab-save { display: none; }
-
-/* BILAN */
-.bilan-card { background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--radius); margin-bottom: 1rem; overflow: hidden; box-shadow: 0 2px 8px rgba(60,45,20,0.06); }
-.bilan-card-header { background: var(--surface2); padding: 0.6rem 1rem; font-family: 'DM Mono', monospace; font-size: 0.63rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); border-bottom: 1.5px solid var(--border); font-weight: 700; }
-.bilan-card-body { padding: 1rem; }
-.bilan-field { margin-bottom: 0.9rem; }
-.bilan-field label { display: block; margin-bottom: 0.3rem; font-family: 'DM Mono', monospace; font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); font-weight: 700; }
-.bilan-field input, .bilan-field textarea { width: 100%; background: var(--bg); border: 1.5px solid var(--border); border-radius: 6px; padding: 0.65rem 0.8rem; font-family: 'Atkinson Hyperlegible', Arial, sans-serif; font-size: 1rem; color: var(--text); outline: none; transition: border-color 0.2s, box-shadow 0.2s; resize: vertical; line-height: 1.6; }
-.bilan-field input:focus, .bilan-field textarea:focus { border-color: var(--geo); box-shadow: 0 0 0 3px rgba(21,101,168,0.12); }
-.bilan-field textarea { min-height: 75px; }
-
-/* SAVE MODAL */
-#save-modal { display: none; position: fixed; inset: 0; background: rgba(30,26,20,0.55); z-index: 2000; align-items: center; justify-content: center; padding: 1rem; backdrop-filter: blur(4px); }
-#save-modal.open { display: flex; }
-.save-modal-box { background: var(--surface); border: 1.5px solid var(--border); border-top: 5px solid var(--geo); border-radius: 12px; padding: 1.5rem; max-width: 400px; width: 100%; text-align: center; box-shadow: 0 12px 40px rgba(30,26,20,0.18); }
-.save-modal-title { font-family: 'Nunito', sans-serif; font-size: 1.3rem; font-weight: 900; margin-bottom: 0.75rem; color: var(--text); }
-.save-modal-body { font-size: 0.88rem; color: var(--muted); line-height: 1.7; margin-bottom: 1rem; }
-.save-modal-actions { display: flex; gap: 0.6rem; justify-content: center; flex-wrap: wrap; }
-.smbtn { font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.7rem 1.3rem; border-radius: 8px; cursor: pointer; border: none; min-height: 46px; font-weight: 700; }
-.smbtn.primary { background: var(--geo); color: white; }
-.smbtn.primary:hover { background: var(--text); }
-.smbtn.secondary { background: var(--surface2); color: var(--muted); border: 1.5px solid var(--border); }
-
-/* LEGEND */
-.legend { display: flex; flex-wrap: wrap; gap: 0.4rem 1.1rem; margin-bottom: 1.2rem; }
-.legend-item { display: flex; align-items: center; gap: 0.35rem; font-size: 0.75rem; font-family: 'DM Mono', monospace; color: var(--muted); font-weight: 700; }
-.legend-dot { width: 9px; height: 9px; border-radius: 50%; }
 
 /* RESSOURCES */
 .ressource-grid { display: grid; grid-template-columns: 1fr; gap: 0.75rem; margin-bottom: 1.5rem; }
@@ -353,19 +277,19 @@ hr.divider { border: none; border-top: 1.5px solid var(--border); margin: 1.5rem
   #bottom-nav { display: none; }
   .nav-tabs {
     display: flex;
-    background: var(--surface);
-    border-bottom: 2px solid var(--border);
+    background: var(--text);
+    border-bottom: 2px solid rgba(255,255,255,0.08);
     padding: 0 2rem;
     gap: 0;
     position: sticky;
     top: 0;
     z-index: 100;
-    box-shadow: 0 2px 8px rgba(60,45,20,0.06);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.18);
   }
   .nav-tab {
     background: none;
     border: none;
-    color: var(--muted);
+    color: rgba(255,255,255,0.45);
     font-family: 'DM Mono', monospace;
     font-size: 0.68rem;
     letter-spacing: 0.08em;
@@ -379,37 +303,13 @@ hr.divider { border: none; border-top: 1.5px solid var(--border); margin: 1.5rem
     position: relative;
     bottom: -2px;
   }
-  .nav-tab:hover { color: var(--text); }
-  .nav-tab.active { color: var(--geo); border-bottom-color: var(--geo); }
+  .nav-tab:hover { color: rgba(255,255,255,0.85); }
+  .nav-tab.active { color: white; border-bottom-color: white; }
   main { max-width: 960px; margin: 0 auto; padding: 2rem; }
-  #fab-save {
-    display: flex;
-    position: fixed;
-    bottom: 1.5rem; right: 1.5rem;
-    z-index: 1000;
-    align-items: center;
-    gap: 0.5rem;
-    background: var(--geo);
-    color: white;
-    border: none;
-    border-radius: 50px;
-    padding: 0.7rem 1.2rem;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    font-weight: 700;
-    cursor: pointer;
-    box-shadow: 0 4px 18px rgba(21,101,168,0.3);
-    transition: all 0.2s;
-  }
-  #fab-save:hover { background: var(--text); box-shadow: 0 4px 18px rgba(30,26,20,0.2); }
   #save-toast { left: auto; right: 1.5rem; bottom: 1.5rem; text-align: left; }
-  .cards-grid { grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); }
   .ressource-grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
   .qcm-grid { grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); }
   .task-item:hover { background: var(--surface2); }
-  .filter-btn:hover { border-color: var(--text); color: var(--text); }
 }
 
 /* QCM DUAL-STATUS ROWS */
@@ -474,7 +374,7 @@ hr.divider { border: none; border-top: 1.5px solid var(--border); margin: 1.5rem
 .qcm-row.checked-nok .qcm-cb-wrap.ok  { opacity: 0.35; }
 
 @media print {
-  .nav-tabs, #bottom-nav, #fab-save, #save-modal { display: none !important; }
+  .nav-tabs, #bottom-nav { display: none !important; }
   .tab-section { display: block !important; page-break-before: always; }
   .week-body { display: block !important; }
   body { background: white; color: black; padding: 0; }
@@ -484,20 +384,6 @@ hr.divider { border: none; border-top: 1.5px solid var(--border); margin: 1.5rem
 <body>
 
 <div id="save-toast">✓ Progression sauvegardée</div>
-
-<div id="save-modal" onclick="closeSaveModal(event)">
-  <div class="save-modal-box">
-    <div style="font-size:2rem;margin-bottom:0.5rem;">💾</div>
-    <div class="save-modal-title">Sauvegarder</div>
-    <div class="save-modal-body">Tes coches et tes notes sont enregistrées <strong>dans ce navigateur</strong>, sur cet appareil uniquement. Utilise toujours le même navigateur sur le même téléphone ou ordinateur.</div>
-    <div class="save-modal-actions">
-      <button class="smbtn primary" onclick="saveAll(); closeSaveModal()">Sauvegarder maintenant</button>
-      <button class="smbtn secondary" onclick="closeSaveModal()">Fermer</button>
-    </div>
-  </div>
-</div>
-
-<button id="fab-save" onclick="openSaveModal()">💾 Sauvegarder</button>
 
 <header>
   <div class="header-inner">
@@ -516,16 +402,17 @@ hr.divider { border: none; border-top: 1.5px solid var(--border); margin: 1.5rem
 <nav class="nav-tabs">
   <button class="nav-tab active" onclick="showTab('planning',this)">📅 Planning</button>
   <button class="nav-tab" onclick="showTab('qcm',this)">📝 Révisions</button>
-  <button class="nav-tab" onclick="showTab('methode',this)">📐 Exercices</button>
+  <button class="nav-tab" onclick="showTab('methodes',this)">🗺️ Méthodes</button>
+  <button class="nav-tab" onclick="showTab('methode',this)">✏️ Exercices</button>
   <button class="nav-tab" onclick="showTab('jourj',this)">🎓 Jour-J</button>
 </nav>
 
-<nav id="bottom-nav">
-  <button class="bnav-btn active" onclick="showTab('planning',this)" id="bnav-planning"><span class="bnav-icon">📅</span><span class="bnav-label">Planning</span></button>
-  <button class="bnav-btn" onclick="showTab('qcm',this)" id="bnav-qcm"><span class="bnav-icon">📝</span><span class="bnav-label">Révisions</span></button>
-  <button class="bnav-btn" onclick="showTab('methode',this)" id="bnav-methode"><span class="bnav-icon">📐</span><span class="bnav-label">Exercices</span></button>
-  <button class="bnav-btn" onclick="showTab('jourj',this)" id="bnav-jourj"><span class="bnav-icon">🎓</span><span class="bnav-label">Jour-J</span></button>
-  <button class="bnav-btn" onclick="openSaveModal()"><span class="bnav-icon">💾</span><span class="bnav-label">Sauver</span></button>
+<nav id="bottom-nav" aria-label="Navigation principale">
+  <button class="bnav-btn active" onclick="showTab('planning',this)" id="bnav-planning" aria-label="Onglet Planning"><span class="bnav-icon">📅</span><span class="bnav-label">Planning</span></button>
+  <button class="bnav-btn" onclick="showTab('qcm',this)" id="bnav-qcm" aria-label="Onglet Révisions"><span class="bnav-icon">📝</span><span class="bnav-label">Révisions</span></button>
+  <button class="bnav-btn" onclick="showTab('methodes',this)" id="bnav-methodes" aria-label="Onglet Méthodes"><span class="bnav-icon">🗺️</span><span class="bnav-label">Méthodes</span></button>
+  <button class="bnav-btn" onclick="showTab('methode',this)" id="bnav-methode" aria-label="Onglet Exercices"><span class="bnav-icon">✏️</span><span class="bnav-label">Exercices</span></button>
+  <button class="bnav-btn" onclick="showTab('jourj',this)" id="bnav-jourj" aria-label="Onglet Jour-J"><span class="bnav-icon">🎓</span><span class="bnav-label">Jour-J</span></button>
 </nav>
 
 <main>
@@ -555,25 +442,25 @@ hr.divider { border: none; border-top: 1.5px solid var(--border); margin: 1.5rem
       <div class="tip-box"><strong>💡 Conseils</strong>Fais tous les QCM (Onglet "Révisions") avant de relire tes cours. C'est un diagnostic : chaque erreur te montre quel chapitre il faut travailler. Coche <span style="color:var(--emc);font-weight:700;">Réussi</span> si tu es satisfait·e de ton score, <span style="color:var(--hist);font-weight:700;">À refaire</span> si tu as fait trop d'erreurs. Tu pourras refaire ces QCM les autres semaines.</div>
 
       <div style="font-family:'DM Mono',monospace;font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--hist);font-weight:700;margin:0.8rem 0 0.4rem;">🔴 Histoire</div>
-      <div class="qcm-row" id="qr-s1-h1"><div class="qcm-row-label"><span class="chapitre hist">H1</span>Première Guerre mondiale</div><div class="qcm-row-actions"><div class="qcm-cb-wrap ok"><input type="checkbox" id="s1h1ok" onchange="handleQcmCheck(this,'s1h1')"><label for="s1h1ok">Réussi</label></div><div class="qcm-cb-wrap nok"><input type="checkbox" id="s1h1nok" onchange="handleQcmCheck(this,'s1h1')"><label for="s1h1nok">À refaire</label></div></div></div>
-      <div class="qcm-row" id="qr-s1-h2"><div class="qcm-row-label"><span class="chapitre hist">H2</span>Régimes totalitaires</div><div class="qcm-row-actions"><div class="qcm-cb-wrap ok"><input type="checkbox" id="s1h2ok" onchange="handleQcmCheck(this,'s1h2')"><label for="s1h2ok">Réussi</label></div><div class="qcm-cb-wrap nok"><input type="checkbox" id="s1h2nok" onchange="handleQcmCheck(this,'s1h2')"><label for="s1h2nok">À refaire</label></div></div></div>
-      <div class="qcm-row" id="qr-s1-h3"><div class="qcm-row-label"><span class="chapitre hist">H3</span>Seconde Guerre mondiale</div><div class="qcm-row-actions"><div class="qcm-cb-wrap ok"><input type="checkbox" id="s1h3ok" onchange="handleQcmCheck(this,'s1h3')"><label for="s1h3ok">Réussi</label></div><div class="qcm-cb-wrap nok"><input type="checkbox" id="s1h3nok" onchange="handleQcmCheck(this,'s1h3')"><label for="s1h3nok">À refaire</label></div></div></div>
-      <div class="qcm-row" id="qr-s1-h4"><div class="qcm-row-label"><span class="chapitre hist">H4</span>Guerre froide, décolonisation, UE</div><div class="qcm-row-actions"><div class="qcm-cb-wrap ok"><input type="checkbox" id="s1h4ok" onchange="handleQcmCheck(this,'s1h4')"><label for="s1h4ok">Réussi</label></div><div class="qcm-cb-wrap nok"><input type="checkbox" id="s1h4nok" onchange="handleQcmCheck(this,'s1h4')"><label for="s1h4nok">À refaire</label></div></div></div>
-      <div class="qcm-row" id="qr-s1-h5"><div class="qcm-row-label"><span class="chapitre hist">H5</span>Le monde après 1989</div><div class="qcm-row-actions"><div class="qcm-cb-wrap ok"><input type="checkbox" id="s1h5ok" onchange="handleQcmCheck(this,'s1h5')"><label for="s1h5ok">Réussi</label></div><div class="qcm-cb-wrap nok"><input type="checkbox" id="s1h5nok" onchange="handleQcmCheck(this,'s1h5')"><label for="s1h5nok">À refaire</label></div></div></div>
-      <div class="qcm-row" id="qr-s1-h6"><div class="qcm-row-label"><span class="chapitre hist">H6</span>La France depuis 1945</div><div class="qcm-row-actions"><div class="qcm-cb-wrap ok"><input type="checkbox" id="s1h6ok" onchange="handleQcmCheck(this,'s1h6')"><label for="s1h6ok">Réussi</label></div><div class="qcm-cb-wrap nok"><input type="checkbox" id="s1h6nok" onchange="handleQcmCheck(this,'s1h6')"><label for="s1h6nok">À refaire</label></div></div></div>
+      <div class="qcm-row" id="qr-s1-h1"><div class="qcm-row-label"><span class="chapitre hist">H1</span>Première Guerre mondiale</div><div class="qcm-row-actions"><div class="qcm-cb-wrap ok"><input type="checkbox" id="s1h1ok" onchange="handleQcmCheck(this,'s1h1')" aria-label="H1 Première Guerre mondiale – réussi"><label for="s1h1ok">Réussi</label></div><div class="qcm-cb-wrap nok"><input type="checkbox" id="s1h1nok" onchange="handleQcmCheck(this,'s1h1')" aria-label="H1 Première Guerre mondiale – à refaire"><label for="s1h1nok">À refaire</label></div></div></div>
+      <div class="qcm-row" id="qr-s1-h2"><div class="qcm-row-label"><span class="chapitre hist">H2</span>Régimes totalitaires</div><div class="qcm-row-actions"><div class="qcm-cb-wrap ok"><input type="checkbox" id="s1h2ok" onchange="handleQcmCheck(this,'s1h2')" aria-label="H2 Régimes totalitaires – réussi"><label for="s1h2ok">Réussi</label></div><div class="qcm-cb-wrap nok"><input type="checkbox" id="s1h2nok" onchange="handleQcmCheck(this,'s1h2')" aria-label="H2 Régimes totalitaires – à refaire"><label for="s1h2nok">À refaire</label></div></div></div>
+      <div class="qcm-row" id="qr-s1-h3"><div class="qcm-row-label"><span class="chapitre hist">H3</span>Seconde Guerre mondiale</div><div class="qcm-row-actions"><div class="qcm-cb-wrap ok"><input type="checkbox" id="s1h3ok" onchange="handleQcmCheck(this,'s1h3')" aria-label="H3 Seconde Guerre mondiale – réussi"><label for="s1h3ok">Réussi</label></div><div class="qcm-cb-wrap nok"><input type="checkbox" id="s1h3nok" onchange="handleQcmCheck(this,'s1h3')" aria-label="H3 Seconde Guerre mondiale – à refaire"><label for="s1h3nok">À refaire</label></div></div></div>
+      <div class="qcm-row" id="qr-s1-h4"><div class="qcm-row-label"><span class="chapitre hist">H4</span>Guerre froide, décolonisation, UE</div><div class="qcm-row-actions"><div class="qcm-cb-wrap ok"><input type="checkbox" id="s1h4ok" onchange="handleQcmCheck(this,'s1h4')" aria-label="H4 Guerre froide, décolonisation, UE – réussi"><label for="s1h4ok">Réussi</label></div><div class="qcm-cb-wrap nok"><input type="checkbox" id="s1h4nok" onchange="handleQcmCheck(this,'s1h4')" aria-label="H4 Guerre froide, décolonisation, UE – à refaire"><label for="s1h4nok">À refaire</label></div></div></div>
+      <div class="qcm-row" id="qr-s1-h5"><div class="qcm-row-label"><span class="chapitre hist">H5</span>Le monde après 1989</div><div class="qcm-row-actions"><div class="qcm-cb-wrap ok"><input type="checkbox" id="s1h5ok" onchange="handleQcmCheck(this,'s1h5')" aria-label="H5 Le monde après 1989 – réussi"><label for="s1h5ok">Réussi</label></div><div class="qcm-cb-wrap nok"><input type="checkbox" id="s1h5nok" onchange="handleQcmCheck(this,'s1h5')" aria-label="H5 Le monde après 1989 – à refaire"><label for="s1h5nok">À refaire</label></div></div></div>
+      <div class="qcm-row" id="qr-s1-h6"><div class="qcm-row-label"><span class="chapitre hist">H6</span>La France depuis 1945</div><div class="qcm-row-actions"><div class="qcm-cb-wrap ok"><input type="checkbox" id="s1h6ok" onchange="handleQcmCheck(this,'s1h6')" aria-label="H6 La France depuis 1945 – réussi"><label for="s1h6ok">Réussi</label></div><div class="qcm-cb-wrap nok"><input type="checkbox" id="s1h6nok" onchange="handleQcmCheck(this,'s1h6')" aria-label="H6 La France depuis 1945 – à refaire"><label for="s1h6nok">À refaire</label></div></div></div>
 
       <div style="font-family:'DM Mono',monospace;font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--geo);font-weight:700;margin:0.8rem 0 0.4rem;">🔵 Géographie</div>
-      <div class="qcm-row" id="qr-s1-g1"><div class="qcm-row-label"><span class="chapitre geo">G1</span>Aires urbaines et métropolisation</div><div class="qcm-row-actions"><div class="qcm-cb-wrap ok"><input type="checkbox" id="s1g1ok" onchange="handleQcmCheck(this,'s1g1')"><label for="s1g1ok">Réussi</label></div><div class="qcm-cb-wrap nok"><input type="checkbox" id="s1g1nok" onchange="handleQcmCheck(this,'s1g1')"><label for="s1g1nok">À refaire</label></div></div></div>
-      <div class="qcm-row" id="qr-s1-g2"><div class="qcm-row-label"><span class="chapitre geo">G2</span>Espaces productifs</div><div class="qcm-row-actions"><div class="qcm-cb-wrap ok"><input type="checkbox" id="s1g2ok" onchange="handleQcmCheck(this,'s1g2')"><label for="s1g2ok">Réussi</label></div><div class="qcm-cb-wrap nok"><input type="checkbox" id="s1g2nok" onchange="handleQcmCheck(this,'s1g2')"><label for="s1g2nok">À refaire</label></div></div></div>
-      <div class="qcm-row" id="qr-s1-g3"><div class="qcm-row-label"><span class="chapitre geo">G3</span>Espaces à faibles densités</div><div class="qcm-row-actions"><div class="qcm-cb-wrap ok"><input type="checkbox" id="s1g3ok" onchange="handleQcmCheck(this,'s1g3')"><label for="s1g3ok">Réussi</label></div><div class="qcm-cb-wrap nok"><input type="checkbox" id="s1g3nok" onchange="handleQcmCheck(this,'s1g3')"><label for="s1g3nok">À refaire</label></div></div></div>
-      <div class="qcm-row" id="qr-s1-g4"><div class="qcm-row-label"><span class="chapitre geo">G4</span>Aménagement du territoire</div><div class="qcm-row-actions"><div class="qcm-cb-wrap ok"><input type="checkbox" id="s1g4ok" onchange="handleQcmCheck(this,'s1g4')"><label for="s1g4ok">Réussi</label></div><div class="qcm-cb-wrap nok"><input type="checkbox" id="s1g4nok" onchange="handleQcmCheck(this,'s1g4')"><label for="s1g4nok">À refaire</label></div></div></div>
-      <div class="qcm-row" id="qr-s1-g5"><div class="qcm-row-label"><span class="chapitre geo">G5</span>La France et l'Union européenne</div><div class="qcm-row-actions"><div class="qcm-cb-wrap ok"><input type="checkbox" id="s1g5ok" onchange="handleQcmCheck(this,'s1g5')"><label for="s1g5ok">Réussi</label></div><div class="qcm-cb-wrap nok"><input type="checkbox" id="s1g5nok" onchange="handleQcmCheck(this,'s1g5')"><label for="s1g5nok">À refaire</label></div></div></div>
-      <div class="qcm-row" id="qr-s1-greperes"><div class="qcm-row-label"><span class="chapitre geo">Repères</span>Repères géographiques</div><div class="qcm-row-actions"><div class="qcm-cb-wrap ok"><input type="checkbox" id="s1greperesok" onchange="handleQcmCheck(this,'s1greperes')"><label for="s1greperesok">Réussi</label></div><div class="qcm-cb-wrap nok"><input type="checkbox" id="s1greperesnok" onchange="handleQcmCheck(this,'s1greperes')"><label for="s1greperesnok">À refaire</label></div></div></div>
+      <div class="qcm-row" id="qr-s1-g1"><div class="qcm-row-label"><span class="chapitre geo">G1</span>Aires urbaines et métropolisation</div><div class="qcm-row-actions"><div class="qcm-cb-wrap ok"><input type="checkbox" id="s1g1ok" onchange="handleQcmCheck(this,'s1g1')" aria-label="G1 Aires urbaines et métropolisation – réussi"><label for="s1g1ok">Réussi</label></div><div class="qcm-cb-wrap nok"><input type="checkbox" id="s1g1nok" onchange="handleQcmCheck(this,'s1g1')" aria-label="G1 Aires urbaines et métropolisation – à refaire"><label for="s1g1nok">À refaire</label></div></div></div>
+      <div class="qcm-row" id="qr-s1-g2"><div class="qcm-row-label"><span class="chapitre geo">G2</span>Espaces productifs</div><div class="qcm-row-actions"><div class="qcm-cb-wrap ok"><input type="checkbox" id="s1g2ok" onchange="handleQcmCheck(this,'s1g2')" aria-label="G2 Espaces productifs – réussi"><label for="s1g2ok">Réussi</label></div><div class="qcm-cb-wrap nok"><input type="checkbox" id="s1g2nok" onchange="handleQcmCheck(this,'s1g2')" aria-label="G2 Espaces productifs – à refaire"><label for="s1g2nok">À refaire</label></div></div></div>
+      <div class="qcm-row" id="qr-s1-g3"><div class="qcm-row-label"><span class="chapitre geo">G3</span>Espaces à faibles densités</div><div class="qcm-row-actions"><div class="qcm-cb-wrap ok"><input type="checkbox" id="s1g3ok" onchange="handleQcmCheck(this,'s1g3')" aria-label="G3 Espaces à faibles densités – réussi"><label for="s1g3ok">Réussi</label></div><div class="qcm-cb-wrap nok"><input type="checkbox" id="s1g3nok" onchange="handleQcmCheck(this,'s1g3')" aria-label="G3 Espaces à faibles densités – à refaire"><label for="s1g3nok">À refaire</label></div></div></div>
+      <div class="qcm-row" id="qr-s1-g4"><div class="qcm-row-label"><span class="chapitre geo">G4</span>Aménagement du territoire</div><div class="qcm-row-actions"><div class="qcm-cb-wrap ok"><input type="checkbox" id="s1g4ok" onchange="handleQcmCheck(this,'s1g4')" aria-label="G4 Aménagement du territoire – réussi"><label for="s1g4ok">Réussi</label></div><div class="qcm-cb-wrap nok"><input type="checkbox" id="s1g4nok" onchange="handleQcmCheck(this,'s1g4')" aria-label="G4 Aménagement du territoire – à refaire"><label for="s1g4nok">À refaire</label></div></div></div>
+      <div class="qcm-row" id="qr-s1-g5"><div class="qcm-row-label"><span class="chapitre geo">G5</span>La France et l'Union européenne</div><div class="qcm-row-actions"><div class="qcm-cb-wrap ok"><input type="checkbox" id="s1g5ok" onchange="handleQcmCheck(this,'s1g5')" aria-label="G5 La France et l'Union européenne – réussi"><label for="s1g5ok">Réussi</label></div><div class="qcm-cb-wrap nok"><input type="checkbox" id="s1g5nok" onchange="handleQcmCheck(this,'s1g5')" aria-label="G5 La France et l'Union européenne – à refaire"><label for="s1g5nok">À refaire</label></div></div></div>
+      <div class="qcm-row" id="qr-s1-greperes"><div class="qcm-row-label"><span class="chapitre geo">Repères</span>Repères géographiques</div><div class="qcm-row-actions"><div class="qcm-cb-wrap ok"><input type="checkbox" id="s1greperesok" onchange="handleQcmCheck(this,'s1greperes')" aria-label="Repères Repères géographiques – réussi"><label for="s1greperesok">Réussi</label></div><div class="qcm-cb-wrap nok"><input type="checkbox" id="s1greperesnok" onchange="handleQcmCheck(this,'s1greperes')" aria-label="Repères Repères géographiques – à refaire"><label for="s1greperesnok">À refaire</label></div></div></div>
 
       <div style="font-family:'DM Mono',monospace;font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--emc);font-weight:700;margin:0.8rem 0 0.4rem;">🟢 EMC</div>
-      <div class="qcm-row" id="qr-s1-emc1"><div class="qcm-row-label"><span class="chapitre emc">EMC 1</span>Valeurs et principes républicains</div><div class="qcm-row-actions"><div class="qcm-cb-wrap ok"><input type="checkbox" id="s1emc1ok" onchange="handleQcmCheck(this,'s1emc1')"><label for="s1emc1ok">Réussi</label></div><div class="qcm-cb-wrap nok"><input type="checkbox" id="s1emc1nok" onchange="handleQcmCheck(this,'s1emc1')"><label for="s1emc1nok">À refaire</label></div></div></div>
-      <div class="qcm-row" id="qr-s1-emc2"><div class="qcm-row-label"><span class="chapitre emc">EMC 2</span>La République française</div><div class="qcm-row-actions"><div class="qcm-cb-wrap ok"><input type="checkbox" id="s1emc2ok" onchange="handleQcmCheck(this,'s1emc2')"><label for="s1emc2ok">Réussi</label></div><div class="qcm-cb-wrap nok"><input type="checkbox" id="s1emc2nok" onchange="handleQcmCheck(this,'s1emc2')"><label for="s1emc2nok">À refaire</label></div></div></div>
-      <div class="qcm-row" id="qr-s1-emc3"><div class="qcm-row-label"><span class="chapitre emc">EMC 3</span>Défense nationale et citoyenneté</div><div class="qcm-row-actions"><div class="qcm-cb-wrap ok"><input type="checkbox" id="s1emc3ok" onchange="handleQcmCheck(this,'s1emc3')"><label for="s1emc3ok">Réussi</label></div><div class="qcm-cb-wrap nok"><input type="checkbox" id="s1emc3nok" onchange="handleQcmCheck(this,'s1emc3')"><label for="s1emc3nok">À refaire</label></div></div></div>
+      <div class="qcm-row" id="qr-s1-emc1"><div class="qcm-row-label"><span class="chapitre emc">EMC 1</span>Valeurs et principes républicains</div><div class="qcm-row-actions"><div class="qcm-cb-wrap ok"><input type="checkbox" id="s1emc1ok" onchange="handleQcmCheck(this,'s1emc1')" aria-label="EMC 1 Valeurs et principes républicains – réussi"><label for="s1emc1ok">Réussi</label></div><div class="qcm-cb-wrap nok"><input type="checkbox" id="s1emc1nok" onchange="handleQcmCheck(this,'s1emc1')" aria-label="EMC 1 Valeurs et principes républicains – à refaire"><label for="s1emc1nok">À refaire</label></div></div></div>
+      <div class="qcm-row" id="qr-s1-emc2"><div class="qcm-row-label"><span class="chapitre emc">EMC 2</span>La République française</div><div class="qcm-row-actions"><div class="qcm-cb-wrap ok"><input type="checkbox" id="s1emc2ok" onchange="handleQcmCheck(this,'s1emc2')" aria-label="EMC 2 La République française – réussi"><label for="s1emc2ok">Réussi</label></div><div class="qcm-cb-wrap nok"><input type="checkbox" id="s1emc2nok" onchange="handleQcmCheck(this,'s1emc2')" aria-label="EMC 2 La République française – à refaire"><label for="s1emc2nok">À refaire</label></div></div></div>
+      <div class="qcm-row" id="qr-s1-emc3"><div class="qcm-row-label"><span class="chapitre emc">EMC 3</span>Défense nationale et citoyenneté</div><div class="qcm-row-actions"><div class="qcm-cb-wrap ok"><input type="checkbox" id="s1emc3ok" onchange="handleQcmCheck(this,'s1emc3')" aria-label="EMC 3 Défense nationale et citoyenneté – réussi"><label for="s1emc3ok">Réussi</label></div><div class="qcm-cb-wrap nok"><input type="checkbox" id="s1emc3nok" onchange="handleQcmCheck(this,'s1emc3')" aria-label="EMC 3 Défense nationale et citoyenneté – à refaire"><label for="s1emc3nok">À refaire</label></div></div></div>
     </div>
   </div>
 
@@ -587,12 +474,12 @@ hr.divider { border: none; border-top: 1.5px solid var(--border); margin: 1.5rem
       <div class="progress-wrap"><div class="progress-label"><span>Progression</span><span class="week-progress-text">0 / 6</span></div><div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div></div>
       <div class="tip-box"><strong>💡 Conseils</strong>Ce sont les mêmes révisions que le Brevet Blanc. Tu peux relire le cours ou juste tes fiches. Alterne les chapitres entre histoire et géographie. Refais des QCM.</div>
       <ul class="task-list">
-        <li class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Réviser H1 — La Première Guerre mondiale (1914–1918)</span><span class="task-tag tag-hist">Hist.</span></li>
-        <li class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Réviser G1 — Aires urbaines</span><span class="task-tag tag-geo">Géo.</span></li>
-        <li class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Réviser EMC1 — Valeurs et principes républicains</span><span class="task-tag tag-emc">EMC</span></li>
-        <li class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Réviser H2 — Les régimes totalitaires (nazisme, stalinisme)</span><span class="task-tag tag-hist">Hist.</span></li>
-        <li class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Réviser G2 — Espaces productifs</span><span class="task-tag tag-geo">Géo.</span></li>
-        <li class="task-item pri-moyenne" onclick="toggleTask(this,event)" style="border-left-color:var(--geo);"><input type="checkbox"><span class="task-text">Refaire des QCM</span><span class="task-tag tag-geo">QCM</span></li>
+        <li data-task="s2-h1" class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Réviser H1 — La Première Guerre mondiale (1914–1918)</span><span class="task-tag tag-hist">Hist.</span></li>
+        <li data-task="s2-g1" class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Réviser G1 — Aires urbaines</span><span class="task-tag tag-geo">Géo.</span></li>
+        <li data-task="s2-emc1" class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Réviser EMC1 — Valeurs et principes républicains</span><span class="task-tag tag-emc">EMC</span></li>
+        <li data-task="s2-h2" class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Réviser H2 — Les régimes totalitaires (nazisme, stalinisme)</span><span class="task-tag tag-hist">Hist.</span></li>
+        <li data-task="s2-g2" class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Réviser G2 — Espaces productifs</span><span class="task-tag tag-geo">Géo.</span></li>
+        <li data-task="s2-qcm" class="task-item pri-moyenne" onclick="toggleTask(this,event)" style="border-left-color:var(--geo);"><input type="checkbox"><span class="task-text">Refaire des QCM</span><span class="task-tag tag-geo">QCM</span></li>
       </ul>
     </div>
   </div>
@@ -607,14 +494,14 @@ hr.divider { border: none; border-top: 1.5px solid var(--border); margin: 1.5rem
       <div class="progress-wrap"><div class="progress-label"><span>Progression</span><span class="week-progress-text">0 / 8</span></div><div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div></div>
       <div class="tip-box"><strong>💡 Conseils</strong>Après avoir relu les cours, relis les méthodes dans l'onglet "Exercices". Tu peux aussi faire les QCM marqués "À refaire".</div>
       <ul class="task-list">
-        <li class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Réviser H3 — La Seconde Guerre mondiale (1939–1945)</span><span class="task-tag tag-hist">Hist.</span></li>
-        <li class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Réviser G3 — Espaces à faibles densités</span><span class="task-tag tag-geo">Géo.</span></li>
-        <li class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Réviser EMC2 — La République française</span><span class="task-tag tag-emc">EMC</span></li>
-        <li class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Réviser G4 — Aménagement du territoire</span><span class="task-tag tag-geo">Géo.</span></li>
-        <li class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Réviser H4 — Guerre froide, décolonisation, construction européenne</span><span class="task-tag tag-hist">Hist.</span></li>
-        <li class="task-item pri-moyenne" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Relire la méthode du développement construit</span><span class="task-tag tag-methode">Méthode</span></li>
-        <li class="task-item pri-moyenne" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Relire la méthode NADI</span><span class="task-tag tag-methode">Méthode</span></li>
-        <li class="task-item pri-moyenne" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Refaire des QCM</span><span class="task-tag tag-geo">QCM</span></li>
+        <li data-task="s3-h3" class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Réviser H3 — La Seconde Guerre mondiale (1939–1945)</span><span class="task-tag tag-hist">Hist.</span></li>
+        <li data-task="s3-g3" class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Réviser G3 — Espaces à faibles densités</span><span class="task-tag tag-geo">Géo.</span></li>
+        <li data-task="s3-emc2" class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Réviser EMC2 — La République française</span><span class="task-tag tag-emc">EMC</span></li>
+        <li data-task="s3-g4" class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Réviser G4 — Aménagement du territoire</span><span class="task-tag tag-geo">Géo.</span></li>
+        <li data-task="s3-h4" class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Réviser H4 — Guerre froide, décolonisation, construction européenne</span><span class="task-tag tag-hist">Hist.</span></li>
+        <li data-task="s3-meth-dev" class="task-item pri-moyenne" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Relire la méthode du développement construit</span><span class="task-tag tag-methode">Méthode</span></li>
+        <li data-task="s3-meth-nadi" class="task-item pri-moyenne" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Relire la méthode NADI</span><span class="task-tag tag-methode">Méthode</span></li>
+        <li data-task="s3-qcm" class="task-item pri-moyenne" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Refaire des QCM</span><span class="task-tag tag-geo">QCM</span></li>
       </ul>
     </div>
   </div>
@@ -629,13 +516,13 @@ hr.divider { border: none; border-top: 1.5px solid var(--border); margin: 1.5rem
       <div class="progress-wrap"><div class="progress-label"><span>Progression</span><span class="week-progress-text">0 / 7</span></div><div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div></div>
       <div class="alert-box"><strong>⚠ Dernière semaine avant le DNB !</strong>Révise les derniers chapitres de l'année, refais les QCM encore fragiles et entraîne-toi sur les méthodes et des sujets des années précédentes.</div>
       <ul class="task-list">
-        <li class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Réviser H5 — Le monde après 1989</span><span class="task-tag tag-hist">Hist.</span></li>
-        <li class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Réviser H6 — La France depuis 1945</span><span class="task-tag tag-hist">Hist.</span></li>
-        <li class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Réviser G5 — La France et l'Union européenne</span><span class="task-tag tag-geo">Géo.</span></li>
-        <li class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Réviser EMC3 — Défense nationale et citoyenneté</span><span class="task-tag tag-emc">EMC</span></li>
-        <li class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Faire des sujets d'entraînement (onglet "Exercices")</span><span class="task-tag tag-methode">Méthode</span></li>
-        <li class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Lire des développements construits corrigés (onglet "Exercices")</span><span class="task-tag tag-methode">Méthode</span></li>
-        <li class="task-item pri-moyenne" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Refaire des QCM</span><span class="task-tag tag-geo">QCM</span></li>
+        <li data-task="s4-h5" class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Réviser H5 — Le monde après 1989</span><span class="task-tag tag-hist">Hist.</span></li>
+        <li data-task="s4-h6" class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Réviser H6 — La France depuis 1945</span><span class="task-tag tag-hist">Hist.</span></li>
+        <li data-task="s4-g5" class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Réviser G5 — La France et l'Union européenne</span><span class="task-tag tag-geo">Géo.</span></li>
+        <li data-task="s4-emc3" class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Réviser EMC3 — Défense nationale et citoyenneté</span><span class="task-tag tag-emc">EMC</span></li>
+        <li data-task="s4-sujets" class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Faire des sujets d'entraînement (onglet "Exercices")</span><span class="task-tag tag-methode">Méthode</span></li>
+        <li data-task="s4-lecture" class="task-item pri-haute" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Lire des développements construits corrigés (onglet "Exercices")</span><span class="task-tag tag-methode">Méthode</span></li>
+        <li data-task="s4-qcm" class="task-item pri-moyenne" onclick="toggleTask(this,event)"><input type="checkbox"><span class="task-text">Refaire des QCM</span><span class="task-tag tag-geo">QCM</span></li>
       </ul>
     </div>
   </div>
@@ -687,121 +574,142 @@ hr.divider { border: none; border-top: 1.5px solid var(--border); margin: 1.5rem
 </section>
 
 <!-- ══ TAB MÉTHODE ══ -->
-<section class="tab-section" id="tab-methode">
-  <div class="section-heading">Exercices</div>
-  <div class="info-box">
-    <strong>💡 Conseils</strong>
-    Relis les fiches Méthode ci-dessous. Entraîne-toi ensuite sur des sujets dans l'onglet "Annales". Tu peux aussi lire les développements construits corrigés.
-  </div>
+<!-- ══ TAB MÉTHODES ══ -->
+<section class="tab-section" id="tab-methodes">
+  <div class="section-heading">Méthodes</div>
+  <div class="section-sub">Les fiches méthode pour réussir l'épreuve</div>
 
   <div class="methode-card">
-  <div class="section-heading" style="font-size:1.1rem;margin-bottom:0.5rem;"><span style="color:var(--methode)">●</span> Méthodes</div>
-    <div class="methode-card-header geo">📋 Exercice 1 · Analyse de documents (15 pts)</div>
+    <div class="methode-card-header geo">📋 Présenter un document : méthode NADI</div>
     <div class="methode-card-body">
-      <div class="tip-box" style="margin-bottom:1rem;">
-        <strong>🧠 3 étapes à suivre dans l'ordre</strong>
-        <div style="display:flex;flex-direction:column;gap:0.4rem;margin-top:0.4rem;">
-          <div style="display:flex;gap:0.6rem;align-items:center;"><span style="background:var(--geo);color:white;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:700;flex-shrink:0;">1</span><span><strong>Lire attentivement et observer</strong> le document dans son ensemble.</span></div>
-          <div style="display:flex;gap:0.6rem;align-items:center;"><span style="background:var(--geo);color:white;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:700;flex-shrink:0;">2</span><span><strong>Trouver les éléments NADI</strong> : Nature, Auteur, Date, Idée principale.</span></div>
-          <div style="display:flex;gap:0.6rem;align-items:center;"><span style="background:var(--geo);color:white;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:700;flex-shrink:0;">3</span><span><strong>Rédiger</strong> ta présentation en un paragraphe avec des phrases courtes.</span></div>
-        </div>
-      </div>
-      <div class="method-step"><div class="step-num geo">N</div><div><div class="step-title">Nature du document</div><div class="step-desc">Qu'est-ce que c'est ? Sois le plus précis possible :<br>
-      · Un <strong>texte</strong> peut être politique (discours, programme de parti), juridique (loi, constitution), religieux, littéraire (roman, poème), de presse (article), ou un témoignage (lettre, mémoires).<br>
-      · Une <strong>carte</strong> peut être un planisphère ou un plan.<br>
-      · Une <strong>photographie</strong> peut être aérienne ou satellite.<br>
-      Ne dis jamais juste "un document" — sois précis·e.</div></div></div>
-      <div class="method-step"><div class="step-num geo">A</div><div><div class="step-title">Auteur / Source</div><div class="step-desc">Qui a écrit ou créé le document ? L'auteur peut être une personne ou un organisme (ONU…). Tu peux aussi préciser la <strong>source</strong> du document, c'est-à-dire d'où il est extrait. Un journal gouvernemental n'a pas le même point de vue qu'un témoignage de victime.</div></div></div>
-      <div class="method-step"><div class="step-num geo">D</div><div><div class="step-title">Date et contexte</div><div class="step-desc">Quand le document a-t-il été créé ? Une date ou une période. <strong>Bien distinguer</strong> la date de rédaction du document de celle de l'événement décrit. Développe aussi le <strong>contexte</strong> : événements politiques, économiques, sociaux qui expliquent la réalisation du document. Fais appel à tes connaissances de cours.</div></div></div>
-      <div class="method-step"><div class="step-num geo">I</div><div><div class="step-title">Idée principale</div><div class="step-desc">De quoi parle le document ? <strong>Évite de recopier</strong> le document. Dis dans tes propres mots ce qu'il montre ou défend. C'est ici que tu mobilises tes connaissances pour aller plus loin que le document seul.</div></div></div>
+      <div class="method-step"><div class="step-num geo">N</div><div><span class="step-title">Nature du document — </span><span class="step-desc">Qu'est-ce que c'est ? Un <strong>texte</strong> (politique, juridique, de presse, témoignage…), une <strong>carte</strong>, une <strong>photographie</strong>… Sois précis·e, ne dis jamais juste "un document".</span></div></div>
+      <div class="method-step"><div class="step-num geo">A</div><div><span class="step-title">Auteur / Source — </span><span class="step-desc">Qui a écrit ou créé le document ? Une personne, un organisme (ONU…). Précise aussi la <strong>source</strong> : un journal gouvernemental n'a pas le même point de vue qu'un témoignage de victime.</span></div></div>
+      <div class="method-step"><div class="step-num geo">D</div><div><span class="step-title">Date et contexte — </span><span class="step-desc">Quand le document a-t-il été créé ? <strong>Distingue</strong> la date de rédaction de celle de l'événement décrit. Développe le <strong>contexte</strong> en mobilisant tes connaissances de cours.</span></div></div>
+      <div class="method-step"><div class="step-num geo">I</div><div><span class="step-title">Idée principale — </span><span class="step-desc">De quoi parle le document ? <strong>Évite de recopier</strong> — dis dans tes propres mots ce qu'il montre ou défend.</span></div></div>
     </div>
   </div>
 
   <div class="methode-card">
-    <div class="methode-card-header geo">🔍 Analyser un document — démarche à suivre</div>
+    <div class="methode-card-header geo">🔍 Analyser un document</div>
     <div class="methode-card-body">
-      <div class="tip-box" style="margin-bottom:1rem;">
-        <strong>🧠 3 étapes à suivre dans l'ordre</strong>
-        <div style="display:flex;flex-direction:column;gap:0.4rem;margin-top:0.4rem;">
-          <div style="display:flex;gap:0.6rem;align-items:flex-start;"><span style="background:var(--geo);color:white;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:700;flex-shrink:0;margin-top:1px;">1</span><span><strong>Lire attentivement</strong> le document ci-dessus.</span></div>
-          <div style="display:flex;gap:0.6rem;align-items:flex-start;"><span style="background:var(--geo);color:white;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:700;flex-shrink:0;margin-top:1px;">2</span><span><strong>Choisir une couleur</strong> pour chaque question et surligner dans le document les réponses de la bonne couleur.</span></div>
-          <div style="display:flex;gap:0.6rem;align-items:flex-start;"><span style="background:var(--geo);color:white;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:700;flex-shrink:0;margin-top:1px;">3</span><span><strong>Sur ton cahier, rédiger les réponses</strong> aux questions : reprendre les termes de la question, faire des phrases complètes, utiliser les connaissances du cours.</span></div>
-        </div>
-      </div>
-      <div class="method-step"><div class="step-num geo">1</div><div><div class="step-title">Lire et observer</div><div class="step-desc">Lis le document entièrement avant de répondre. Repère le titre, la source, la date et le type de document (texte, carte, graphique, image…).</div></div></div>
-      <div class="method-step"><div class="step-num geo">2</div><div><div class="step-title">Surligner les informations utiles</div><div class="step-desc">Utilise une couleur différente par question. Surligne directement dans le document les passages qui répondent à chaque question posée.</div></div></div>
-      <div class="method-step"><div class="step-num geo">3</div><div><div class="step-title">Rédiger les réponses</div><div class="step-desc">Pour chaque question :<br>
-      · <strong>Reprends les termes</strong> de la question dans ta réponse.<br>
-      · <strong>Rédige des phrases complètes</strong> — pas de liste, pas de tirets.<br>
-      · <strong>Utilise tes connaissances du cours</strong> pour aller au-delà du document.<br>
-      · Ne recopie pas le document mot pour mot — reformule.
-      </div></div></div>
+      <div class="method-step"><div class="step-num geo">1</div><div><span class="step-title">Lire et observer — </span><span class="step-desc">Lis le document entièrement avant de répondre. Repère le titre, la source, la date et le type de document (texte, carte, graphique, image…).</span></div></div>
+      <div class="method-step"><div class="step-num geo">2</div><div><span class="step-title">Surligner les informations utiles — </span><span class="step-desc">Utilise une couleur différente par question. Surligne directement dans le document les passages qui répondent à chaque question posée.</span></div></div>
+      <div class="method-step"><div class="step-num geo">3</div><div><span class="step-title">Rédiger les réponses — </span><span class="step-desc">Reprends les termes de la question, rédige des phrases complètes, utilise tes connaissances du cours. Ne recopie pas le document — reformule.</span></div></div>
     </div>
   </div>
 
   <div class="methode-card">
-    <div class="methode-card-header methode">✍️ Exercice 2 · Développement construit — 18 pts · Au moins 30 lignes</div>
+    <div class="methode-card-header methode">✍️ Développement construit</div>
     <div class="methode-card-body">
-
-      <!-- AVANT DE RÉDIGER -->
       <div style="font-family:'DM Mono',monospace;font-size:0.64rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--methode);font-weight:700;margin-bottom:0.6rem;">Avant de rédiger — au brouillon</div>
-      <div class="method-step"><div class="step-num geo">1</div><div><div class="step-title">Bien lire le sujet</div><div class="step-desc">Lis le sujet attentivement. <strong>Repère et définis</strong> les mots importants du sujet.</div></div></div>
-      <div class="method-step"><div class="step-num geo">2</div><div><div class="step-title">Où, quand, quoi ?</div><div class="step-desc">Détermine le <strong>lieu</strong>, les <strong>dates</strong> et le <strong>thème</strong> du sujet.</div></div></div>
-      <div class="method-step"><div class="step-num geo">3</div><div><div class="step-title">Entourer et numéroter les parties</div><div class="step-desc">Dans le sujet, entoure et numérote les différentes parties à rédiger.</div></div></div>
-      <div class="method-step"><div class="step-num geo">4</div><div><div class="step-title">Remplir le brouillon</div><div class="step-desc">Pour chaque partie, note des idées et des exemples du cours : dates, vocabulaire, lieux, événements… Le brouillon doit être organisé.</div></div></div>
-
-      <!-- RÉDIGER -->
+      <div class="method-step"><div class="step-num geo">1</div><div><span class="step-title">Bien lire le sujet — </span><span class="step-desc">Lis le sujet attentivement. <strong>Repère et définis</strong> les mots importants du sujet.</span></div></div>
+      <div class="method-step"><div class="step-num geo">2</div><div><span class="step-title">Où, quand, quoi ? — </span><span class="step-desc">Détermine le <strong>lieu</strong>, les <strong>dates</strong> et le <strong>thème</strong> du sujet.</span></div></div>
+      <div class="method-step"><div class="step-num geo">3</div><div><span class="step-title">Entourer et numéroter les parties — </span><span class="step-desc">Dans le sujet, entoure et numérote les différentes parties à rédiger.</span></div></div>
+      <div class="method-step"><div class="step-num geo">4</div><div><span class="step-title">Remplir le brouillon — </span><span class="step-desc">Pour chaque partie, note des idées et des exemples du cours : dates, vocabulaire, lieux, événements… Le brouillon doit être organisé.</span></div></div>
       <div style="font-family:'DM Mono',monospace;font-size:0.64rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--methode);font-weight:700;margin:1rem 0 0.6rem;">Rédiger le développement construit</div>
-      <div class="method-step"><div class="step-num geo">1</div><div><div class="step-title">Introduction</div><div class="step-desc">Une phrase qui reprend les mots du sujet, les dates, les définitions.<br><span style="color:var(--muted);font-size:0.78rem;">Ex : "La Première Guerre mondiale (1914–1918) est un conflit d'une violence inédite…"</span></div></div></div>
-      <div class="method-step"><div class="step-num geo">2</div><div><div class="step-title">Un paragraphe par thème</div><div class="step-desc">
+      <div class="method-step"><div class="step-num geo">1</div><div><span class="step-title">Introduction — </span><span class="step-desc">Une phrase qui reprend les mots du sujet, les dates, les définitions.<br><span style="color:var(--muted);font-size:0.78rem;">Ex : "La Première Guerre mondiale (1914–1918) est un conflit d'une violence inédite…"</span></span></div></div>
+      <div class="method-step"><div class="step-num geo">2</div><div><span class="step-title">Un paragraphe par thème — </span><span class="step-desc"><br>
         · Commencer par un <strong>mot de liaison</strong>.<br>
         · Utiliser des <strong>mots du sujet</strong> pour annoncer le thème abordé.<br>
         · Intégrer des <strong>connaissances du cours</strong> : arguments et exemples précis.<br>
         · <strong>Revenir à la ligne</strong> pour chaque paragraphe.
-      </div></div></div>
-      <div class="method-step"><div class="step-num geo">3</div><div><div class="step-title">Conclusion</div><div class="step-desc">Une phrase qui résume les principales idées + une phrase qui ouvre vers un autre sujet possible.<br><span style="color:var(--muted);font-size:0.78rem;">Ex : "En conclusion, la 1GM a profondément transformé les sociétés européennes…"</span></div></div></div>
-      <div class="method-step"><div class="step-num geo">4</div><div><div class="step-title">Relire attentivement</div><div class="step-desc">Corrige toutes les fautes de <strong>connaissances</strong>, d'<strong>orthographe</strong> et de <strong>grammaire</strong>.</div></div></div>
-
-      <!-- MOTS DE LIAISON -->
+      </span></div></div>
+      <div class="method-step"><div class="step-num geo">3</div><div><span class="step-title">Conclusion — </span><span class="step-desc">Une phrase qui résume les principales idées + une phrase qui ouvre vers un autre sujet possible.<br><span style="color:var(--muted);font-size:0.78rem;">Ex : "En conclusion, la 1GM a profondément transformé les sociétés européennes…"</span></span></div></div>
+      <div class="method-step"><div class="step-num geo">4</div><div><span class="step-title">Relire attentivement — </span><span class="step-desc">Corrige toutes les fautes de <strong>connaissances</strong>, d'<strong>orthographe</strong> et de <strong>grammaire</strong>.</span></div></div>
       <div style="font-family:'DM Mono',monospace;font-size:0.64rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--methode);font-weight:700;margin:1rem 0 0.6rem;">Mots de liaison utiles</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;font-size:0.82rem;">
-        <div style="background:var(--msoft);border:1px solid var(--mbord);border-radius:8px;padding:0.7rem 0.85rem;">
-          <div style="font-family:'DM Mono',monospace;font-size:0.58rem;font-weight:700;color:var(--methode);text-transform:uppercase;margin-bottom:0.35rem;">1ʳᵉ idée</div>
-          Premièrement · Tout d'abord · Dans un premier temps · Pour commencer · D'une part
+      <div style="display:flex;flex-direction:column;gap:0.4rem;">
+        <div style="background:var(--surface);border:1.5px solid var(--border);border-left:4px solid var(--methode);border-radius:var(--radius);padding:0.65rem 0.85rem;">
+          <div style="font-family:'DM Mono',monospace;font-size:0.58rem;font-weight:700;color:var(--methode);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.45rem;">1ʳᵉ idée</div>
+          <div style="display:flex;flex-wrap:wrap;gap:0.3rem;">
+            <span style="background:var(--methode-soft);border:1px solid var(--methode-border);color:var(--methode);border-radius:6px;padding:0.18rem 0.55rem;font-size:0.8rem;font-weight:700;">Premièrement</span>
+            <span style="background:var(--methode-soft);border:1px solid var(--methode-border);color:var(--methode);border-radius:6px;padding:0.18rem 0.55rem;font-size:0.8rem;font-weight:700;">Tout d'abord</span>
+            <span style="background:var(--methode-soft);border:1px solid var(--methode-border);color:var(--methode);border-radius:6px;padding:0.18rem 0.55rem;font-size:0.8rem;font-weight:700;">Dans un premier temps</span>
+            <span style="background:var(--methode-soft);border:1px solid var(--methode-border);color:var(--methode);border-radius:6px;padding:0.18rem 0.55rem;font-size:0.8rem;font-weight:700;">Pour commencer</span>
+            <span style="background:var(--methode-soft);border:1px solid var(--methode-border);color:var(--methode);border-radius:6px;padding:0.18rem 0.55rem;font-size:0.8rem;font-weight:700;">D'une part</span>
+          </div>
         </div>
-        <div style="background:var(--gsoft);border:1px solid var(--gbord);border-radius:8px;padding:0.7rem 0.85rem;">
-          <div style="font-family:'DM Mono',monospace;font-size:0.58rem;font-weight:700;color:var(--geo);text-transform:uppercase;margin-bottom:0.35rem;">Idées suivantes</div>
-          Deuxièmement · Ensuite · Dans un deuxième temps · Pour continuer · D'autre part · Puis · Par ailleurs · En outre
+        <div style="background:var(--surface);border:1.5px solid var(--border);border-left:4px solid var(--geo);border-radius:var(--radius);padding:0.65rem 0.85rem;">
+          <div style="font-family:'DM Mono',monospace;font-size:0.58rem;font-weight:700;color:var(--geo);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.45rem;">Idées suivantes</div>
+          <div style="display:flex;flex-wrap:wrap;gap:0.3rem;">
+            <span style="background:var(--geo-soft);border:1px solid var(--geo-border);color:var(--geo);border-radius:6px;padding:0.18rem 0.55rem;font-size:0.8rem;font-weight:700;">Deuxièmement</span>
+            <span style="background:var(--geo-soft);border:1px solid var(--geo-border);color:var(--geo);border-radius:6px;padding:0.18rem 0.55rem;font-size:0.8rem;font-weight:700;">Ensuite</span>
+            <span style="background:var(--geo-soft);border:1px solid var(--geo-border);color:var(--geo);border-radius:6px;padding:0.18rem 0.55rem;font-size:0.8rem;font-weight:700;">Dans un deuxième temps</span>
+            <span style="background:var(--geo-soft);border:1px solid var(--geo-border);color:var(--geo);border-radius:6px;padding:0.18rem 0.55rem;font-size:0.8rem;font-weight:700;">Pour continuer</span>
+            <span style="background:var(--geo-soft);border:1px solid var(--geo-border);color:var(--geo);border-radius:6px;padding:0.18rem 0.55rem;font-size:0.8rem;font-weight:700;">D'autre part</span>
+            <span style="background:var(--geo-soft);border:1px solid var(--geo-border);color:var(--geo);border-radius:6px;padding:0.18rem 0.55rem;font-size:0.8rem;font-weight:700;">Puis</span>
+            <span style="background:var(--geo-soft);border:1px solid var(--geo-border);color:var(--geo);border-radius:6px;padding:0.18rem 0.55rem;font-size:0.8rem;font-weight:700;">Par ailleurs</span>
+            <span style="background:var(--geo-soft);border:1px solid var(--geo-border);color:var(--geo);border-radius:6px;padding:0.18rem 0.55rem;font-size:0.8rem;font-weight:700;">En outre</span>
+          </div>
         </div>
-        <div style="background:var(--hsoft);border:1px solid var(--hbord);border-radius:8px;padding:0.7rem 0.85rem;">
-          <div style="font-family:'DM Mono',monospace;font-size:0.58rem;font-weight:700;color:var(--hist);text-transform:uppercase;margin-bottom:0.35rem;">Idées opposées</div>
-          Cependant · Mais · Par contre · En revanche · Néanmoins · Alors que · Tandis que
+        <div style="background:var(--surface);border:1.5px solid var(--border);border-left:4px solid var(--hist);border-radius:var(--radius);padding:0.65rem 0.85rem;">
+          <div style="font-family:'DM Mono',monospace;font-size:0.58rem;font-weight:700;color:var(--hist);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.45rem;">Idées opposées</div>
+          <div style="display:flex;flex-wrap:wrap;gap:0.3rem;">
+            <span style="background:var(--hist-soft);border:1px solid var(--hist-border);color:var(--hist);border-radius:6px;padding:0.18rem 0.55rem;font-size:0.8rem;font-weight:700;">Cependant</span>
+            <span style="background:var(--hist-soft);border:1px solid var(--hist-border);color:var(--hist);border-radius:6px;padding:0.18rem 0.55rem;font-size:0.8rem;font-weight:700;">Mais</span>
+            <span style="background:var(--hist-soft);border:1px solid var(--hist-border);color:var(--hist);border-radius:6px;padding:0.18rem 0.55rem;font-size:0.8rem;font-weight:700;">Par contre</span>
+            <span style="background:var(--hist-soft);border:1px solid var(--hist-border);color:var(--hist);border-radius:6px;padding:0.18rem 0.55rem;font-size:0.8rem;font-weight:700;">En revanche</span>
+            <span style="background:var(--hist-soft);border:1px solid var(--hist-border);color:var(--hist);border-radius:6px;padding:0.18rem 0.55rem;font-size:0.8rem;font-weight:700;">Néanmoins</span>
+            <span style="background:var(--hist-soft);border:1px solid var(--hist-border);color:var(--hist);border-radius:6px;padding:0.18rem 0.55rem;font-size:0.8rem;font-weight:700;">Alors que</span>
+            <span style="background:var(--hist-soft);border:1px solid var(--hist-border);color:var(--hist);border-radius:6px;padding:0.18rem 0.55rem;font-size:0.8rem;font-weight:700;">Tandis que</span>
+          </div>
         </div>
-        <div style="background:var(--esoft);border:1px solid var(--ebord);border-radius:8px;padding:0.7rem 0.85rem;">
-          <div style="font-family:'DM Mono',monospace;font-size:0.58rem;font-weight:700;color:var(--emc);text-transform:uppercase;margin-bottom:0.35rem;">Conclusion / Exemples</div>
-          Ainsi · Enfin · Pour conclure · En conclusion · Donc · C'est pourquoi · Comme · En effet · Par exemple · Tel que · Selon
+        <div style="background:var(--surface);border:1.5px solid var(--border);border-left:4px solid var(--gold);border-radius:var(--radius);padding:0.65rem 0.85rem;">
+          <div style="font-family:'DM Mono',monospace;font-size:0.58rem;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.45rem;">Pour les exemples</div>
+          <div style="display:flex;flex-wrap:wrap;gap:0.3rem;">
+            <span style="background:var(--gold-bg);border:1px solid rgba(181,118,10,0.3);color:var(--gold);border-radius:6px;padding:0.18rem 0.55rem;font-size:0.8rem;font-weight:700;">Comme</span>
+            <span style="background:var(--gold-bg);border:1px solid rgba(181,118,10,0.3);color:var(--gold);border-radius:6px;padding:0.18rem 0.55rem;font-size:0.8rem;font-weight:700;">En effet</span>
+            <span style="background:var(--gold-bg);border:1px solid rgba(181,118,10,0.3);color:var(--gold);border-radius:6px;padding:0.18rem 0.55rem;font-size:0.8rem;font-weight:700;">Par exemple</span>
+            <span style="background:var(--gold-bg);border:1px solid rgba(181,118,10,0.3);color:var(--gold);border-radius:6px;padding:0.18rem 0.55rem;font-size:0.8rem;font-weight:700;">Tel que</span>
+            <span style="background:var(--gold-bg);border:1px solid rgba(181,118,10,0.3);color:var(--gold);border-radius:6px;padding:0.18rem 0.55rem;font-size:0.8rem;font-weight:700;">Selon</span>
+          </div>
         </div>
-      </div>
-
-      <!-- SUJETS PROBABLES -->
-      <div class="tip-box" style="margin-top:1rem;margin-bottom:0;">
-        <strong>💡 Sujets les plus probables à l'Exercice 2</strong>
-        La 1ère ou 2nde Guerre mondiale · La Guerre froide · La construction européenne · La métropolisation · L'aménagement du territoire · La République et la citoyenneté.
+        <div style="background:var(--surface);border:1.5px solid var(--border);border-left:4px solid var(--emc);border-radius:var(--radius);padding:0.65rem 0.85rem;">
+          <div style="font-family:'DM Mono',monospace;font-size:0.58rem;font-weight:700;color:var(--emc);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.45rem;">Conclusion</div>
+          <div style="display:flex;flex-wrap:wrap;gap:0.3rem;">
+            <span style="background:var(--emc-soft);border:1px solid var(--emc-border);color:var(--emc);border-radius:6px;padding:0.18rem 0.55rem;font-size:0.8rem;font-weight:700;">Ainsi</span>
+            <span style="background:var(--emc-soft);border:1px solid var(--emc-border);color:var(--emc);border-radius:6px;padding:0.18rem 0.55rem;font-size:0.8rem;font-weight:700;">Enfin</span>
+            <span style="background:var(--emc-soft);border:1px solid var(--emc-border);color:var(--emc);border-radius:6px;padding:0.18rem 0.55rem;font-size:0.8rem;font-weight:700;">Pour conclure</span>
+            <span style="background:var(--emc-soft);border:1px solid var(--emc-border);color:var(--emc);border-radius:6px;padding:0.18rem 0.55rem;font-size:0.8rem;font-weight:700;">En conclusion</span>
+            <span style="background:var(--emc-soft);border:1px solid var(--emc-border);color:var(--emc);border-radius:6px;padding:0.18rem 0.55rem;font-size:0.8rem;font-weight:700;">Donc</span>
+            <span style="background:var(--emc-soft);border:1px solid var(--emc-border);color:var(--emc);border-radius:6px;padding:0.18rem 0.55rem;font-size:0.8rem;font-weight:700;">C'est pourquoi</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
-  <hr class="divider">
-  <div class="section-heading" style="font-size:1.1rem;margin-bottom:0.5rem;"><span style="color:var(--methode)">●</span> Annales</div>
-  <div class="ressource-grid">
-    <a class="ressource-link" style="border-left:4px solid var(--methode);" href="https://histoire.ac-versailles.fr/spip.php?rubrique128" target="_blank" rel="noopener">
-      <span class="r-label">Annales Strabon</span><span class="r-title">Sujets classés par thème</span><span class="r-desc">histoire.ac-versailles.fr — sujets du Brevet réels ↗</span>
-    </a>
+</section>
+
+<!-- ══ TAB EXERCICES ══ -->
+<section class="tab-section" id="tab-methode">
+  <div class="section-heading">Exercices</div>
+  <div class="info-box">
+    <strong>💡 Conseils</strong>
+    Entraîne-toi sur des sujets dans l'onglet "Annales". Tu peux aussi lire les développements construits corrigés.
   </div>
 
   <hr class="divider">
   <div class="section-heading" style="font-size:1.1rem;margin-bottom:0.3rem;"><span style="color:var(--methode)">●</span> Sujets corrigés</div>
   <div class="section-sub" style="margin-bottom:0.9rem;">Clique sur un sujet pour lire le corrigé</div>
+
+  <div class="tip-box">
+    <strong>💡 Comment ça marche ?</strong>
+    <div style="font-size:0.88rem;margin-bottom:0.85rem;">Pour chaque sujet, tu passes par <strong>3 étapes</strong> avant de découvrir le corrigé&nbsp;:</div>
+    <div style="display:flex;flex-direction:column;gap:0.55rem;">
+      <div style="display:flex;gap:0.7rem;align-items:flex-start;">
+        <span style="background:var(--methode);color:white;border-radius:50%;width:24px;height:24px;flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:0.78rem;font-weight:700;">1</span>
+        <div style="font-size:0.86rem;line-height:1.55;">Choisis le <strong>plan</strong> qui te paraît le plus adapté parmi les propositions — attention aux plans hors-sujet&nbsp;!</div>
+      </div>
+      <div style="display:flex;gap:0.7rem;align-items:flex-start;">
+        <span style="background:var(--methode);color:white;border-radius:50%;width:24px;height:24px;flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:0.78rem;font-weight:700;">2</span>
+        <div style="font-size:0.86rem;line-height:1.55;">Sélectionne au moins <strong>5 mots-clés</strong> que tu utiliserais dans ton développement construit. Certains sont des pièges sans rapport avec le sujet&nbsp;!</div>
+      </div>
+      <div style="display:flex;gap:0.7rem;align-items:flex-start;">
+        <span style="background:var(--methode);color:white;border-radius:50%;width:24px;height:24px;flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:0.78rem;font-weight:700;">3</span>
+        <div style="font-size:0.86rem;line-height:1.55;">Découvre le <strong>corrigé annoté</strong>&nbsp;: les mots-clés trouvés en <span style="color:var(--emc);font-weight:700;">vert</span>, ceux oubliés en <span style="color:var(--hist);font-weight:700;">rouge</span>, et tes pièges <span style="color:var(--gold);font-weight:700;text-decoration:line-through;">barrés</span>.</div>
+      </div>
+    </div>
+  </div>
 
   <!-- FILTER CORRIGÉS -->
   <div class="corrige-filters">
@@ -812,6 +720,14 @@ hr.divider { border: none; border-top: 1.5px solid var(--border); margin: 1.5rem
 
   <div id="corrige-list"></div>
 
+  <hr class="divider">
+  <div class="section-heading" style="font-size:1.1rem;margin-bottom:0.5rem;"><span style="color:var(--methode)">●</span> Annales</div>
+  <div class="ressource-grid">
+    <a class="ressource-link" style="border-left:4px solid var(--methode);" href="https://histoire.ac-versailles.fr/spip.php?rubrique128" target="_blank" rel="noopener">
+      <span class="r-label">Annales Strabon</span><span class="r-title">Sujets classés par thème</span><span class="r-desc">histoire.ac-versailles.fr — sujets du Brevet réels ↗</span>
+    </a>
+  </div>
+
 </section>
 
 <!-- ══ TAB JOUR-J ══ -->
@@ -820,14 +736,34 @@ hr.divider { border: none; border-top: 1.5px solid var(--border); margin: 1.5rem
   <div class="section-sub">29 juin 2026 · Tout ce qu'il faut savoir avant d'entrer dans la salle</div>
 
   <div class="alert-box">
-    <strong>📅 Rappel — épreuve HGE · 29 juin 2026 · 2h</strong>
-    Hist-Géo : 40 pts · EMC : 20 pts. Cette épreuve représente 300 pts sur 800 au DNB (avec contrôle continu + épreuves anticipées). Chaque point compte.
+    <strong>⚠ Format de l'épreuve — 2h au total</strong>
+    <strong>Hist-Géo (40 pts) :</strong> Exo 1 — Analyse de docs (15 pts). Exo 2 — Développement construit (18 pts), 30 lignes min. + Repères (7 pts). <strong>EMC (20 pts) :</strong> Situation pratique + questions + réponse développée.
+  </div>
+
+  <div class="methode-card">
+    <div class="methode-card-header" style="color:var(--emc);">🎒 Checklist cartable — à préparer la <strong>veille au soir</strong></div>
+    <div class="methode-card-body">
+      <ul class="check-list" id="cartable-list">
+        <li><input type="checkbox"><span>🪪 <strong>Convocation</strong> au Brevet — imprimée (pas sur téléphone)</span></li>
+        <li><input type="checkbox"><span>🪪 <strong>Carte nationale d'identité</strong> ou passeport en cours de validité</span></li>
+        <li><input type="checkbox"><span>✒️ <strong>Plusieurs stylos</strong> à bille noir ou bleu (pas de stylo effaçable)</span></li>
+        <li><input type="checkbox"><span>✏️ <strong>Crayons à papier</strong> pour les schémas et cartes</span></li>
+        <li><input type="checkbox"><span>🖍️ <strong>Crayons de couleur</strong> (bleu, vert, rouge, orange, jaune, marron, violet)</span></li>
+        <li><input type="checkbox"><span>📏 <strong>Règle</strong> pour les cartes et schémas de géographie</span></li>
+        <li><input type="checkbox"><span>🟡 <strong>Surligneurs</strong> pour annoter les documents à l'Exercice 1</span></li>
+        <li><input type="checkbox"><span>🧴 <strong>Bouteille d'eau</strong> sans étiquette</span></li>
+        <li><input type="checkbox"><span>🍱 <strong>De quoi manger</strong> (pas de chocolat, pas trop sucré, pas bruyant)</span></li>
+        <li><input type="checkbox"><span>👕 <strong>Tenue simple</strong> pour être à l'aise — il peut faire chaud</span></li>
+        <li><input type="checkbox"><span>🎧 <strong>Boules Quies</strong> si besoin de concentration</span></li>
+        <li><input type="checkbox"><span>⌚ <strong>Montre non connectée</strong> — les téléphones sont interdits même retournés</span></li>
+        <li><input type="checkbox"><span>📵 <strong>Téléphone éteint</strong> et rangé dans le sac dès l'entrée</span></li>
+      </ul>
+    </div>
   </div>
 
   <div class="methode-card">
     <div class="methode-card-header gold">⏱ Déroulé conseillé — 2h chrono</div>
     <div class="methode-card-body">
-      <div class="tip-box" style="margin-bottom:1rem;"><strong>🧠 Stratégie</strong>Ne pas commencer à rédiger immédiatement. Lire l'intégralité du sujet en premier — ça évite les mauvaises surprises et permet de calibrer le temps.</div>
       <div style="display:flex;flex-direction:column;gap:0;">
 
         <div style="display:flex;gap:0.75rem;">
@@ -835,54 +771,46 @@ hr.divider { border: none; border-top: 1.5px solid var(--border); margin: 1.5rem
             <div style="background:var(--gold);color:white;border-radius:6px;padding:0.2rem 0.4rem;font-family:'DM Mono',monospace;font-size:0.62rem;font-weight:600;">0:00</div>
             <div style="flex:1;width:2px;background:var(--border);margin:3px 0;min-height:30px;"></div>
           </div>
-          <div style="padding:0.4rem 0 0.7rem;"><div style="font-weight:600;font-size:0.88rem;margin-bottom:0.1rem;">Lecture complète du sujet</div><div style="font-size:0.78rem;color:var(--muted);">Lire le sujet, les consignes et tous les documents avant d'écrire. ~10 min.</div></div>
+          <div style="padding:0.4rem 0 0.7rem;"><div style="font-weight:600;font-size:0.88rem;margin-bottom:0.1rem;">Lecture du sujet</div><div style="font-size:0.78rem;color:var(--muted);">Lire le sujet, les consignes et tous les documents avant d'écrire. ~5 min.</div></div>
         </div>
 
         <div style="display:flex;gap:0.75rem;">
           <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;width:52px;">
-            <div style="background:var(--geo);color:white;border-radius:6px;padding:0.2rem 0.4rem;font-family:'DM Mono',monospace;font-size:0.62rem;font-weight:600;">0:10</div>
+            <div style="background:var(--geo);color:white;border-radius:6px;padding:0.2rem 0.4rem;font-family:'DM Mono',monospace;font-size:0.62rem;font-weight:600;">0:05</div>
             <div style="flex:1;width:2px;background:var(--border);margin:3px 0;min-height:30px;"></div>
           </div>
-          <div style="padding:0.4rem 0 0.7rem;"><div style="font-weight:600;font-size:0.88rem;margin-bottom:0.1rem;">Brouillon Ex. 1 — NADI</div><div style="font-size:0.78rem;color:var(--muted);">Appliquer NADI pour chaque document. Dégager l'idée principale + ce que tu sais au-delà du doc. ~15 min.</div></div>
+          <div style="padding:0.4rem 0 0.7rem;"><div style="font-weight:600;font-size:0.88rem;margin-bottom:0.1rem;">Exercice 1 — Analyse de document (15 pts)</div><div style="font-size:0.78rem;color:var(--muted);">Répondre aux questions en s'appuyant sur les documents et les connaissances du cours. ~30 min.</div></div>
         </div>
 
         <div style="display:flex;gap:0.75rem;">
           <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;width:52px;">
-            <div style="background:var(--geo);color:white;border-radius:6px;padding:0.2rem 0.4rem;font-family:'DM Mono',monospace;font-size:0.62rem;font-weight:600;">0:25</div>
+            <div style="background:var(--methode);color:white;border-radius:6px;padding:0.2rem 0.4rem;font-family:'DM Mono',monospace;font-size:0.62rem;font-weight:600;">0:35</div>
             <div style="flex:1;width:2px;background:var(--border);margin:3px 0;min-height:30px;"></div>
           </div>
-          <div style="padding:0.4rem 0 0.7rem;"><div style="font-weight:600;font-size:0.88rem;margin-bottom:0.1rem;">Rédaction Ex. 1 (15 pts)</div><div style="font-size:0.78rem;color:var(--muted);">Réponse structurée, appuyée sur les docs + tes connaissances personnelles. ~30 min.</div></div>
+          <div style="padding:0.4rem 0 0.7rem;"><div style="font-weight:600;font-size:0.88rem;margin-bottom:0.1rem;">Exercice 2 — Développement construit (18 pts)</div><div style="font-size:0.78rem;color:var(--muted);">Brouillon (plan + exemples + dates) puis rédaction. 2-3 parties développées. <strong>Environ 30 lignes.</strong> ~45 min.</div></div>
         </div>
 
         <div style="display:flex;gap:0.75rem;">
           <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;width:52px;">
-            <div style="background:var(--methode);color:white;border-radius:6px;padding:0.2rem 0.4rem;font-family:'DM Mono',monospace;font-size:0.62rem;font-weight:600;">0:55</div>
+            <div style="background:var(--hist);color:white;border-radius:6px;padding:0.2rem 0.4rem;font-family:'DM Mono',monospace;font-size:0.62rem;font-weight:600;">1:20</div>
             <div style="flex:1;width:2px;background:var(--border);margin:3px 0;min-height:30px;"></div>
           </div>
-          <div style="padding:0.4rem 0 0.7rem;"><div style="font-weight:600;font-size:0.88rem;margin-bottom:0.1rem;">Brouillon Ex. 2 — plan</div><div style="font-size:0.78rem;color:var(--muted);"><strong>10 min obligatoires</strong> : plan en 2-3 parties, exemples, dates. Ce temps n'est pas perdu — il te sauve de la feuille blanche.</div></div>
+          <div style="padding:0.4rem 0 0.7rem;"><div style="font-weight:600;font-size:0.88rem;margin-bottom:0.1rem;">Repères (7 pts)</div><div style="font-size:0.78rem;color:var(--muted);">Dates, personnages, lieux clés à situer ou identifier. ~15 min.</div></div>
         </div>
 
         <div style="display:flex;gap:0.75rem;">
           <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;width:52px;">
-            <div style="background:var(--methode);color:white;border-radius:6px;padding:0.2rem 0.4rem;font-family:'DM Mono',monospace;font-size:0.62rem;font-weight:600;">1:05</div>
+            <div style="background:var(--emc);color:white;border-radius:6px;padding:0.2rem 0.4rem;font-family:'DM Mono',monospace;font-size:0.62rem;font-weight:600;">1:35</div>
             <div style="flex:1;width:2px;background:var(--border);margin:3px 0;min-height:30px;"></div>
           </div>
-          <div style="padding:0.4rem 0 0.7rem;"><div style="font-weight:600;font-size:0.88rem;margin-bottom:0.1rem;">Rédaction Ex. 2 (25 pts)</div><div style="font-size:0.78rem;color:var(--muted);">Intro → Développement (2-3 parties, transitions, exemples) → Conclusion. <strong>Minimum 30 lignes.</strong> ~40 min.</div></div>
+          <div style="padding:0.4rem 0 0.7rem;"><div style="font-weight:600;font-size:0.88rem;margin-bottom:0.1rem;">EMC — Situation pratique (20 pts)</div><div style="font-size:0.78rem;color:var(--muted);">Analyser la situation, répondre aux questions courtes, rédiger la réponse développée. ~20 min.</div></div>
         </div>
 
         <div style="display:flex;gap:0.75rem;">
           <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;width:52px;">
-            <div style="background:var(--emc);color:white;border-radius:6px;padding:0.2rem 0.4rem;font-family:'DM Mono',monospace;font-size:0.62rem;font-weight:600;">1:45</div>
-            <div style="flex:1;width:2px;background:var(--border);margin:3px 0;min-height:30px;"></div>
+            <div style="background:var(--gold);color:white;border-radius:6px;padding:0.2rem 0.4rem;font-family:'DM Mono',monospace;font-size:0.62rem;font-weight:600;">1:55</div>
           </div>
-          <div style="padding:0.4rem 0 0.7rem;"><div style="font-weight:600;font-size:0.88rem;margin-bottom:0.1rem;">EMC — situation pratique (20 pts)</div><div style="font-size:0.78rem;color:var(--muted);">Analyser la situation, répondre aux questions courtes, rédiger la réponse développée. ~10 min.</div></div>
-        </div>
-
-        <div style="display:flex;gap:0.75rem;">
-          <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;width:52px;">
-            <div style="background:var(--emc);color:white;border-radius:6px;padding:0.2rem 0.4rem;font-family:'DM Mono',monospace;font-size:0.62rem;font-weight:600;">1:55</div>
-          </div>
-          <div style="padding:0.4rem 0 0;"><div style="font-weight:600;font-size:0.88rem;margin-bottom:0.1rem;">Relecture finale</div><div style="font-size:0.78rem;color:var(--muted);">Dates, orthographe, cohérence. Vérifier les 30 lignes. ~5 min.</div></div>
+          <div style="padding:0.4rem 0 0;"><div style="font-weight:600;font-size:0.88rem;margin-bottom:0.1rem;">Relecture finale</div><div style="font-size:0.78rem;color:var(--muted);">Vérifier orthographe, conjugaison, connaissances. ~5 min.</div></div>
         </div>
 
       </div>
@@ -890,37 +818,37 @@ hr.divider { border: none; border-top: 1.5px solid var(--border); margin: 1.5rem
   </div>
 
   <div class="methode-card">
-    <div class="methode-card-header" style="color:var(--emc);">🎒 Checklist cartable — à préparer la <strong>veille au soir</strong></div>
-    <div class="methode-card-body">
-      <div class="tip-box" style="margin-bottom:1rem;"><strong>💡 Règle d'or</strong>Préparer le sac la veille. Le matin du DNB, le cerveau n'a pas à chercher un stylo — tout est là.</div>
-      <ul class="check-list" id="cartable-list">
-        <li><input type="checkbox"><span>🪪 <strong>Convocation</strong> au Brevet — imprimée (pas sur téléphone)</span></li>
-        <li><input type="checkbox"><span>🪪 <strong>Carte nationale d'identité</strong> ou passeport en cours de validité</span></li>
-        <li><input type="checkbox"><span>✒️ <strong>Plusieurs stylos</strong> à bille ou plume (bleu ou noir — pas de stylo effaçable)</span></li>
-        <li><input type="checkbox"><span>✏️ <strong>Crayons à papier</strong> pour les schémas, cartes et brouillon</span></li>
-        <li><input type="checkbox"><span>📏 <strong>Règle</strong> pour les cartes et schémas de géographie</span></li>
-        <li><input type="checkbox"><span>🟡 <strong>Surligneurs</strong> pour annoter les documents à l'Exercice 1</span></li>
-        <li><input type="checkbox"><span>📋 <strong>Brouillon</strong> souvent fourni en salle — mais prévoir quelques feuilles</span></li>
-        <li><input type="checkbox"><span>🧴 <strong>Bouteille d'eau</strong> sans étiquette</span></li>
-        <li><input type="checkbox"><span>⌚ <strong>Montre analogique</strong> recommandée — les téléphones sont interdits même retournés</span></li>
-        <li><input type="checkbox"><span>📵 <strong>Téléphone éteint</strong> et rangé dans le sac dès l'entrée — pas en mode silencieux : éteint</span></li>
-        <li><input type="checkbox"><span>😴 <strong>Dormi au moins 8h</strong> — le sommeil profond consolide les apprentissages de la veille</span></li>
-        <li><input type="checkbox"><span>🍳 <strong>Petit-déjeuner complet</strong> — glucides lents (pain, céréales), pas de sucre rapide qui crée une hypoglycémie</span></li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="methode-card">
     <div class="methode-card-header" style="color:var(--hist);">🧠 Conseils le matin du 29 juin</div>
     <div class="methode-card-body" style="display:flex;flex-direction:column;gap:0.8rem;font-size:0.85rem;line-height:1.6;">
       <div style="display:flex;gap:0.65rem;align-items:flex-start;"><span style="font-size:1.1rem;flex-shrink:0;">⏰</span><div><strong>Arriver 15 min avant.</strong> Pas pour réviser — pour s'installer, poser le matériel, respirer. Réviser dans les dernières minutes augmente le stress sans améliorer les performances.</div></div>
-      <div style="display:flex;gap:0.65rem;align-items:flex-start;"><span style="font-size:1.1rem;flex-shrink:0;">📖</span><div><strong>Lire tout le sujet avant d'écrire.</strong> Règle numéro 1 — et la plus souvent violée. 10 minutes de lecture évitent 40 minutes d'erreur de direction.</div></div>
-      <div style="display:flex;gap:0.65rem;align-items:flex-start;"><span style="font-size:1.1rem;flex-shrink:0;">🎯</span><div><strong>Exercice 2 = priorité absolue.</strong> 25 pts sur 40. Si le temps manque, mieux vaut une intro + deux parties solides qu'une copie incomplète sur les deux exercices.</div></div>
+      <div style="display:flex;gap:0.65rem;align-items:flex-start;"><span style="font-size:1.1rem;flex-shrink:0;">📝</span><div><strong>Prendre le temps de compléter les entêtes des copies.</strong> Cela évite le stress en fin d'épreuve.</div></div>
+      <div style="display:flex;gap:0.65rem;align-items:flex-start;"><span style="font-size:1.1rem;flex-shrink:0;">✍️</span><div><strong>Bien faire le développement construit.</strong> Il y a toujours des points donnés pour la rédaction et l'organisation du texte — même si tu n'as pas toutes les connaissances.</div></div>
       <div style="display:flex;gap:0.65rem;align-items:flex-start;"><span style="font-size:1.1rem;flex-shrink:0;">💬</span><div><strong>En cas de trou de mémoire.</strong> Ne pas rester bloqué·e. Passer à la suite, noter [?] au crayon, revenir à la relecture. Un trou ponctuel n'annule pas trois semaines de travail sérieux.</div></div>
       <div style="display:flex;gap:0.65rem;align-items:flex-start;"><span style="font-size:1.1rem;flex-shrink:0;">✍️</span><div><strong>Présentation.</strong> Sauter des lignes entre les parties, souligner les titres, aérer. Un correcteur qui lit confortablement est un correcteur bienveillant.</div></div>
     </div>
   </div>
 
+
+  <!-- ENCOURAGEMENTS -->
+  <div class="methode-card" style="border:1.5px solid var(--methode-border);background:var(--methode-soft);">
+    <div class="methode-card-body" style="text-align:center;padding:1.2rem 1rem;">
+      <div style="font-family:'DM Mono',monospace;font-size:0.62rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--methode);font-weight:700;margin-bottom:0.85rem;">Pour toi, le jour J</div>
+      <p style="font-size:0.9rem;line-height:1.8;color:var(--text);margin-bottom:1rem;">
+        Tu as fait le travail. Maintenant fais confiance à ce que tu sais.<br>
+        <strong>Lis bien les consignes, reste calme et donne le meilleur.</strong>
+      </p>
+      <a href="https://suno.com/s/v24glHi51qohLIGR" target="_blank" rel="noopener" style="
+        display:inline-flex;align-items:center;gap:0.5rem;
+        background:var(--methode);color:white;
+        border-radius:8px;padding:0.55rem 1.1rem;
+        font-family:'DM Mono',monospace;font-size:0.63rem;font-weight:700;
+        letter-spacing:0.07em;text-transform:uppercase;
+        text-decoration:none;transition:opacity 0.2s;
+      " onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
+        🎵 Votre chanson du brevet
+      </a>
+    </div>
+  </div>
 
 </section>
 
@@ -1005,7 +933,10 @@ function updateWeekProgress(block) {
 function saveState() {
   try {
     const t = {};
-    document.querySelectorAll('.task-item').forEach((item,i) => { t['t'+i] = item.classList.contains('done'); });
+    document.querySelectorAll('.task-item').forEach(item => {
+      const key = item.dataset.task;
+      if (key) t[key] = item.classList.contains('done');
+    });
     localStorage.setItem('dnb2026_tasks', JSON.stringify(t));
   } catch(e) {}
 }
@@ -1032,9 +963,21 @@ function loadAll() {
     const raw = localStorage.getItem('dnb2026_tasks');
     if (raw) {
       const t = JSON.parse(raw);
-      document.querySelectorAll('.task-item').forEach((item,i) => {
-        if (t['t'+i]) { item.classList.add('done'); item.querySelector('input[type="checkbox"]').checked=true; }
-      });
+      // Détection ancienne version (clés 't0', 't1', ...) → on l'ignore et on repart à zéro
+      // pour éviter que des coches se retrouvent sur les mauvaises tâches.
+      const isLegacy = Object.keys(t).some(k => /^t\d+$/.test(k));
+      if (!isLegacy) {
+        document.querySelectorAll('.task-item').forEach(item => {
+          const key = item.dataset.task;
+          if (key && t[key]) {
+            item.classList.add('done');
+            item.querySelector('input[type="checkbox"]').checked = true;
+          }
+        });
+      } else {
+        // Migration : on efface l'ancienne sauvegarde
+        localStorage.removeItem('dnb2026_tasks');
+      }
     }
   } catch(e) {}
   try {
@@ -1061,14 +1004,9 @@ function showToast() {
   t.classList.add('visible');
   setTimeout(()=>t.classList.remove('visible'), 2200);
 }
-function openSaveModal()  { document.getElementById('save-modal').classList.add('open'); }
-function closeSaveModal(e) {
-  if (!e || e.target===document.getElementById('save-modal'))
-    document.getElementById('save-modal').classList.remove('open');
-}
+// Raccourci clavier desktop (Ctrl+S / Cmd+S) : force une sauvegarde explicite avec confirmation visuelle
 document.addEventListener('keydown', e => {
-  if ((e.ctrlKey||e.metaKey) && e.key==='s') { e.preventDefault(); saveAll(); closeSaveModal(); }
-  if (e.key==='Escape') closeSaveModal();
+  if ((e.ctrlKey||e.metaKey) && e.key==='s') { e.preventDefault(); saveAll(); }
 });
 document.addEventListener('DOMContentLoaded', loadAll);
 
@@ -1266,6 +1204,441 @@ Ensuite, ces années sont marquées par des changements sociaux. Le travail des 
 Pour conclure, entre 1950 et 1980, la France se transforme et entre dans la modernité : elle devient plus urbaine, plus égalitaire et plus diversifiée.`},
 ];
 
+// ── Données enrichies : plans alternatifs + mots-clés par sujet ──
+// INDEX CORRIGES (25 entrées, ordre exact) :
+// 0  G1  Aires urbaines : organisation et dynamiques
+// 1  G1  Étalement urbain : formes, causes, conséquences
+// 2  G1  Espaces des aires urbaines françaises et évolutions
+// 3  G2  Mondialisation et espaces productifs industriels
+// 4  G2  Espace productif agricole et mondialisation
+// 5  G2  Diversité des espaces productifs et évolutions
+// 6  G3  Espaces de faible densité en France
+// 7  G4  Aménagement et inégalités entre territoires français
+// 8  G4  Territoires ultramarins et aménagement
+// 9  G5  Place et influence de la France et l'Europe dans le monde
+// 10 H1  Violences combattants et civils pendant la 1GM
+// 11 H1  Quotidien et souffrances des soldats dans les tranchées
+// 12 H1  Souffrances des populations civiles pendant la 1GM
+// 13 H2  Régime nazi en Allemagne 1933-1945
+// 14 H2  Régime stalinien en URSS
+// 15 H2  Front populaire
+// 16 H3  Génocide des Juifs et Tziganes
+// 17 H3  Régime de Vichy
+// 18 H3  Conséquences de la défaite de 1940
+// 19 H4  Guerre froide : deux blocs et formes d'affrontement
+// 20 H4  Décolonisation : exemple de l'Inde
+// 21 H4  Construction européenne
+// 22 H5  Conflits et menaces dans le monde depuis 1989
+// 23 H5  Guerre du Golfe 1990-1991
+// 24 H6  Évolutions politiques de la Ve République
+// 25 H6  Transformations de la société française 1950-1980
+
+const CORRIGES_META = [
+  // 0 G1 Aires urbaines organisation et dynamiques
+  { plans: [
+      { label:"<strong>I.</strong> Organisation spatiale (ville-centre / banlieue / couronne periurbaine)  ·  <strong>II.</strong> Dynamiques (metropolisation / etalement urbain)", correct: true },
+      { label:"<strong>I.</strong> Avantages economiques des villes  ·  <strong>II.</strong> Problemes environnementaux  ·  <strong>III.</strong> Solutions durables", correct: false, trap:"Ce plan parle d'avantages/problemes, pas d'organisation et de dynamiques - hors sujet." },
+      { label:"<strong>I.</strong> Croissance demographique en France  ·  <strong>II.</strong> Exode rural  ·  <strong>III.</strong> Metropolisation", correct: false, trap:"Ce plan traite les causes de l'urbanisation, pas l'organisation spatiale des aires urbaines." }
+    ],
+    keywords: [
+      { w:"aire urbaine", real:true }, { w:"ville-centre", real:true },
+      { w:"banlieue", real:true }, { w:"couronne periurbaine", real:true },
+      { w:"metropolisation", real:true }, { w:"etalement urbain", real:true },
+      { w:"periurbanisation", real:true }, { w:"migrations pendulaires", real:true },
+      { w:"genocide", real:false }, { w:"plan quinquennal", real:false },
+      { w:"desindustrialisation", real:false }, { w:"libre-echange", real:false }
+    ]
+  },
+  // 1 G1 Etalement urbain formes causes consequences
+  { plans: [
+      { label:"<strong>I.</strong> Formes de l'etalement urbain  ·  <strong>II.</strong> Causes  ·  <strong>III.</strong> Consequences", correct: true },
+      { label:"<strong>I.</strong> Definition  ·  <strong>II.</strong> Avantages de l'etalement  ·  <strong>III.</strong> Inconvenients", correct: false, trap:"Avantages/inconvenients n'est pas le plan attendu - le sujet demande formes, causes et consequences." },
+      { label:"<strong>I.</strong> Etalement des zones industrielles  ·  <strong>II.</strong> Etalement residentiel  ·  <strong>III.</strong> Etalement commercial", correct: false, trap:"Cette tripartition n'existe pas dans le cours - piege de vocabulaire invente." }
+    ],
+    keywords: [
+      { w:"etalement urbain", real:true }, { w:"periurbanisation", real:true },
+      { w:"couronne periurbaine", real:true }, { w:"migrations pendulaires", real:true },
+      { w:"urbanisme durable", real:true }, { w:"transports collectifs", real:true },
+      { w:"croissance demographique", real:true }, { w:"pollution", real:true },
+      { w:"Shoah", real:false }, { w:"collaboration", real:false },
+      { w:"Guerre froide", real:false }, { w:"plan Marshall", real:false }
+    ]
+  },
+  // 2 G1 Espaces des aires urbaines et evolutions
+  { plans: [
+      { label:"<strong>I.</strong> Description des espaces (centre / banlieue / periurbain)  ·  <strong>II.</strong> Evolutions (metropolisation / periurbanisation)", correct: true },
+      { label:"<strong>I.</strong> Espaces riches  ·  <strong>II.</strong> Espaces pauvres  ·  <strong>III.</strong> Politiques de segregation", correct: false, trap:"La segregation est un aspect secondaire - le sujet attend une description de l'organisation spatiale." },
+      { label:"<strong>I.</strong> Espaces urbains en France  ·  <strong>II.</strong> Espaces urbains en Europe  ·  <strong>III.</strong> Comparaison", correct: false, trap:"Comparer la France a l'Europe est hors-sujet - le sujet porte uniquement sur les aires urbaines francaises." }
+    ],
+    keywords: [
+      { w:"aire urbaine", real:true }, { w:"ville-centre", real:true },
+      { w:"banlieue", real:true }, { w:"couronne periurbaine", real:true },
+      { w:"metropolisation", real:true }, { w:"periurbanisation", real:true },
+      { w:"attractivite", real:true }, { w:"deplacements domicile-travail", real:true },
+      { w:"armistice", real:false }, { w:"totalitarisme", real:false },
+      { w:"decolonisation", real:false }, { w:"SDN", real:false }
+    ]
+  },
+  // 3 G2 Mondialisation et espaces productifs industriels
+  { plans: [
+      { label:"<strong>I.</strong> Espaces industriels dynamises par la mondialisation  ·  <strong>II.</strong> Espaces industriels en reconversion", correct: true },
+      { label:"<strong>I.</strong> Definition de l'espace productif  ·  <strong>II.</strong> Exemples mondiaux  ·  <strong>III.</strong> Bilan", correct: false, trap:"Le sujet porte sur la France, pas sur le monde entier - partir des exemples mondiaux est hors-sujet." },
+      { label:"<strong>I.</strong> Mondialisation  ·  <strong>II.</strong> Delocalisation  ·  <strong>III.</strong> Chomage", correct: false, trap:"Ce plan ne retient que les aspects negatifs et oublie les espaces gagnants de la mondialisation." }
+    ],
+    keywords: [
+      { w:"espace productif", real:true }, { w:"mondialisation", real:true },
+      { w:"pole de competitivite", real:true }, { w:"desindustrialisation", real:true },
+      { w:"reconversion", real:true }, { w:"ZIP", real:true },
+      { w:"FTN", real:true }, { w:"delocalisation", real:true },
+      { w:"tranchees", real:false }, { w:"genocide armenien", real:false },
+      { w:"traite de Versailles", real:false }, { w:"Vichy", real:false }
+    ]
+  },
+  // 4 G2 Espace productif agricole et mondialisation
+  { plans: [
+      { label:"<strong>I.</strong> Agriculture productiviste integree a la mondialisation  ·  <strong>II.</strong> Defis et nouveaux modeles agricoles", correct: true },
+      { label:"<strong>I.</strong> Agriculture traditionnelle  ·  <strong>II.</strong> Agriculture moderne  ·  <strong>III.</strong> Bilan", correct: false, trap:"Traditionnelle/moderne est trop vague - le plan doit montrer le lien concret avec la mondialisation." },
+      { label:"<strong>I.</strong> Espaces agricoles  ·  <strong>II.</strong> Espaces industriels  ·  <strong>III.</strong> Espaces de services", correct: false, trap:"Ce plan presente les 3 espaces productifs alors que le sujet ne porte que sur l'agriculture." }
+    ],
+    keywords: [
+      { w:"espace productif agricole", real:true }, { w:"agriculture productiviste", real:true },
+      { w:"mondialisation", real:true }, { w:"agro-industrie", real:true },
+      { w:"agriculture biologique", real:true }, { w:"circuits courts", real:true },
+      { w:"concurrence internationale", real:true }, { w:"labels", real:true },
+      { w:"regime de Vichy", real:false }, { w:"plan quinquennal", real:false },
+      { w:"nationalisme", real:false }, { w:"OTAN", real:false }
+    ]
+  },
+  // 5 G2 Diversite des espaces productifs et evolutions
+  { plans: [
+      { label:"<strong>I.</strong> Diversite des espaces (agricole / industriel / services)  ·  <strong>II.</strong> Evolutions face a la mondialisation", correct: true },
+      { label:"<strong>I.</strong> Secteur primaire  ·  <strong>II.</strong> Secteur secondaire  ·  <strong>III.</strong> Secteur tertiaire", correct: false, trap:"Classer par secteurs sans montrer les evolutions ne repond qu'a la moitie de la question." },
+      { label:"<strong>I.</strong> Espaces en croissance  ·  <strong>II.</strong> Espaces en declin  ·  <strong>III.</strong> Politiques d'aide", correct: false, trap:"Ce plan oublie de presenter la diversite des espaces demandee dans le sujet." }
+    ],
+    keywords: [
+      { w:"espace productif", real:true }, { w:"mondialisation", real:true },
+      { w:"tertiaire", real:true }, { w:"desindustrialisation", real:true },
+      { w:"pole de competitivite", real:true }, { w:"reconversion", real:true },
+      { w:"FTN", real:true }, { w:"innovation", real:true },
+      { w:"genocide", real:false }, { w:"armistice", real:false },
+      { w:"totalitarisme", real:false }, { w:"decolonisation", real:false }
+    ]
+  },
+  // 6 G3 Espaces de faible densite en France
+  { plans: [
+      { label:"<strong>I.</strong> Atouts des espaces de faible densite  ·  <strong>II.</strong> Dynamiques (tourisme, neo-ruraux, agriculture de qualite)", correct: true },
+      { label:"<strong>I.</strong> Desertification rurale  ·  <strong>II.</strong> Declin economique  ·  <strong>III.</strong> Politiques de revitalisation", correct: false, trap:"Ce plan ne presente que les difficultes - le sujet demande aussi les atouts et les dynamiques positives." },
+      { label:"<strong>I.</strong> Espaces montagnards  ·  <strong>II.</strong> Espaces ruraux  ·  <strong>III.</strong> Espaces littoraux", correct: false, trap:"Cette division geographique ne repond pas a la question sur les atouts et dynamiques." }
+    ],
+    keywords: [
+      { w:"espace de faible densite", real:true }, { w:"rural", real:true },
+      { w:"tourisme vert", real:true }, { w:"neo-ruraux", real:true },
+      { w:"agriculture de qualite", real:true }, { w:"parc naturel", real:true },
+      { w:"revitalisation", real:true }, { w:"residences secondaires", real:true },
+      { w:"Shoah", real:false }, { w:"plan Marshall", real:false },
+      { w:"mur de Berlin", real:false }, { w:"Pacte de Varsovie", real:false }
+    ]
+  },
+  // 7 G4 Amenagement et inegalites entre territoires francais
+  { plans: [
+      { label:"<strong>I.</strong> Inegalites du territoire francais  ·  <strong>II.</strong> Politiques d'amenagement (Etat, UE, collectivites)", correct: true },
+      { label:"<strong>I.</strong> Territoires urbains  ·  <strong>II.</strong> Territoires ruraux  ·  <strong>III.</strong> Territoires d'outre-mer", correct: false, trap:"Ce plan decrit des types de territoires sans traiter l'amenagement demande dans le sujet." },
+      { label:"<strong>I.</strong> Atouts de la France  ·  <strong>II.</strong> Faiblesses du territoire  ·  <strong>III.</strong> Role de l'Union europeenne", correct: false, trap:"Mettre l'UE en partie centrale donne une importance excessive a un acteur parmi d'autres." }
+    ],
+    keywords: [
+      { w:"amenagement du territoire", real:true }, { w:"DATAR", real:true },
+      { w:"decentralisation", real:true }, { w:"pole de competitivite", real:true },
+      { w:"inegalites territoriales", real:true }, { w:"desert francais", real:true },
+      { w:"infrastructure", real:true }, { w:"cohesion territoriale", real:true },
+      { w:"Shoah", real:false }, { w:"armistice", real:false },
+      { w:"Guerre froide", real:false }, { w:"parti unique", real:false }
+    ]
+  },
+  // 8 G4 Territoires ultramarins et amenagement
+  { plans: [
+      { label:"<strong>I.</strong> Specificites des territoires ultramarins  ·  <strong>II.</strong> Amenagements pour reduire les inegalites", correct: true },
+      { label:"<strong>I.</strong> Avantages des DOM-TOM  ·  <strong>II.</strong> Problemes economiques  ·  <strong>III.</strong> Aide de l'Etat", correct: false, trap:"Avantages/problemes est trop general - le plan attendu distingue specificites et amenagements." },
+      { label:"<strong>I.</strong> Guadeloupe  ·  <strong>II.</strong> La Reunion  ·  <strong>III.</strong> Polynesie", correct: false, trap:"Organiser le plan par territoire est descriptif et ne montre pas les mecanismes d'amenagement." }
+    ],
+    keywords: [
+      { w:"territoire ultramarin", real:true }, { w:"DROM", real:true },
+      { w:"eloignement", real:true }, { w:"insularite", real:true },
+      { w:"chomage", real:true }, { w:"amenagement", real:true },
+      { w:"tourisme", real:true }, { w:"dependance aux aides", real:true },
+      { w:"tranchees", real:false }, { w:"nationalisme", real:false },
+      { w:"genocide", real:false }, { w:"Pacte de Varsovie", real:false }
+    ]
+  },
+  // 9 G5 Place et influence de la France et l'Europe dans le monde
+  { plans: [
+      { label:"<strong>I.</strong> Influence culturelle  ·  <strong>II.</strong> Influence geopolitique  ·  <strong>III.</strong> Influence economique", correct: true },
+      { label:"<strong>I.</strong> La France dans le monde  ·  <strong>II.</strong> L'Europe dans le monde  ·  <strong>III.</strong> Comparaison", correct: false, trap:"Ce plan repete deux fois la meme structure sans articuler les trois domaines d'influence demandes." },
+      { label:"<strong>I.</strong> Forces  ·  <strong>II.</strong> Faiblesses  ·  <strong>III.</strong> Menaces pour la puissance francaise", correct: false, trap:"Un plan SWOT n'est pas adapte a la geographie du Brevet - il faut traiter les domaines d'influence." }
+    ],
+    keywords: [
+      { w:"puissance", real:true }, { w:"influence culturelle", real:true },
+      { w:"influence geopolitique", real:true }, { w:"ZEE", real:true },
+      { w:"G7", real:true }, { w:"ONU", real:true },
+      { w:"FTN", real:true }, { w:"soft power", real:true },
+      { w:"tranchees", real:false }, { w:"regime de Vichy", real:false },
+      { w:"genocide", real:false }, { w:"Guerre froide", real:false }
+    ]
+  },
+  // 10 H1 Violences subies par combattants et civils 1GM
+  { plans: [
+      { label:"<strong>I.</strong> Violences subies par les combattants  ·  <strong>II.</strong> Violences subies par les civils", correct: true },
+      { label:"<strong>I.</strong> Front ouest  ·  <strong>II.</strong> Front est  ·  <strong>III.</strong> Bilan humain", correct: false, trap:"Ce plan geographique ne repond pas a la question qui demande les types de violences subies." },
+      { label:"<strong>I.</strong> Causes de la guerre  ·  <strong>II.</strong> Violences  ·  <strong>III.</strong> Consequences du conflit", correct: false, trap:"Les causes ne sont pas demandees dans ce sujet - il faut se concentrer sur les violences subies." }
+    ],
+    keywords: [
+      { w:"guerre totale", real:true }, { w:"tranchees", real:true },
+      { w:"gueules cassees", real:true }, { w:"genocide armenien", real:true },
+      { w:"bombardements", real:true }, { w:"armistice 1918", real:true },
+      { w:"mobilisation generale", real:true }, { w:"1914-1918", real:true },
+      { w:"Shoah", real:false }, { w:"kolkhoze", real:false },
+      { w:"mur de Berlin", real:false }, { w:"accords Matignon", real:false }
+    ]
+  },
+  // 11 H1 Quotidien et souffrances des soldats dans les tranchees
+  { plans: [
+      { label:"<strong>I.</strong> Conditions de vie dans les tranchees  ·  <strong>II.</strong> Violence des combats et souffrances", correct: true },
+      { label:"<strong>I.</strong> Organisation militaire  ·  <strong>II.</strong> Vie quotidienne  ·  <strong>III.</strong> Consequences psychologiques", correct: false, trap:"L'organisation militaire n'est pas le coeur du sujet - il faut decrire le quotidien et les souffrances." },
+      { label:"<strong>I.</strong> 1914  ·  <strong>II.</strong> 1916 Verdun  ·  <strong>III.</strong> 1918", correct: false, trap:"Un plan chronologique ne repond pas a la question qui demande de decrire le quotidien des soldats." }
+    ],
+    keywords: [
+      { w:"tranchees", real:true }, { w:"poilus", real:true },
+      { w:"shell shock", real:true }, { w:"mutineries de 1917", real:true },
+      { w:"Verdun 1916", real:true }, { w:"insalubrite", real:true },
+      { w:"artillerie", real:true }, { w:"gueules cassees", real:true },
+      { w:"Shoah", real:false }, { w:"regime de Vichy", real:false },
+      { w:"plan quinquennal", real:false }, { w:"decolonisation", real:false }
+    ]
+  },
+  // 12 H1 Souffrances des populations civiles pendant la 1GM
+  { plans: [
+      { label:"<strong>I.</strong> Civils mobilises pour l'effort de guerre  ·  <strong>II.</strong> Civils victimes directes des violences", correct: true },
+      { label:"<strong>I.</strong> Femmes a l'usine  ·  <strong>II.</strong> Rationnement  ·  <strong>III.</strong> Genocide armenien", correct: false, trap:"Ce plan est une liste d'exemples sans structure claire - il faut distinguer mobilisation et violence." },
+      { label:"<strong>I.</strong> France  ·  <strong>II.</strong> Empire ottoman  ·  <strong>III.</strong> Autres pays", correct: false, trap:"Organiser par pays est hors-sujet - le sujet demande les types de souffrances des civils." }
+    ],
+    keywords: [
+      { w:"munitionnettes", real:true }, { w:"rationnement", real:true },
+      { w:"genocide armenien", real:true }, { w:"censure", real:true },
+      { w:"propagande", real:true }, { w:"guerre totale", real:true },
+      { w:"l'arriere", real:true }, { w:"requisition", real:true },
+      { w:"goulag", real:false }, { w:"Shoah", real:false },
+      { w:"collaboration", real:false }, { w:"Pacte de Varsovie", real:false }
+    ]
+  },
+  // 13 H2 Regime nazi en Allemagne 1933-1945
+  { plans: [
+      { label:"<strong>I.</strong> Concentration du pouvoir  ·  <strong>II.</strong> Propagande et terreur  ·  <strong>III.</strong> Persecution des Juifs", correct: true },
+      { label:"<strong>I.</strong> Montee du nazisme  ·  <strong>II.</strong> Politiques interieures  ·  <strong>III.</strong> Guerre mondiale", correct: false, trap:"La Seconde Guerre mondiale n'est pas demandee ici - le sujet porte sur les caracteristiques du regime." },
+      { label:"<strong>I.</strong> Politique  ·  <strong>II.</strong> Economie  ·  <strong>III.</strong> Societe", correct: false, trap:"Ce plan generaliste ne met pas en valeur la nature totalitaire et la specificite antisemite du regime nazi." }
+    ],
+    keywords: [
+      { w:"nazisme", real:true }, { w:"totalitarisme", real:true },
+      { w:"propagande", real:true }, { w:"Fuhrer", real:true },
+      { w:"lois de Nuremberg 1935", real:true }, { w:"Nuit de Cristal 1938", real:true },
+      { w:"Gestapo", real:true }, { w:"parti unique", real:true },
+      { w:"goulag", real:false }, { w:"kolkhoze", real:false },
+      { w:"NKVD", real:false }, { w:"accords Matignon", real:false }
+    ]
+  },
+  // 14 H2 Regime stalinien en URSS
+  { plans: [
+      { label:"<strong>I.</strong> Concentration du pouvoir  ·  <strong>II.</strong> Controle economique et social  ·  <strong>III.</strong> Terreur d'Etat", correct: true },
+      { label:"<strong>I.</strong> Staline  ·  <strong>II.</strong> Plan quinquennal  ·  <strong>III.</strong> Goulag", correct: false, trap:"Ce plan suit des outils du regime sans montrer les mecanismes du totalitarisme stalinien." },
+      { label:"<strong>I.</strong> Politique  ·  <strong>II.</strong> Economie  ·  <strong>III.</strong> Violences", correct: false, trap:"Violences seul est insuffisant - il faut parler de terreur d'Etat organisee et du NKVD." }
+    ],
+    keywords: [
+      { w:"stalinisme", real:true }, { w:"totalitarisme", real:true },
+      { w:"parti unique", real:true }, { w:"goulag", real:true },
+      { w:"collectivisation", real:true }, { w:"plan quinquennal", real:true },
+      { w:"Grande Terreur 1936-1938", real:true }, { w:"culte de la personnalite", real:true },
+      { w:"Gestapo", real:false }, { w:"lois de Nuremberg", real:false },
+      { w:"Nuit de Cristal", real:false }, { w:"accords Matignon", real:false }
+    ]
+  },
+  // 15 H2 Front populaire
+  { plans: [
+      { label:"<strong>I.</strong> Contexte de crise economique et montee des fascismes  ·  <strong>II.</strong> Arrivee au pouvoir  ·  <strong>III.</strong> Politique sociale", correct: true },
+      { label:"<strong>I.</strong> Socialisme  ·  <strong>II.</strong> Greves  ·  <strong>III.</strong> Reformes sociales", correct: false, trap:"Commencer par socialisme est trop ideologique - il faut partir du contexte de crise des annees 1930." },
+      { label:"<strong>I.</strong> Acteurs politiques  ·  <strong>II.</strong> Resultats des elections  ·  <strong>III.</strong> Bilan", correct: false, trap:"Ce plan electoraliste ne montre pas la politique menee - il repond a peine a la question." }
+    ],
+    keywords: [
+      { w:"Front populaire", real:true }, { w:"Leon Blum", real:true },
+      { w:"greves de juin 1936", real:true }, { w:"accords Matignon", real:true },
+      { w:"conges payes", real:true }, { w:"semaine de 40h", real:true },
+      { w:"antifascisme", real:true }, { w:"crise economique de 1929", real:true },
+      { w:"regime de Vichy", real:false }, { w:"collaboration", real:false },
+      { w:"deportation", real:false }, { w:"Resistance", real:false }
+    ]
+  },
+  // 16 H3 Genocide des Juifs et Tziganes
+  { plans: [
+      { label:"<strong>I.</strong> Contexte antisemite  ·  <strong>II.</strong> Processus d'extermination  ·  <strong>III.</strong> Bilan et memoire", correct: true },
+      { label:"<strong>I.</strong> Causes  ·  <strong>II.</strong> Deroulement  ·  <strong>III.</strong> Proces de Nuremberg", correct: false, trap:"Les proces de Nuremberg sont la consequence judiciaire, pas le coeur du sujet sur le processus d'extermination." },
+      { label:"<strong>I.</strong> Resistance juive  ·  <strong>II.</strong> Camps  ·  <strong>III.</strong> Liberation", correct: false, trap:"Centrer sur la resistance juive detourne du sujet qui demande de decrire le processus d'extermination." }
+    ],
+    keywords: [
+      { w:"Shoah", real:true }, { w:"genocide", real:true },
+      { w:"antisemitisme", real:true }, { w:"conference de Wannsee 1942", real:true },
+      { w:"camp d'extermination", real:true }, { w:"deportation", real:true },
+      { w:"crime contre l'humanite", real:true }, { w:"etoile jaune", real:true },
+      { w:"tranchees", real:false }, { w:"armistice 1918", real:false },
+      { w:"conges payes", real:false }, { w:"plan quinquennal", real:false }
+    ]
+  },
+  // 17 H3 Regime de Vichy
+  { plans: [
+      { label:"<strong>I.</strong> Regime antirepublicain  ·  <strong>II.</strong> Regime antisemite  ·  <strong>III.</strong> Regime collaborateur", correct: true },
+      { label:"<strong>I.</strong> Petain  ·  <strong>II.</strong> Laval  ·  <strong>III.</strong> Collaboration", correct: false, trap:"Organiser par personnes ne repond pas a la question qui demande les trois caracteristiques du regime." },
+      { label:"<strong>I.</strong> Zone libre  ·  <strong>II.</strong> Zone occupee  ·  <strong>III.</strong> Liberation", correct: false, trap:"Ce plan geographique et chronologique ne traite pas les caracteristiques demandees du regime de Vichy." }
+    ],
+    keywords: [
+      { w:"regime de Vichy", real:true }, { w:"Petain", real:true },
+      { w:"collaboration", real:true }, { w:"antisemitisme", real:true },
+      { w:"Travail Famille Patrie", real:true }, { w:"statut des Juifs 1940", real:true },
+      { w:"milice", real:true }, { w:"STO", real:true },
+      { w:"tranchees", real:false }, { w:"plan quinquennal", real:false },
+      { w:"accords Matignon", real:false }, { w:"OTAN", real:false }
+    ]
+  },
+  // 18 H3 Consequences de la defaite de 1940
+  { plans: [
+      { label:"<strong>I.</strong> Occupation du territoire  ·  <strong>II.</strong> Changement de regime  ·  <strong>III.</strong> Consequences humaines", correct: true },
+      { label:"<strong>I.</strong> Defaite militaire  ·  <strong>II.</strong> Armistice  ·  <strong>III.</strong> Resistance", correct: false, trap:"La Resistance est une reaction a la defaite, pas une consequence directe demandee par le sujet." },
+      { label:"<strong>I.</strong> Petain  ·  <strong>II.</strong> Vichy  ·  <strong>III.</strong> Collaboration", correct: false, trap:"Ce plan se limite au regime de Vichy et oublie les consequences humaines (exode, prisonniers, penuries)." }
+    ],
+    keywords: [
+      { w:"armistice juin 1940", real:true }, { w:"regime de Vichy", real:true },
+      { w:"Petain", real:true }, { w:"collaboration", real:true },
+      { w:"zone libre et zone occupee", real:true }, { w:"exode", real:true },
+      { w:"Travail Famille Patrie", real:true }, { w:"censure", real:true },
+      { w:"Appel du 18 juin", real:false }, { w:"debarquement", real:false },
+      { w:"maquis", real:false }, { w:"plan Marshall", real:false }
+    ]
+  },
+  // 19 H4 Guerre froide deux blocs et formes d'affrontement
+  { plans: [
+      { label:"<strong>I.</strong> Le bloc occidental  ·  <strong>II.</strong> Le bloc sovietique  ·  <strong>III.</strong> Formes d'affrontement indirect", correct: true },
+      { label:"<strong>I.</strong> Origines de la Guerre froide  ·  <strong>II.</strong> Crises  ·  <strong>III.</strong> Fin", correct: false, trap:"Ce plan chronologique oublie de presenter les deux blocs et leurs ideologies opposees." },
+      { label:"<strong>I.</strong> Ideologies  ·  <strong>II.</strong> Armement nucleaire  ·  <strong>III.</strong> Propagande", correct: false, trap:"Ce plan thematique ne structure pas clairement les deux blocs et leurs modes d'affrontement." }
+    ],
+    keywords: [
+      { w:"Guerre froide", real:true }, { w:"capitalisme", real:true },
+      { w:"communisme", real:true }, { w:"OTAN", real:true },
+      { w:"Pacte de Varsovie", real:true }, { w:"plan Marshall", real:true },
+      { w:"equilibre de la terreur", real:true }, { w:"course a l'espace", real:true },
+      { w:"tranchees", real:false }, { w:"accords Matignon", real:false },
+      { w:"conges payes", real:false }, { w:"milice", real:false }
+    ]
+  },
+  // 20 H4 Decolonisation exemple de l'Inde
+  { plans: [
+      { label:"<strong>I.</strong> Contexte colonial et international  ·  <strong>II.</strong> Lutte pacifique pour l'independance  ·  <strong>III.</strong> Resultats et limites (partition)", correct: true },
+      { label:"<strong>I.</strong> Gandhi  ·  <strong>II.</strong> Non-violence  ·  <strong>III.</strong> Independance 1947", correct: false, trap:"Centrer sur Gandhi seul reduit la decolonisation a une figure - il faut aussi le contexte international." },
+      { label:"<strong>I.</strong> Colonisation britannique  ·  <strong>II.</strong> Guerre d'independance  ·  <strong>III.</strong> Independance", correct: false, trap:"L'Inde n'a pas mene de guerre - sa decolonisation est pacifique. Parler de guerre est un piege." }
+    ],
+    keywords: [
+      { w:"decolonisation", real:true }, { w:"Gandhi", real:true },
+      { w:"non-violence", real:true }, { w:"desobeissance civile", real:true },
+      { w:"independance 1947", real:true }, { w:"partition Inde/Pakistan", real:true },
+      { w:"nationalisme", real:true }, { w:"ONU", real:true },
+      { w:"plan Marshall", real:false }, { w:"tranchees", real:false },
+      { w:"OTAN", real:false }, { w:"maquis", real:false }
+    ]
+  },
+  // 21 H4 Construction europeenne
+  { plans: [
+      { label:"<strong>I.</strong> Etapes economiques (CECA / CEE)  ·  <strong>II.</strong> Approfondissement politique (traite de Maastricht / UE)", correct: true },
+      { label:"<strong>I.</strong> Objectifs de paix  ·  <strong>II.</strong> Realisations economiques  ·  <strong>III.</strong> Elargissements", correct: false, trap:"Ce plan melange objectifs et etapes chronologiques - la structure attendue suit la chronologie de l'integration." },
+      { label:"<strong>I.</strong> Fondateurs  ·  <strong>II.</strong> Institutions europeennes  ·  <strong>III.</strong> Crise du Brexit", correct: false, trap:"Le Brexit est un element marginal - un plan centre dessus donne une vision negative et partielle." }
+    ],
+    keywords: [
+      { w:"CECA 1951", real:true }, { w:"CEE", real:true },
+      { w:"traite de Rome 1957", real:true }, { w:"traite de Maastricht 1992", real:true },
+      { w:"Union europeenne", real:true }, { w:"euro", real:true },
+      { w:"marche commun", real:true }, { w:"citoyennete europeenne", real:true },
+      { w:"tranchees", real:false }, { w:"goulag", real:false },
+      { w:"armistice 1918", real:false }, { w:"collaboration", real:false }
+    ]
+  },
+  // 22 H5 Conflits et menaces dans le monde depuis 1989
+  { plans: [
+      { label:"<strong>I.</strong> Conflits regionaux des annees 1990  ·  <strong>II.</strong> Nouvelles menaces depuis les annees 2000", correct: true },
+      { label:"<strong>I.</strong> Monde unipolaire  ·  <strong>II.</strong> Monde multipolaire  ·  <strong>III.</strong> Vers la cooperation", correct: false, trap:"Ce plan geopolitique ne repond pas directement aux conflits et menaces demandes dans le sujet." },
+      { label:"<strong>I.</strong> Terrorisme  ·  <strong>II.</strong> Nucleaire  ·  <strong>III.</strong> Changement climatique", correct: false, trap:"Ce plan oublie les guerres civiles et genocides des annees 1990, qui sont essentiels au sujet." }
+    ],
+    keywords: [
+      { w:"genocide Rwanda 1994", real:true }, { w:"terrorisme international", real:true },
+      { w:"Al-Qaida", real:true }, { w:"Daesh", real:true },
+      { w:"BRICS", real:true }, { w:"proliferation nucleaire", real:true },
+      { w:"monde multipolaire", real:true }, { w:"ONU", real:true },
+      { w:"plan Marshall", real:false }, { w:"tranchees", real:false },
+      { w:"collectivisation", real:false }, { w:"accords Matignon", real:false }
+    ]
+  },
+  // 23 H5 Guerre du Golfe 1990-1991
+  { plans: [
+      { label:"<strong>I.</strong> Causes (invasion du Koweit par l'Irak)  ·  <strong>II.</strong> Deroulement (coalition internationale)  ·  <strong>III.</strong> Bilan", correct: true },
+      { label:"<strong>I.</strong> Irak de Saddam Hussein  ·  <strong>II.</strong> Reaction de la coalition  ·  <strong>III.</strong> Consequences", correct: false, trap:"Centrer la premiere partie sur l'Irak seul isole un acteur et desequilibre l'analyse du conflit." },
+      { label:"<strong>I.</strong> Petrole  ·  <strong>II.</strong> Puissance americaine  ·  <strong>III.</strong> Naissance d'un nouvel ordre mondial", correct: false, trap:"Le petrole est un facteur mais pas la structure attendue - nouvel ordre mondial est trop vague." }
+    ],
+    keywords: [
+      { w:"guerre du Golfe 1990-1991", real:true }, { w:"coalition internationale", real:true },
+      { w:"Saddam Hussein", real:true }, { w:"resolution de l'ONU", real:true },
+      { w:"Tempete du desert", real:true }, { w:"superpuissance americaine", real:true },
+      { w:"monde unipolaire", real:true }, { w:"gendarme du monde", real:true },
+      { w:"tranchees", real:false }, { w:"accords Matignon", real:false },
+      { w:"collectivisation", real:false }, { w:"Shoah", real:false }
+    ]
+  },
+  // 24 H6 Evolutions politiques de la Ve Republique
+  { plans: [
+      { label:"<strong>I.</strong> Fondation et pouvoirs du president (1958)  ·  <strong>II.</strong> Evolutions institutionnelles (quinquennat, alternance, cohabitation)", correct: true },
+      { label:"<strong>I.</strong> De Gaulle  ·  <strong>II.</strong> Mitterrand  ·  <strong>III.</strong> Chirac", correct: false, trap:"Un plan par presidents est trop anecdotique - il faut montrer les evolutions institutionnelles, pas les hommes." },
+      { label:"<strong>I.</strong> Constitution  ·  <strong>II.</strong> Partis politiques  ·  <strong>III.</strong> Opinion publique", correct: false, trap:"Les partis politiques et l'opinion ne sont pas au coeur du sujet - on attend les evolutions constitutionnelles." }
+    ],
+    keywords: [
+      { w:"Ve Republique", real:true }, { w:"Constitution 1958", real:true },
+      { w:"suffrage universel direct", real:true }, { w:"quinquennat 2000", real:true },
+      { w:"cohabitation", real:true }, { w:"alternance politique 1981", real:true },
+      { w:"dissolution de l'Assemblee", real:true }, { w:"article 16", real:true },
+      { w:"tranchees", real:false }, { w:"Shoah", real:false },
+      { w:"accords Matignon", real:false }, { w:"plan quinquennal", real:false }
+    ]
+  },
+  // 25 H6 Transformations de la societe francaise 1950-1980
+  { plans: [
+      { label:"<strong>I.</strong> Trente Glorieuses et mutations economiques  ·  <strong>II.</strong> Transformations sociales  ·  <strong>III.</strong> Crise economique apres 1975", correct: true },
+      { label:"<strong>I.</strong> Femmes  ·  <strong>II.</strong> Jeunesse  ·  <strong>III.</strong> Immigration", correct: false, trap:"Ce plan par categories est partiel - il oublie les mutations economiques majeures des Trente Glorieuses." },
+      { label:"<strong>I.</strong> 1950-1960  ·  <strong>II.</strong> 1960-1970  ·  <strong>III.</strong> 1970-1980", correct: false, trap:"Un plan purement decennie par decennie est trop scolaire et ne met pas en valeur les grandes transformations." }
+    ],
+    keywords: [
+      { w:"Trente Glorieuses", real:true }, { w:"exode rural", real:true },
+      { w:"consommation de masse", real:true }, { w:"MLF", real:true },
+      { w:"Mai 1968", real:true }, { w:"chomage de masse", real:true },
+      { w:"droit a l'avortement 1975", real:true }, { w:"baby-boom", real:true },
+      { w:"nationalisation", real:false }, { w:"Resistance", real:false },
+      { w:"tranchees", real:false }, { w:"deportation", real:false }
+    ]
+  }
+];
+
+// Mélange aléatoire des plans à l'affichage
+function shuffleArray(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+// ── État des exercices ──
+const corrigeState = {};
+
 function filterCorrige(filter, btn) {
   document.querySelectorAll('.corrige-filter-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
@@ -1276,29 +1649,319 @@ function filterCorrige(filter, btn) {
   });
 }
 
-function toggleCorrige(id) {
+function openCorrige(id) {
   const item = document.getElementById('corrige-' + id);
-  item.classList.toggle('open');
+  const body = document.getElementById('corrige-body-' + id);
+  const isOpen = item.classList.contains('open');
+  // Close all
+  document.querySelectorAll('.corrige-item.open').forEach(el => el.classList.remove('open'));
+  document.querySelectorAll('.corrige-body').forEach(el => el.style.display = 'none');
+  if (!isOpen) {
+    item.classList.add('open');
+    body.style.display = 'block';
+  }
+}
+
+function selectPlan(id, idx) {
+  const meta = CORRIGES_META[id];
+  const state = corrigeState[id] = corrigeState[id] || {};
+  // idx here is the shuffled index — we stored the original plan in data-plan-idx
+  const planEl = document.querySelectorAll(`#step1-${id} .plan-opt`)[idx];
+  const originalIdx = parseInt(planEl.dataset.planIdx);
+  state.planIdx = originalIdx;
+  state.shuffledIdx = idx;
+
+  document.querySelectorAll(`#step1-${id} .plan-opt`).forEach((el, i) => {
+    el.classList.toggle('selected', i === idx);
+  });
+  const plan = meta.plans[originalIdx];
+  const fb = document.getElementById(`plan-feedback-${id}`);
+  fb.style.display = 'flex';
+  if (plan.correct) {
+    fb.innerHTML = `<span style="color:var(--emc);font-weight:700;">✓ Bon choix !</span>&nbsp;C'est bien le plan attendu pour ce sujet.`;
+  } else {
+    fb.innerHTML = `<span style="color:var(--hist);font-weight:700;">✗ Pas tout à fait.</span>&nbsp;${plan.trap || 'Ce plan ne correspond pas à la structure attendue.'}`;
+  }
+  document.getElementById(`btn-step2-${id}`).style.display = 'block';
+}
+
+function goStep2(id) {
+  document.getElementById(`step1-${id}`).style.display = 'none';
+  document.getElementById(`step2-${id}`).style.display = 'block';
+}
+
+function toggleKeyword(id, el) {
+  el.classList.toggle('kw-selected');
+  updateKeywordCount(id);
+}
+
+function updateKeywordCount(id) {
+  const selected = document.querySelectorAll(`#step2-${id} .kw-selected`).length;
+  const counter = document.getElementById(`kw-count-${id}`);
+  counter.textContent = selected;
+  counter.style.color = selected >= 5 ? 'var(--emc)' : 'var(--hist)';
+  document.getElementById(`btn-step3-${id}`).style.display = selected >= 5 ? 'block' : 'none';
+}
+
+function goStep3(id) {
+  document.getElementById(`step2-${id}`).style.display = 'none';
+  const step3 = document.getElementById(`step3-${id}`);
+  step3.style.display = 'block';
+
+  const meta = CORRIGES_META[id];
+  const corrige = CORRIGES[id];
+
+  // Mots-clés sélectionnés par l'élève
+  const selectedKws = [...document.querySelectorAll(`#step2-${id} .kw-selected`)].map(el => el.dataset.kw);
+  // Mots-clés réels (vrais)
+  const realKws = meta.keywords.filter(k => k.real).map(k => k.w);
+
+  // Normalisation pour matching tolérant : pas d'accent, minuscules
+  const norm = s => s.toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '') // supprime les accents
+    .replace(/['']/g, "'");
+
+  // Pièges sélectionnés (les mots cochés qui ne sont pas dans realKws)
+  const trapsPicked = selectedKws.filter(s =>
+    !realKws.some(r => norm(r) === norm(s))
+  );
+
+  // Pour chaque mot-clé réel : a-t-il été trouvé ?
+  const isFound = kw => selectedKws.some(s => norm(s) === norm(kw));
+
+  // Construction du texte annoté
+  // Stratégie : pour chaque mot-clé réel, tenter plusieurs variantes
+  // (sans accents, partiel sans la date finale, racine sans s/es final)
+  const paras = corrige.body.split('\n\n').filter(p => p.trim());
+  const highlighted = paras.map((p, pi) => {
+    let text = p.replace(/\n/g, '<br>');
+
+    // On classe les mots-clés du plus long au plus court pour éviter les chevauchements
+    // (ex: "guerre du Golfe 1990-1991" doit être tenté avant "guerre du Golfe")
+    const sorted = [...realKws].sort((a, b) => b.length - a.length);
+
+    sorted.forEach(kw => {
+      const found = isFound(kw);
+      const color = found ? 'var(--emc)' : 'var(--hist)';
+      const bg    = found ? 'rgba(30,124,69,0.15)' : 'rgba(192,57,15,0.13)';
+
+      // Construction d'un motif tolérant :
+      //  - insensible aux accents (chaque voyelle accentuable devient une classe [aàâä]…)
+      //  - tolère un "s" final sur CHAQUE mot du groupe (pluriel)
+      //  - tolère espaces multiples
+      const accentMap = s => s
+        .replace(/[aàâä]/gi, '[aàâä]')
+        .replace(/[eéèêë]/gi, '[eéèêë]')
+        .replace(/[iîï]/gi,   '[iîï]')
+        .replace(/[oôö]/gi,   '[oôö]')
+        .replace(/[uùûü]/gi,  '[uùûü]')
+        .replace(/[cç]/gi,    '[cç]');
+      const escaped = kw.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      const motif = escaped.split(/\s+/).map(w => accentMap(w) + 's?').join('\\s+');
+      const pattern = new RegExp(`(${motif})`, 'gi');
+
+      // Remplacement en évitant de re-surligner ce qui est déjà dans une <mark>
+      text = text.replace(/(<mark[^>]*>.*?<\/mark>)|(?:[^<]+|<(?!mark))/gi, (segment) => {
+        if (segment.startsWith('<mark')) return segment;
+        return segment.replace(pattern, `<mark style="background:${bg};color:${color};font-weight:700;border-radius:3px;padding:0 2px;">$1</mark>`);
+      });
+    });
+
+    return `<p class="corrige-para${pi===0?' intro':''}">${text}</p>`;
+  }).join('');
+
+  document.getElementById(`corrige-text-${id}`).innerHTML = highlighted;
+
+  // Comptage : combien de mots-clés réels ont été trouvés / oubliés ?
+  const foundCount  = realKws.filter(r => isFound(r)).length;
+  const missedCount = realKws.length - foundCount;
+  const trapCount   = trapsPicked.length;
+
+  // Repérer les mots-clés réels qui ne sont PAS effectivement présents dans le corrigé
+  // (formules-clés du cours qui pourraient être ajoutées mais ne sont pas dans cette rédaction)
+  const corrigeNorm = norm(corrige.body);
+  const notInCorrige = realKws.filter(kw => {
+    // Test simple : la version sans accents du mot-clé apparaît-elle dans le texte normalisé ?
+    // On tolère le pluriel sur le dernier mot
+    const kwNorm = norm(kw);
+    // Match avec tolérance pluriel sur chaque mot (on simule par +s? optionnel sur chaque mot du keyword)
+    const motif = kwNorm.split(/\s+/).map(w => w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + 's?').join('\\s+');
+    return !new RegExp(motif, 'i').test(corrigeNorm);
+  });
+
+  // Légende récapitulative
+  let legendHtml = `
+    <span style="background:rgba(30,124,69,0.12);color:var(--emc);border-radius:4px;padding:0.2rem 0.55rem;font-weight:700;">✓ ${foundCount} trouvé(s)</span>
+    <span style="background:rgba(192,57,15,0.12);color:var(--hist);border-radius:4px;padding:0.2rem 0.55rem;font-weight:700;">✗ ${missedCount} oublié(s)</span>`;
+  if (trapCount > 0) {
+    legendHtml += `<span style="background:rgba(181,118,10,0.14);color:var(--gold);border-radius:4px;padding:0.2rem 0.55rem;font-weight:700;">⚠ ${trapCount} piège(s)</span>`;
+  }
+  document.getElementById(`legend-${id}`).innerHTML = legendHtml;
+
+  // Affichage des pièges sélectionnés (chips barrés)
+  const trapsBox = document.getElementById(`traps-${id}`);
+  let trapsHtml = '';
+  if (trapCount > 0) {
+    const chips = trapsPicked.map(t =>
+      `<span style="display:inline-flex;align-items:center;gap:0.3rem;background:rgba(181,118,10,0.10);border:1.5px solid rgba(181,118,10,0.35);color:var(--gold);border-radius:6px;padding:0.2rem 0.55rem;font-size:0.82rem;font-weight:700;text-decoration:line-through;text-decoration-thickness:1.5px;">${t}</span>`
+    ).join('');
+    trapsHtml += `
+      <div style="margin-top:0.85rem;padding:0.7rem 0.85rem;background:rgba(181,118,10,0.06);border:1.5px solid rgba(181,118,10,0.25);border-left:4px solid var(--gold);border-radius:8px;">
+        <div style="font-family:'DM Mono',monospace;font-size:0.6rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:var(--gold);margin-bottom:0.45rem;">⚠ Pièges que tu as sélectionnés</div>
+        <div style="font-size:0.8rem;color:var(--muted);margin-bottom:0.5rem;line-height:1.5;">Ces mots-clés n'ont pas leur place dans ce sujet — fais attention à ne pas les utiliser dans ton développement construit&nbsp;:</div>
+        <div style="display:flex;flex-wrap:wrap;gap:0.35rem;">${chips}</div>
+      </div>`;
+  }
+
+  // Mots-clés à connaître mais absents du corrigé proposé
+  if (notInCorrige.length > 0) {
+    const chips = notInCorrige.map(kw => {
+      const isFoundByEleve = isFound(kw);
+      const color = isFoundByEleve ? 'var(--emc)' : 'var(--muted)';
+      const bg    = isFoundByEleve ? 'rgba(30,124,69,0.10)' : 'var(--surface)';
+      const border = isFoundByEleve ? 'var(--emc-border)' : 'var(--border)';
+      const icon = isFoundByEleve ? '✓ ' : '';
+      return `<span style="background:${bg};border:1.5px solid ${border};color:${color};border-radius:6px;padding:0.2rem 0.55rem;font-size:0.82rem;font-weight:700;">${icon}${kw}</span>`;
+    }).join('');
+    trapsHtml += `
+      <div style="margin-top:0.85rem;padding:0.7rem 0.85rem;background:var(--surface);border:1.5px solid var(--border);border-left:4px solid var(--methode);border-radius:8px;">
+        <div style="font-family:'DM Mono',monospace;font-size:0.6rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:var(--methode);margin-bottom:0.45rem;">📌 Autres mots-clés à connaître</div>
+        <div style="font-size:0.8rem;color:var(--muted);margin-bottom:0.5rem;line-height:1.5;">Ces mots-clés ne sont pas utilisés dans ce corrigé mais font partie du chapitre&nbsp;: tu pourrais les mobiliser dans un autre développement construit.</div>
+        <div style="display:flex;flex-wrap:wrap;gap:0.35rem;">${chips}</div>
+      </div>`;
+  }
+
+  if (trapsHtml) {
+    trapsBox.innerHTML = trapsHtml;
+    trapsBox.style.display = 'block';
+  } else {
+    trapsBox.innerHTML = '';
+    trapsBox.style.display = 'none';
+  }
+}
+
+function resetCorrige(id) {
+  delete corrigeState[id];
+  document.getElementById(`step1-${id}`).style.display = 'block';
+  document.getElementById(`step2-${id}`).style.display = 'none';
+  document.getElementById(`step3-${id}`).style.display = 'none';
+  document.getElementById(`plan-feedback-${id}`).style.display = 'none';
+  document.getElementById(`btn-step2-${id}`).style.display = 'none';
+  document.getElementById(`btn-step3-${id}`).style.display = 'none';
+  const trapsBox = document.getElementById(`traps-${id}`);
+  if (trapsBox) { trapsBox.innerHTML = ''; trapsBox.style.display = 'none'; }
+  document.querySelectorAll(`#step1-${id} .plan-opt`).forEach(el => el.classList.remove('selected'));
+  document.querySelectorAll(`#step2-${id} .kw-chip`).forEach(el => el.classList.remove('kw-selected'));
+  updateKeywordCount(id);
 }
 
 (function buildCorrigeList() {
   const container = document.getElementById('corrige-list');
   if (!container) return;
+
+  const stepStyle = `font-family:'DM Mono',monospace;font-size:0.6rem;text-transform:uppercase;letter-spacing:0.08em;font-weight:700;`;
+  const stepBadge = (n, color) => `<span style="${stepStyle}background:${color};color:white;border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:0.75rem;flex-shrink:0;">${n}</span>`;
+
   CORRIGES.forEach((c, i) => {
-    const paras = c.body.split('\n\n').filter(p => p.trim());
-    const parasHtml = paras.map((p, pi) =>
-      `<p class="corrige-para${pi === 0 ? ' intro' : ''}">${p.replace(/\n/g, '<br>')}</p>`
-    ).join('');
+    const meta = CORRIGES_META[i] || { plans: [], keywords: [] };
+    const matColor = c.mat === 'hist' ? 'var(--hist)' : 'var(--geo)';
+
+    // Shuffle plans (keep original index in data attribute)
+    const shuffledPlans = shuffleArray(meta.plans.map((p, pi) => ({ ...p, origIdx: pi })));
+    const plansHtml = shuffledPlans.map((p, si) => `
+      <div class="plan-opt" data-plan-idx="${p.origIdx}" onclick="selectPlan(${i},${si})" style="
+        display:flex;align-items:flex-start;gap:0.6rem;padding:0.65rem 0.85rem;
+        border:1.5px solid var(--border);border-radius:8px;cursor:pointer;
+        background:var(--surface);transition:all 0.2s;font-size:0.85rem;line-height:1.5;
+      ">
+        <span style="width:20px;height:20px;border-radius:50%;border:2px solid var(--border);flex-shrink:0;margin-top:2px;display:inline-block;transition:all 0.2s;"></span>
+        <span>${p.label}</span>
+      </div>`).join('');
+
+    // Shuffle all keywords (real + traps mixed together)
+    const shuffledKws = shuffleArray(meta.keywords);
+    const kwsHtml = shuffledKws.map(kw => `
+      <span class="kw-chip" data-kw="${kw.w}" data-real="${kw.real}" onclick="toggleKeyword(${i},this)" style="
+        background:var(--surface);border:1.5px solid var(--border);
+        border-radius:6px;padding:0.3rem 0.7rem;font-size:0.82rem;font-weight:700;
+        cursor:pointer;transition:all 0.2s;user-select:none;
+      ">${kw.w}</span>`).join('');
+
     container.innerHTML += `
       <div class="corrige-item" data-mat="${c.mat}" id="corrige-${i}">
-        <button class="corrige-btn" onclick="toggleCorrige(${i})" aria-expanded="false">
+        <button class="corrige-btn" onclick="openCorrige(${i})">
           <span class="corrige-code">${c.code}</span>
           <span class="corrige-title">${c.title}</span>
           <span class="corrige-chevron">▼</span>
         </button>
-        <div class="corrige-body">${parasHtml}</div>
+
+        <div class="corrige-body" id="corrige-body-${i}" style="display:none;padding:0;border-top:1.5px solid var(--border);">
+
+          <!-- ÉTAPE 1 : PLAN -->
+          <div id="step1-${i}" style="padding:1rem;">
+            <div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:0.9rem;">
+              ${stepBadge(1, matColor)}
+              <div>
+                <div style="${stepStyle}color:${matColor};">Étape 1 — Choix du plan</div>
+                <div style="font-size:0.82rem;color:var(--muted);margin-top:0.1rem;">Quel est le meilleur plan pour ce sujet ? Sélectionne ta réponse.</div>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:0.45rem;">${plansHtml}</div>
+            <div id="plan-feedback-${i}" style="display:none;margin-top:0.75rem;font-size:0.84rem;padding:0.6rem 0.85rem;background:var(--bg);border-radius:8px;border:1.5px solid var(--border);gap:0.3rem;flex-wrap:wrap;"></div>
+            <button id="btn-step2-${i}" onclick="goStep2(${i})" style="display:none;margin-top:0.9rem;width:100%;background:${matColor};color:white;border:none;border-radius:8px;padding:0.65rem;font-family:'DM Mono',monospace;font-size:0.65rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;">
+              Continuer → Étape 2
+            </button>
+          </div>
+
+          <!-- ÉTAPE 2 : MOTS-CLÉS -->
+          <div id="step2-${i}" style="display:none;padding:1rem;border-top:1.5px solid var(--border);">
+            <div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:0.75rem;">
+              ${stepBadge(2, matColor)}
+              <div>
+                <div style="${stepStyle}color:${matColor};">Étape 2 — Mots-clés essentiels</div>
+                <div style="font-size:0.82rem;color:var(--muted);margin-top:0.1rem;">Sélectionne <strong>au moins 5 mots-clés</strong> indispensables. Attention aux pièges !</div>
+              </div>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:0.75rem;">${kwsHtml}</div>
+            <div style="font-size:0.82rem;color:var(--muted);">Sélectionnés : <strong id="kw-count-${i}" style="color:var(--hist);">0</strong> / 5 minimum</div>
+            <button id="btn-step3-${i}" onclick="goStep3(${i})" style="display:none;margin-top:0.9rem;width:100%;background:${matColor};color:white;border:none;border-radius:8px;padding:0.65rem;font-family:'DM Mono',monospace;font-size:0.65rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;">
+              Voir le corrigé → Étape 3
+            </button>
+          </div>
+
+          <!-- ÉTAPE 3 : CORRIGÉ -->
+          <div id="step3-${i}" style="display:none;padding:1rem;border-top:1.5px solid var(--border);">
+            <div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:0.75rem;">
+              ${stepBadge(3, matColor)}
+              <div>
+                <div style="${stepStyle}color:${matColor};">Étape 3 — Corrigé annoté</div>
+                <div style="font-size:0.82rem;color:var(--muted);margin-top:0.1rem;">Mots trouvés en <span style="color:var(--emc);font-weight:700;">vert</span>, oubliés en <span style="color:var(--hist);font-weight:700;">rouge</span>, pièges <span style="color:var(--gold);font-weight:700;text-decoration:line-through;">barrés</span>.</div>
+              </div>
+            </div>
+            <div id="legend-${i}" style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:0.85rem;font-size:0.8rem;"></div>
+            <div id="corrige-text-${i}" style="font-size:0.88rem;line-height:1.75;"></div>
+            <div id="traps-${i}" style="display:none;"></div>
+            <button onclick="resetCorrige(${i})" style="margin-top:1rem;width:100%;background:var(--surface2);color:var(--muted);border:1.5px solid var(--border);border-radius:8px;padding:0.55rem;font-family:'DM Mono',monospace;font-size:0.62rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;">
+              ↺ Recommencer
+            </button>
+          </div>
+
+        </div>
       </div>`;
   });
+
+  const style = document.createElement('style');
+  style.textContent = `
+    .plan-opt:hover { border-color: var(--muted) !important; background: var(--surface2) !important; }
+    .plan-opt.selected { border-color: var(--methode) !important; background: var(--methode-soft) !important; }
+    .plan-opt.selected span:first-child { background: var(--methode); border-color: var(--methode) !important; }
+    .kw-chip:hover { border-color: var(--muted) !important; background: var(--surface2) !important; }
+    .kw-chip.kw-selected { background: var(--methode-soft) !important; border-color: var(--methode) !important; color: var(--methode) !important; }
+    .corrige-item.open .corrige-chevron { transform: rotate(180deg); }
+    .corrige-para { margin-bottom: 0.9rem; }
+    .corrige-para.intro { font-style: italic; color: var(--muted); }
+  `;
+  document.head.appendChild(style);
 })();
 </script>
 </body>
